@@ -3,21 +3,28 @@ Theme name: Simple init Vue project
 Author: John Zarek
 Version: 1.0
 */
+
+$bgColor: #ccc;
+
 body {
-  background: #ccc;
-  margin: 0px; }
+    background: $bgColor;
+	margin: 0px;
+}
 
 .town {
   width: 2040px;
   height: 1260px;
-  background: url("./src/assets/waldo1.jpg"); }
+  background: url('./src/assets/waldo1.jpg');
+}
 
 .vikingFeast {
   width: 2800px;
   height: 1760px;
-  background: url("./src/assets/waldo2.jpg"); }
+  background: url('./src/assets/waldo2.jpg');
+}
 
 .colosseum {
   width: 3000px;
   height: 1880px;
-  background: url("./src/assets/waldo3.jpg"); }
+  background: url('./src/assets/waldo3.jpg');
+}

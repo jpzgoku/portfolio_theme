@@ -1,6 +1,5 @@
 var path = require('path')
 var webpack = require('webpack')
-const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 
 module.exports = {
   entry: './src/main.js',
@@ -64,7 +63,7 @@ module.exports = {
         test: /\.(png|jpg|gif|svg)$/,
         loader: 'file-loader',
         options: {
-          name: '[name].[ext]?[hash]'
+          name: '[name].[ext]'
         }
       }
     ]
@@ -74,11 +73,6 @@ module.exports = {
       'vue$': 'vue/dist/vue.esm.js'
     },
     extensions: ['*', '.js', '.vue', '.json']
-  },
-  devServer: {
-    historyApiFallback: true,
-    noInfo: true,
-    overlay: true
   },
   performance: {
     hints: false
@@ -103,28 +97,6 @@ if (process.env.NODE_ENV === 'production') {
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: true
-    }),
-    new BrowserSyncPlugin({
-      // browse to http://localhost:3000/ during development,
-      // ./public directory is being served
-      // host: 'localhost',
-      proxy: 'http://zarekdigitalmarketing.local:80',
-      port: 80,
-      files: [
-        '**/*.php'
-      ],
-      ghostMode: {
-        clicks: false,
-        location: false,
-        forms: false,
-        scroll: false
-      },
-      injectChanges: true,
-      logFileChanges: true,
-      logLevel: 'debug',
-      logPrefix: 'wepback',
-      notify: true,
-      reloadDelay: 0
     })
   ])
 }
