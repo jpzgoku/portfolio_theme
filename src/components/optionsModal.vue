@@ -12,7 +12,7 @@
 
       <level-select></level-select>
 
-      <high-scores v-show="this.shared.highScores.length > 0"></high-scores>
+      <high-scores v-show="this.highScores.length > 0"></high-scores>
 
     </div>
 
@@ -20,29 +20,29 @@
 </template>
 
 <script>
-
-import { store } from '../js/store.js';
 import LevelSelect from './levelSelect.vue';
 import HighScores from './highScores.vue';
+import { mapGetters } from 'vuex';
 
 export default {
-  name: 'optionsModal',
-  components: {
-    LevelSelect,
-    HighScores
-  },
-  data() {
-    return {
-      shared: store
-    }
-  },
-  methods: {
-    close() {
-      Event.$emit('closeOptionsModal');
-    }
-  }
-}
+	name: 'optionsModal',
+	components: {
+		LevelSelect,
+		HighScores
+	},
 
+	computed: {
+		...mapGetters([
+			'highScores'
+		])
+	},
+
+	methods: {
+		close() {
+			this.$store.dispatch('toggleOptionsModal', false);
+		}
+	}
+}
 </script>
 
 <style lang="css" scoped src="../css/modal.css"></style>

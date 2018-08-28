@@ -9,7 +9,7 @@
       <h3>What do you see?</h3>
       <form>
 
-        <input v-for="i in this.shared.characters"
+        <input v-for="i in this.characters"
               type="button"
               :value="capitalize(i.name)"
               @click="makeGuess(i.name)"
@@ -22,22 +22,26 @@
 </template>
 
 <script>
-import { store } from '../js/store.js';
+import { mapGetters } from 'vuex';
+import { eventBus } from '../main'
 
 export default {
 	name: 'guessModal',
-	data() {
-		return {
-			shared: store
-		}
+
+	computed: {
+		...mapGetters([
+			'char',
+			'characters'
+		])
 	},
+
 	methods: {
 		close() {
-			this.shared.toggleGuessModal();
+			this.$store.dispatch('toggleGuessModal', false);
 		},
 
 		makeGuess(n) {
-			this.shared.char = n;
+			this.char = n;
 			Event.$emit('checkGuess');
 			this.close();
 		},

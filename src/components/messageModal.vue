@@ -2,28 +2,29 @@
   <div class="modal" @click="close">
 
     <div class="modal-content">
-      <h1>{{shared.message}}</h1>
+      <h1>{{ this.message }}</h1>
     </div>
 
   </div>
 </template>
 
 <script>
-
-import { store } from '../js/store.js';
+import { mapGetters } from 'vuex';
 
 export default {
-  name: 'messageModal',
-  data() {
-    return {
-      shared: store
-    }
-  },
-  methods: {
-    close() {
-      Event.$emit('closeMessageModal');
-    }
-  }
+	name: 'messageModal',
+
+	computed: {
+		...mapGetters([
+			'message'
+		])
+	},
+
+	methods: {
+		close() {
+			this.$store.dispatch('toggleMessageModal', false);
+		}
+	}
 }
 </script>
 

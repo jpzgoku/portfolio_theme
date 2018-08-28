@@ -3,7 +3,7 @@
 
     <h3>High Scores:</h3>
     <ul>
-      <li v-for="i in shared.highScores">
+      <li v-for="i in this.highScores">
         {{i.name}} - {{i.seconds}} seconds
       </li>
     </ul>
@@ -12,18 +12,17 @@
 </template>
 
 <script>
-
-import { store } from '../js/store.js';
+import { mapGetters } from 'vuex';
 
 export default {
-  name: 'highScores',
-  data() {
-    return {
-      shared: store
-    }
-  }
-}
+	name: 'highScores',
 
+	computed: {
+		...mapGetters([
+			'highScores'
+		])
+	}
+}
 </script>
 
 <style lang="css" scoped src="../css/modal.css"></style>

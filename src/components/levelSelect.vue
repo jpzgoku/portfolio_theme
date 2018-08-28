@@ -22,7 +22,7 @@ export default {
 		goToVikingFeast() {
 			Event.$emit('goToVikingFeast');
 		},
-		
+
 		goToColosseum() {
 			Event.$emit('goToColosseum');
 		}

@@ -1,8 +1,9 @@
-import Vue from 'vue'
-import App from './App.vue'
+import Vue from 'vue';
 import Board from './components/board.vue';
+import { store } from './js/store';
 
 new Vue({
 	el: '#app',
+	store,
 	render: h => h(Board)
 });
