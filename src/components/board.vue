@@ -172,7 +172,6 @@ export default {
 		},
 
 		goToTown() {
-			console.log('Go to town.')
 			this.changeLevel();
 			this.town = true;
 			this.vikingFeast = false;

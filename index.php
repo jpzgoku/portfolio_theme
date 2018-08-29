@@ -1,5 +1,7 @@
 <?php get_header(); ?>
 
-<div id=app></div>
+<div id=app>
+	<board></board>
+</div>
 
 <?php get_footer(); ?>
