@@ -1,25 +1,28 @@
 <template lang="html">
-  <div class="modal">
+	<div class="modal">
 
-    <div class="modal-content">
+		<div class="modal-content">
 
-      <h1>You Win!</h1>
-      <h3>{{ this.seconds }} seconds</h3>
-      <level-select></level-select>
+			<h1>You Win!</h1>
+			<h3>{{ this.seconds }} seconds</h3>
+			<level-select
+				@goToTown="changeLevelTo('goToTown')"
+				@goToVikingFeast="changeLevelTo('goToVikingFeast')"
+				@goToColosseum="changeLevelTo('goToColosseum')">
+			</level-select>
 
-      <div v-show="this.highScores.length > 0">
-        <high-scores></high-scores>
-        <input type="button" value="Enter Your Score!" @click="inputHighScores">
+			<div v-show="this.highScores.length > 0">
+				<high-scores></high-scores>
+				<input type="button" value="Enter Your Score!" @click="inputHighScores">
 
-        <div v-show="this.scores">
-          <input type="text" placeholder="Name" @keyup.enter="inputName">
-        </div>
-      </div>
+				<div v-show="this.scores">
+					<input type="text" placeholder="Name" @keyup.enter="inputName">
+				</div>
+			</div>
 
+		</div>
 
-    </div>
-
-  </div>
+	</div>
 </template>
 
 <script>
@@ -50,7 +53,11 @@ export default {
 
 		inputName(e) {
 			let value = e.srcElement.value
-			Event.$emit('inputName', value);
+			this.$emit('inputName', value);
+		},
+
+		changeLevelTo(level) {
+			this.$emit(level);
 		}
 	}
 }

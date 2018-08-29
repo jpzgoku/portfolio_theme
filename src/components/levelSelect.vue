@@ -3,9 +3,9 @@
     <h3>Level Select:</h3>
     <form>
 
-      <input type="button" value="Town" @click="goToTown">
-      <input type="button" value="Viking Feast" @click="goToVikingFeast">
-      <input type="button" value="Colosseum" @click="goToColosseum">
+      <input type="button" value="Town" @click="changeLevelTo('goToTown')">
+      <input type="button" value="Viking Feast" @click="changeLevelTo('goToVikingFeast')">
+      <input type="button" value="Colosseum" @click="changeLevelTo('goToColosseum')">
 
     </form>
   </div>
@@ -15,16 +15,9 @@
 export default {
 	name: 'levelSelect',
 	methods: {
-		goToTown() {
-			this.$emit('goToTown');
-		},
 
-		goToVikingFeast() {
-			this.$emit('goToVikingFeast');
-		},
-
-		goToColosseum() {
-			this.$emit('goToColosseum');
+		changeLevelTo(level) {
+			this.$emit(level);
 		}
 	}
 }

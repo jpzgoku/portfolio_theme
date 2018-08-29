@@ -11,9 +11,9 @@
 			<p><span>* Right click at any time to open the options menu!</span></p>
 
 			<level-select
-				@goToTown="goToTown"
-				@goToVikingFeast="goToVikingFeast"
-				@goToColosseum="goToColosseum">
+				@goToTown="changeLevelTo('goToTown')"
+				@goToVikingFeast="changeLevelTo('goToVikingFeast')"
+				@goToColosseum="changeLevelTo('goToColosseum')">
 			</level-select>
 
 			<high-scores v-show="this.highScores.length > 0"></high-scores>
@@ -46,16 +46,8 @@ export default {
 			this.$store.dispatch('toggleOptionsModal', false);
 		},
 
-		goToTown() {
-			this.$emit('goToTown');
-		},
-
-		goToVikingFeast() {
-			this.$emit('goToVikingFeast');
-		},
-
-		goToColosseum() {
-			this.$emit('goToColosseum');
+		changeLevelTo(level) {
+			this.$emit(level);
 		}
 	}
 }

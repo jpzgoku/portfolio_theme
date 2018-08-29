@@ -23,7 +23,6 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import { eventBus } from '../main'
 
 export default {
 	name: 'guessModal',
