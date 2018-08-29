@@ -1,11 +1,11 @@
 <template lang="html">
-  <div class="modal" @click="close">
+	<div class="modal" @click="close">
 
-    <div class="modal-content">
-      <h1>{{ this.message }}</h1>
-    </div>
+		<div class="modal-content">
+			<h1>{{ this.message }}</h1>
+		</div>
 
-  </div>
+	</div>
 </template>
 
 <script>

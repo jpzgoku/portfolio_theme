@@ -13,8 +13,7 @@ export const store = new Vuex.Store({
 		characters: {},
 		optionsModalOpen: true,
 		guessModalOpen: false,
-		messageModalOpen: false,
-		displayTown: true
+		messageModalOpen: false
 	},
 
 	getters: {
@@ -53,15 +52,15 @@ export const store = new Vuex.Store({
 
 		messageModalOpen(state) {
             return state.messageModalOpen;
-        },
-
-		displayTown(state) {
-            return state.displayTown;
         }
 
 	},
 
 	mutations: {
+
+		char(state, data) {
+			state.char = data;
+		},
 
 		seconds(state, data) {
 			state.seconds = data;
@@ -75,6 +74,10 @@ export const store = new Vuex.Store({
 			state.message = data;
 		},
 
+		characters(state, data) {
+			state.characters = data;
+		},
+
 		optionsModalOpen(state, bool) {
 			state.optionsModalOpen = bool;
 		},
@@ -85,14 +88,14 @@ export const store = new Vuex.Store({
 
 		messageModalOpen(state, bool) {
 			state.messageModalOpen = bool;
-		},
-
-		displayTown(state, bool) {
-			state.displayTown = bool;
 		}
 	},
 
 	actions: {
+
+		updateChar(context, data) {
+			context.commit('char', data);
+		},
 
 		updateSeconds(context, data) {
 			context.commit('seconds', data);
@@ -106,6 +109,10 @@ export const store = new Vuex.Store({
 			context.commit('message', data);
 		},
 
+		updateCharacters(context, data) {
+			context.commit('characters', data);
+		},
+
 		toggleOptionsModal(context, bool) {
 			context.commit('optionsModalOpen', bool);
 		},
@@ -116,10 +123,6 @@ export const store = new Vuex.Store({
 
 		toggleMessageModal(context, bool) {
 			context.commit('messageModalOpen', bool);
-		},
-
-		toggleDisplayTown(context, bool) {
-			context.commit('displayTown', bool);
 		}
 
 	}

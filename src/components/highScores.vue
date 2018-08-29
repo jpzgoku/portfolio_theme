@@ -1,14 +1,14 @@
 <template lang="html">
-  <div>
+	<div>
 
-    <h3>High Scores:</h3>
-    <ul>
-      <li v-for="i in this.highScores">
-        {{i.name}} - {{i.seconds}} seconds
-      </li>
-    </ul>
+		<h3>High Scores:</h3>
+		<ul>
+			<li v-for="highscore in this.highScores">
+				{{ highscore.name }} - {{ highscore.seconds }} seconds
+			</li>
+		</ul>
 
-  </div>
+	</div>
 </template>
 
 <script>

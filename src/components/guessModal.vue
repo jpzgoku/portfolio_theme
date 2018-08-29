@@ -1,24 +1,24 @@
 <template lang="html">
-  <div class="modal">
+	<div class="modal">
 
-    <div class="modal-content">
-      <button class="close" @click="close">
-        &times;
-      </button>
+		<div class="modal-content">
+			<button class="close" @click="close">
+				&times;
+			</button>
 
-      <h3>What do you see?</h3>
-      <form>
+			<h3>What do you see?</h3>
+			<form>
 
-        <input v-for="i in this.characters"
-              type="button"
-              :value="capitalize(i.name)"
-              @click="makeGuess(i.name)"
-              :disabled="i.found">
+				<input v-for="character in this.characters"
+					type="button"
+					:value="capitalize(character.name)"
+					@click="makeGuess(character.name)"
+					:disabled="character.found">
 
-      </form>
-    </div>
+			</form>
+		</div>
 
-  </div>
+	</div>
 </template>
 
 <script>
@@ -39,8 +39,8 @@ export default {
 			this.$store.dispatch('toggleGuessModal', false);
 		},
 
-		makeGuess(n) {
-			this.char = n;
+		makeGuess(name) {
+			this.$store.dispatch('updateChar', name);
 			this.$emit('checkGuess');
 			this.close();
 		},

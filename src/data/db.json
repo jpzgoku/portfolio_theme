@@ -1,0 +1,28 @@
+{
+  "highScores1": [
+    {
+      "id": 1,
+      "name": "Amber",
+      "seconds": 999
+    },
+    {
+      "name": "John",
+      "seconds": 37,
+      "id": 2
+    }
+  ],
+  "highScores2": [
+    {
+      "id": 1,
+      "name": "Liquid",
+      "seconds": 999
+    }
+  ],
+  "highScores3": [
+    {
+      "id": 1,
+      "name": "Hoa",
+      "seconds": 999
+    }
+  ]
+}

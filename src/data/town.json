@@ -1,0 +1,68 @@
+{
+  "waldo": {
+    "id": 1,
+    "name": "waldo",
+    "found": false,
+    "locations": ["38-36", "39-36", "39-37", "40-36", "40-37"]
+  },
+  "woof": {
+    "id": 2,
+    "name": "woof",
+    "found": false,
+    "locations": ["16-48"]
+  },
+  "wenda": {
+    "id": 3,
+    "name": "wenda",
+    "found": false,
+    "locations": ["30-36", "30-37", "31-36", "31-37", "32-36", "32-37"]
+  },
+  "wizard": {
+    "id": 4,
+    "name": "wizard",
+    "found": false,
+    "locations": ["39-54", "39-55", "39-56", "40-54", "40-55", "40-56"]
+  },
+  "odlaw": {
+    "id": 5,
+    "name": "odlaw",
+    "found": false,
+    "locations": ["48-49", "49-48", "49-49", "50-48"]
+  },
+  "watcher": {
+    "id": 6,
+    "name": "watcher",
+    "found": false,
+    "locations": ["8-82", "9-82", "10-82"]
+  },
+  "scroll": {
+    "id": 7,
+    "name": "scroll",
+    "found": false,
+    "locations": ["48-53", "48-54", "49-53", "49-54"]
+  },
+  "key": {
+    "id": 8,
+    "name": "key",
+    "found": false,
+    "locations": ["47-66", "47-67"]
+  },
+  "bone": {
+    "id": 9,
+    "name": "bone",
+    "found": false,
+    "locations": ["43-44", "44-44"]
+  },
+  "camera": {
+    "id": 10,
+    "name": "camera",
+    "found": false,
+    "locations": ["46-72", "46-73"]
+  },
+  "binoculars": {
+    "id": 11,
+    "name": "binoculars",
+    "found": false,
+    "locations": ["30-72", "30-73"]
+  }
+}
