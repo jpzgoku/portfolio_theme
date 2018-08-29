@@ -16,15 +16,15 @@ export default {
 	name: 'levelSelect',
 	methods: {
 		goToTown() {
-			Event.$emit('goToTown');
+			this.$emit('goToTown');
 		},
 
 		goToVikingFeast() {
-			Event.$emit('goToVikingFeast');
+			this.$emit('goToVikingFeast');
 		},
 
 		goToColosseum() {
-			Event.$emit('goToColosseum');
+			this.$emit('goToColosseum');
 		}
 	}
 }

@@ -1,22 +1,26 @@
 <template lang="html">
-  <div class="modal">
+	<div class="modal">
 
-    <div class="modal-content">
-      <button class="close" @click="close">
-        &times;
-      </button>
+		<div class="modal-content">
+			<button class="close" @click="close">
+				&times;
+			</button>
 
-      <h1>Where's Waldo?</h1>
-      <h3>Options Menu</h3>
-      <p><span>* Right click at any time to open the options menu!</span></p>
+			<h1>Where's Waldo?</h1>
+			<h3>Options Menu</h3>
+			<p><span>* Right click at any time to open the options menu!</span></p>
 
-      <level-select></level-select>
+			<level-select
+				@goToTown="goToTown"
+				@goToVikingFeast="goToVikingFeast"
+				@goToColosseum="goToColosseum">
+			</level-select>
 
-      <high-scores v-show="this.highScores.length > 0"></high-scores>
+			<high-scores v-show="this.highScores.length > 0"></high-scores>
 
-    </div>
+		</div>
 
-  </div>
+	</div>
 </template>
 
 <script>
@@ -40,6 +44,18 @@ export default {
 	methods: {
 		close() {
 			this.$store.dispatch('toggleOptionsModal', false);
+		},
+
+		goToTown() {
+			this.$emit('goToTown');
+		},
+
+		goToVikingFeast() {
+			this.$emit('goToVikingFeast');
+		},
+
+		goToColosseum() {
+			this.$emit('goToColosseum');
 		}
 	}
 }

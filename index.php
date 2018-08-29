@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<div id=app>
+<div id="app">
 	<board></board>
 </div>
 

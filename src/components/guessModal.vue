@@ -42,7 +42,7 @@ export default {
 
 		makeGuess(n) {
 			this.char = n;
-			Event.$emit('checkGuess');
+			this.$emit('checkGuess');
 			this.close();
 		},
 
