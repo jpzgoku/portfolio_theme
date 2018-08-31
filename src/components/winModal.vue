@@ -3,7 +3,7 @@
 
 		<div class="modal-content">
 
-			<h1>You Win!</h1>
+			<h2>You Win!</h2>
 			<h3>{{ this.seconds }} seconds</h3>
 			<level-select
 				@goToTown="changeLevelTo('goToTown')"

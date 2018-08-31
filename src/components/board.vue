@@ -1,39 +1,41 @@
 <template lang="html">
-	<div :class="{'town': town, 'vikingFeast': vikingFeast, 'colosseum': colosseum}" @contextmenu="openOptions">
+	<div class="nav-bar-padding">
+		<div :class="{'town': town, 'vikingFeast': vikingFeast, 'colosseum': colosseum}" @contextmenu="openOptions">
 
-		<options-modal
-			v-show="optionsModalOpen"
-			@goToTown="goToTown"
-			@goToVikingFeast="goToVikingFeast"
-			@goToColosseum="goToColosseum">
-		</options-modal>
+			<options-modal
+				v-show="optionsModalOpen"
+				@goToTown="goToTown"
+				@goToVikingFeast="goToVikingFeast"
+				@goToColosseum="goToColosseum">
+			</options-modal>
 
-		<guess-modal
-			v-show="guessModalOpen"
-			@checkGuess="checkGuess">
-		</guess-modal>
+			<guess-modal
+				v-show="guessModalOpen"
+				@checkGuess="checkGuess">
+			</guess-modal>
 
-		<message-modal v-show="messageModalOpen">
-		</message-modal>
+			<message-modal v-show="messageModalOpen">
+			</message-modal>
 
-		<win-modal
-			v-show="winModalOpen"
-			@inputName="inputName($event)"
-			@goToTown="goToTown"
-			@goToVikingFeast="goToVikingFeast"
-			@goToColosseum="goToColosseum">
-		</win-modal>
+			<win-modal
+				v-show="winModalOpen"
+				@inputName="inputName($event)"
+				@goToTown="goToTown"
+				@goToVikingFeast="goToVikingFeast"
+				@goToColosseum="goToColosseum">
+			</win-modal>
 
-		<table id="table">
-			<tr v-for="row in rows">
+			<table id="table">
+				<tr v-for="row in rows">
 
-				<td v-for="column in columns"
-					:id="row + '-' + column"
-					@click="openModal">
-				</td>
+					<td v-for="column in columns"
+						:id="row + '-' + column"
+						@click="openModal">
+					</td>
 
-			</tr>
-		</table>
+				</tr>
+			</table>
+		</div>
 	</div>
 </template>
 
@@ -216,8 +218,8 @@ export default {
 
 <style lang="css" scoped>
 
-	div {
-		/* margin: 1000px 0 0 0; */
+	.nav-bar-padding {
+		padding: 56px 0 0 0;
 	}
 
 	table {

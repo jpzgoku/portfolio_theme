@@ -2,7 +2,7 @@
 	<div class="custom-modal" @click="close">
 
 		<div class="modal-content">
-			<h1>{{ this.message }}</h1>
+			<h2>{{ this.message }}</h2>
 		</div>
 
 	</div>
