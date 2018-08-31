@@ -1,5 +1,5 @@
 {
-  "highScores1": [
+  "town": [
     {
       "id": 1,
       "name": "Amber",
@@ -11,17 +11,17 @@
       "id": 2
     }
   ],
-  "highScores2": [
+  "vikingFeast": [
     {
       "id": 1,
       "name": "Liquid",
       "seconds": 999
     }
   ],
-  "highScores3": [
+  "colosseum": [
     {
       "id": 1,
-      "name": "Hoa",
+      "name": "Zero",
       "seconds": 999
     }
   ]

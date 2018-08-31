@@ -15,7 +15,7 @@
 				<high-scores></high-scores>
 				<input type="button" value="Enter Your Score!" @click="inputHighScores">
 
-				<div v-show="this.scores">
+				<div v-show="this.inputScore">
 					<input type="text" placeholder="Name" @keyup.enter="inputName">
 				</div>
 			</div>
@@ -40,7 +40,7 @@ export default {
 	computed: {
 		...mapGetters([
 			'seconds',
-			'scores',
+			'inputScore',
 			'highScores'
 		])
 	},
@@ -48,12 +48,12 @@ export default {
 	methods: {
 
 		inputHighScores() {
-			this.$store.dispatch('showScores', true);
+			this.$store.dispatch('displayInputScore', true);
 		},
 
 		inputName(e) {
-			let value = e.srcElement.value
-			this.$emit('inputName', value);
+			let name = e.srcElement.value;
+			this.$emit('inputName', name);
 		},
 
 		changeLevelTo(level) {

@@ -7,7 +7,7 @@ export const store = new Vuex.Store({
 	state: {
 		char: '',
 		seconds: 0,
-		scores: false,
+		inputScore: false,
 		message: 'You Win!',
 		highScores: [],
 		characters: {},
@@ -26,8 +26,8 @@ export const store = new Vuex.Store({
             return state.seconds;
         },
 
-		scores(state) {
-            return state.scores;
+		inputScore(state) {
+            return state.inputScore;
         },
 
 		message(state) {
@@ -66,12 +66,16 @@ export const store = new Vuex.Store({
 			state.seconds = data;
 		},
 
-		scores(state, data) {
-			state.scores = data;
+		inputScore(state, data) {
+			state.inputScore = data;
 		},
 
 		message(state, data) {
 			state.message = data;
+		},
+
+		highScores(state, data) {
+			state.highScores = data;
 		},
 
 		characters(state, data) {
@@ -101,12 +105,16 @@ export const store = new Vuex.Store({
 			context.commit('seconds', data);
 		},
 
-		showScores(context, bool) {
-			context.commit('scores', bool);
+		displayInputScore(context, bool) {
+			context.commit('inputScore', bool);
 		},
 
 		updateMessage(context, data) {
 			context.commit('message', data);
+		},
+
+		setHighScores(context, data) {
+			context.commit('highScores', data);
 		},
 
 		updateCharacters(context, data) {

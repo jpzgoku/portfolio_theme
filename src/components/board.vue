@@ -18,7 +18,7 @@
 
 		<win-modal
 			v-show="winModalOpen"
-			@inputName="inputName(value)"
+			@inputName="inputName($event)"
 			@goToTown="goToTown"
 			@goToVikingFeast="goToVikingFeast"
 			@goToColosseum="goToColosseum">
@@ -38,7 +38,7 @@
 </template>
 
 <script>
-// import axios from 'axios';
+import axios from 'axios';
 import OptionsModal from './optionsModal.vue';
 import GuessModal from './guessModal.vue';
 import MessageModal from './messageModal.vue';
@@ -47,6 +47,7 @@ import { mapGetters } from 'vuex';
 import TownCharacters from '../data/town.json';
 import VikingFeastCharacters from '../data/vikingFeast.json';
 import ColosseumCharacters from '../data/colosseum.json';
+import HighScoresData from '../data/db.json';
 
 export default {
 	name: 'board',
@@ -61,7 +62,7 @@ export default {
 		...mapGetters([
 			'char',
 			'seconds',
-			'scores',
+			'inputScore',
 			'message',
 			'highScores',
 			'characters',
@@ -139,8 +140,8 @@ export default {
 		},
 
 		checkForWin() {
-			for (let i in this.characters) {
-				if (!this.characters[i].found) {
+			for (let character in this.characters) {
+				if (!this.characters[character].found) {
 					this.$store.dispatch('updateMessage', 'Correct');
 					this.$store.dispatch('toggleMessageModal', true);
 					return setTimeout(() => {
@@ -152,12 +153,13 @@ export default {
 			this.winModalOpen = true;
 		},
 
-		inputName(value) {
-			// axios.post('http://localhost:3000/highScores1', {
-			// 	name: value,
+		inputName(name) {
+			console.log(name);
+			// var url = './wp-content/themes/my-project/src/data/db.json';
+			// axios.post(url, {
+			// 	name: name,
 			// 	seconds: this.seconds
-			// })
-			console.log(value);
+			// });
 		},
 
 		changeLevel() {
@@ -168,7 +170,7 @@ export default {
 			}
 			this.winModalOpen = false;
 			this.$store.dispatch('toggleOptionsModal', false);
-			this.$store.dispatch('showScores', false);
+			this.$store.dispatch('displayInputScore', false);
 			if (this.clock) {
 				clearInterval(this.clock);
 				this.$store.dispatch('updateSeconds', 0);
@@ -184,10 +186,7 @@ export default {
 			this.rows = 50;
 			this.columns = 82;
 			this.$store.dispatch('updateCharacters', TownCharacters);
-			// axios.get('http://localhost:3000/highScores1')
-			// 	.then(response => {
-			// 		return this.highScores = response.data
-			// 	});
+			this.$store.dispatch('setHighScores', HighScoresData.town);
 		},
 
 		goToVikingFeast() {
@@ -198,10 +197,7 @@ export default {
 			this.rows = 70;
 			this.columns = 112;
 			this.$store.dispatch('updateCharacters', VikingFeastCharacters);
-			// axios.get('http://localhost:3000/highScores2')
-			// 	.then(response => {
-			// 		return this.highScores = response.data
-			// 	});
+			this.$store.dispatch('setHighScores', HighScoresData.vikingFeast);
 		},
 
 		goToColosseum() {
@@ -212,10 +208,7 @@ export default {
 			this.rows = 75;
 			this.columns = 122;
 			this.$store.dispatch('updateCharacters', ColosseumCharacters);
-			// axios.get('http://localhost:3000/highScores3')
-			// 	.then(response => {
-			// 		return this.highScores = response.data
-			// 	});
+			this.$store.dispatch('setHighScores', HighScoresData.colosseum);
 		}
 	}
 }
