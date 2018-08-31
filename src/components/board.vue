@@ -216,18 +216,22 @@ export default {
 
 <style lang="css" scoped>
 
-  table {
-    border-collapse: collapse;
-  }
+	div {
+		/* margin: 1000px 0 0 0; */
+	}
 
-  td {
-    box-sizing: border-box;
-    height: 25px;
-    width: 25px;
-  }
+	table {
+		border-collapse: collapse;
+	}
 
-  .found {
-    border: 2px solid blue;
-  }
+	td {
+		box-sizing: border-box;
+		height: 25px;
+		width: 25px;
+	}
+
+	.found {
+		border: 2px solid blue;
+	}
 
 </style>

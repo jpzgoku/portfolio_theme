@@ -1,5 +1,5 @@
 <template lang="html">
-	<div class="modal">
+	<div class="custom-modal">
 
 		<div class="modal-content">
 
@@ -63,4 +63,4 @@ export default {
 }
 </script>
 
-<style lang="css" scoped src="../css/modal.css"></style>
+<style lang="scss" scoped src="../scss/modal.scss"></style>

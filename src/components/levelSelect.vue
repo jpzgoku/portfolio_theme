@@ -19,9 +19,9 @@ export default {
 		changeLevelTo(level) {
 			this.$emit(level);
 		}
-		
+
 	}
 }
 </script>
 
-<style lang="css" scoped src="../css/modal.css"></style>
+<style lang="scss" scoped src="../scss/modal.scss"></style>

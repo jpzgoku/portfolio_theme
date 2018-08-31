@@ -25,4 +25,4 @@ export default {
 }
 </script>
 
-<style lang="css" scoped src="../css/modal.css"></style>
+<style lang="scss" scoped src="../scss/modal.scss"></style>
