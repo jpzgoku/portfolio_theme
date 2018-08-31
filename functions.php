@@ -10,6 +10,13 @@ function load_js_scripts() {
     // Change this setting before production (I think).
     wp_enqueue_script("buildjs", get_theme_file_uri('/dist/build.js'), NULL, microtime(), true);
     wp_enqueue_style("stylecss", get_stylesheet_uri(), NULL, microtime());
-};
+}
 
 add_action("wp_enqueue_scripts", "load_js_scripts");
+
+
+function zarek_digital_marketing_features() {
+	add_theme_support("title-tag");
+}
+
+add_action("after_setup_theme", "zarek_digital_marketing_features");

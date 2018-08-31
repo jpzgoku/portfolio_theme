@@ -2,9 +2,12 @@
 	<div class="custom-modal">
 
 		<div class="modal-content">
-			<button class="close" @click="close">
-				&times;
-			</button>
+
+			<div class="close-button-div">
+				<button class="close" @click="close">
+					&times;
+				</button>
+			</div>
 
 			<h3>What do you see?</h3>
 			<form>

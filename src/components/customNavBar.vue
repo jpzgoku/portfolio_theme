@@ -1,16 +1,20 @@
 <template lang="html">
-	<b-navbar toggleable="md" type="dark" variant="info"
+	<b-navbar toggleable="md" type="dark" variant="primary"
 		:class="{'fixed-nav-bar': fixedNavBar}">
 
 		<b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
-		<b-navbar-brand href="#">Zarek Digital Marketing</b-navbar-brand>
+		<b-navbar-brand :href="this.siteUrl">Zarek Digital Marketing</b-navbar-brand>
 
 		<b-collapse is-nav id="nav_collapse">
 
 			<b-navbar-nav>
-				<b-nav-item href="#">Link</b-nav-item>
-				<b-nav-item href="#" disabled>Disabled</b-nav-item>
+				<b-nav-item :href="this.siteUrl + '/wheres-waldo'">
+					Where's Waldo
+				</b-nav-item>
+				<b-nav-item :href="this.siteUrl + '/dragon-ball-battleship'">
+					Dragon Ball Battleship
+				</b-nav-item>
 			</b-navbar-nav>
 
 			<!-- Right aligned nav items -->
@@ -47,15 +51,20 @@ export default {
 	name: 'custom-nav-bar',
 
 	props: {
+
 		fixedNavBar: {
 			type: Boolean,
 			default: false
 		},
+
+		siteUrl: {
+			type: String
+		}
 	}
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	.fixed-nav-bar {
 		position: fixed;
 		width: 100%

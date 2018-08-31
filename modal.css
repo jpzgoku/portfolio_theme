@@ -16,8 +16,7 @@
   /* Fallback color */
   background-color: rgba(0, 0, 0, 0.4);
   /* Black w/ opacity */
-  /* Modal Content/Box */
-  /* The Close Button */ }
+  /* Modal Content/Box */ }
   .custom-modal .modal-content {
     background-color: #fefefe;
     margin: 15% auto;
@@ -27,15 +26,18 @@
     border-radius: 5px;
     width: 80%;
     /* Could be more or less, depending on screen size */ }
-  .custom-modal .close {
-    color: #aaa;
-    font-weight: bold;
+  .custom-modal close-button-div {
     float: right;
-    font-size: 28px; }
-    .custom-modal .close:hover {
-      color: black;
-      text-decoration: none;
-      cursor: pointer; }
+    /* The Close Button */ }
+    .custom-modal close-button-div .close {
+      color: #aaa;
+      font-weight: bold;
+      float: right;
+      font-size: 28px; }
+      .custom-modal close-button-div .close:hover {
+        color: black;
+        text-decoration: none;
+        cursor: pointer; }
   .custom-modal span {
     color: #555; }
   .custom-modal input {
