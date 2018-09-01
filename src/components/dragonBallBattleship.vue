@@ -6,8 +6,18 @@
 			<b-row class="text-center m-4">
 
 				<b-col>
+					<!-- <b-btn v-b-modal.heroSelectModal variant="primary" @click="heroSelectModalOpen = true"> -->
+					<b-btn v-b-modal.heroSelectModal variant="primary">
+						Heros
+					</b-btn>
+
 					<b-btn>{{ mainButtonText }}</b-btn>
 					<b-btn v-b-modal.settings>Settings</b-btn>
+
+					<!-- <b-btn v-b-modal.villianSelectModal variant="primary" @click="villianSelectModalOpen = true"> -->
+					<b-btn v-b-modal.villianSelectModal variant="primary">
+						Villians
+					</b-btn>
 				</b-col>
 
 			</b-row>
@@ -21,10 +31,6 @@
 					<b-col>
 
 						<h4 class="m-4">Heros</h4>
-
-						<b-btn class="m-2" @click="heroSelect = true">
-							Character Select
-						</b-btn>
 
 						<b-btn-group class="m-2">
 							<b-button
@@ -49,10 +55,6 @@
 					<b-col>
 
 						<h4 class="m-4">Villians</h4>
-
-						<b-btn class="m-2" @click="villianSelect = true">
-							Character Select
-						</b-btn>
 
 						<b-btn-group class="m-2">
 							<b-button
@@ -79,20 +81,32 @@
 			</b-modal>
 		</div>
 
-		<b-btn v-b-modal.heroSelectModal variant="primary" @click="heroSelectModalOpen = true">
-			Heros
-		</b-btn>
-
-		<b-btn v-b-modal.villianSelectModal variant="primary" @click="villianSelectModalOpen = true">
-			Villians
-		</b-btn>
-
 		<character-select-modals
+			@selectHero="selectHero($event)"
+			@selectVillian="selectVillian($event)">
+		</character-select-modals>
+
+		<!-- Use this one if I decide to close the character select modal after choosing a character -->
+		<!-- <character-select-modals
 			:hero-select-modal="heroSelectModalOpen"
 			:villian-select-modal="villianSelectModalOpen"
 			@selectHero="selectHero($event)"
 			@selectVillian="selectVillian($event)">
-		</character-select-modals>
+		</character-select-modals> -->
+
+		<div style="text-align: center">
+			<table style="background-color: #fff; display: inline-block">
+				<tr v-for="row in boardSize.rows">
+					<td v-for="column in boardSize.columns" :data="row + '-' + column"></td>
+				</tr>
+			</table>
+
+			<table style="background-color: #fff; display: inline-block">
+				<tr v-for="row in boardSize.rows">
+					<td v-for="column in boardSize.columns" :data="row + '-' + column"></td>
+				</tr>
+			</table>
+		</div>
 
 		<div>
 			<div id="imgPlayer1" :class="heroCharacter"></div>
@@ -129,20 +143,25 @@ export default {
 			villianSelect: false,
 			heroCharacter: 'beerus',
 			villianCharacter: '',
-			heroSelectModalOpen: false,
-			villianSelectModalOpen: false
+			// heroSelectModalOpen: false,
+			// villianSelectModalOpen: false
+			boardSize: {
+				rows: 8,
+				columns: 8
+			}
 		}
 	},
 
 	computed: {
 
-		mainButtonText () {
+		mainButtonText() {
 			if (this.gameInProgress) {
 				return 'Reset Game';
 			} else {
 				return 'Start Game';
 			}
 		}
+
 	},
 
 	methods: {
@@ -157,12 +176,12 @@ export default {
 
 		selectHero(hero) {
 			this.heroCharacter = hero;
-			this.heroSelectModalOpen = false;
+			// this.heroSelectModalOpen = false;
 		},
 
 		selectVillian(villian) {
 			this.villianCharacter = villian;
-			this.villianSelectModalOpen = false;
+			// this.villianSelectModalOpen = false;
 		}
 
 	}
