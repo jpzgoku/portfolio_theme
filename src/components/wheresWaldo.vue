@@ -52,7 +52,7 @@ import ColosseumCharacters from '../data/colosseum.json';
 import HighScoresData from '../data/db.json';
 
 export default {
-	name: 'board',
+	name: 'wheres-waldo',
 	components: {
 		OptionsModal,
 		GuessModal,

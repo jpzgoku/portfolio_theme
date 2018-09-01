@@ -1,3 +1,5 @@
+<body>
+
 <?php get_header(); ?>
 
 <div id="app">
@@ -6,7 +8,7 @@
 		site-url="<?= site_url(); ?>">
 	</custom-nav-bar>
 
-	<board></board>
+	<wheres-waldo></wheres-waldo>
 </div>
 
 <?php get_footer(); ?>

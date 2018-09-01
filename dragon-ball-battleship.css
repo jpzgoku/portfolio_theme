@@ -1,0 +1,94 @@
+li,
+ul {
+  padding: 0;
+  margin: 0; }
+
+ul {
+  position: relative;
+  margin: auto;
+  text-align: center; }
+
+li {
+  display: inline-block;
+  padding: 0 10px;
+  font-family: BlinkMacSystemFont; }
+
+#header {
+  margin: 50px 0 25px; }
+  #header li {
+    cursor: default; }
+
+.menu {
+  background-color: #323232;
+  border-color: #323232;
+  color: white;
+  font-size: 18px; }
+
+#bothSides, #left, #right {
+  margin: 0 auto;
+  display: inline-block;
+  border-spacing: 0; }
+
+#left td:hover {
+  background-color: #00e5e5; }
+
+#right td:hover {
+  background-color: #590059; }
+
+td {
+  width: 40px;
+  height: 40px;
+  border: 1px solid black;
+  color: transparent;
+  box-sizing: border-box;
+  cursor: default; }
+
+#img, #imgPlayer1, #imgPlayer2 {
+  position: fixed;
+  bottom: 0;
+  height: 320px;
+  width: 320px;
+  background-color: transparent; }
+
+#imgPlayer1 {
+  left: -35px; }
+
+#imgPlayer2 {
+  right: -35px; }
+
+.hidden {
+  display: none; }
+
+.hit {
+  background: url("../assets/dragon-ball-battleship/hit.png") no-repeat center center;
+  background-size: contain; }
+
+.miss {
+  background: url("../assets/dragon-ball-battleship/miss.png") no-repeat center center;
+  background-size: contain; }
+
+.shade {
+  background-color: black; }
+
+@media only screen and (min-width: 0) {
+  #imgPlayer2 {
+    display: none; } }
+
+@media only screen and (min-width: 900px) {
+  #imgPlayer2 {
+    display: block; } }
+
+@media only screen and (min-width: 1024px) {
+  td {
+    height: 52px;
+    width: 52px; } }
+
+@media only screen and (min-width: 1100px) {
+  td {
+    height: 62px;
+    width: 62px; } }
+
+@media only screen and (min-width: 1200px) {
+  td {
+    height: 75px;
+    width: 75px; } }

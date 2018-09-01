@@ -1,3 +1,5 @@
+<body style="background-color: black;">
+
 <?php get_header(); ?>
 
 <div id="app">
@@ -5,7 +7,9 @@
 		site-url="<?= site_url(); ?>">
 	</custom-nav-bar>
 
-	<h1>This will be Dragon Ball Battleship.</h1>
+	<dragon-ball-battleship
+		site-url="<?= site_url(); ?>">
+	</dragon-ball-battleship>
 </div>
 
 <?php get_footer(); ?>

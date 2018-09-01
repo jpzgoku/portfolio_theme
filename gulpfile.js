@@ -33,7 +33,7 @@ gulp.task('watch', function() {
     gulp.watch('./**/*.php', function() {
         browserSync.reload();
     });
-    gulp.watch('src/scss/**/*.scss', ['waitForStyles']);
+    gulp.watch('src/scss/*.scss', ['waitForStyles']);
     // gulp.watch(['js/modules/*.js', 'js/scripts.js'], ['waitForScripts']);
     gulp.watch(['src/**/*.vue', 'src/**/*.js'], ['waitForScripts']);
 });
