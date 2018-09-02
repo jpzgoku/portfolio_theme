@@ -10,7 +10,7 @@ gulp.task('default', ['imageMin', 'sass']);
 
 // Optimize images
 gulp.task('imageMin', function() {
-    gulp.src('src/assets/*')
+    gulp.src('src/assets/**/*')
         .pipe(imagemin())
         .pipe(gulp.dest('dist'));
 });

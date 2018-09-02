@@ -41,6 +41,16 @@ body {
   background-size: cover;
   background-color: #ffff00; }
 
+.buuSagaVegeta {
+  background: no-repeat url("./src/assets/dragon-ball-battleship/buu_saga_vegeta.png");
+  background-size: cover;
+  background-color: purple; }
+
+.saiyanVegeta {
+  background: no-repeat url("./src/assets/dragon-ball-battleship/saiyan_vegeta.png") 50% 0%;
+  background-size: 70%;
+  background-color: #7d26cd; }
+
 .trunks {
   background: no-repeat url("./src/assets/dragon-ball-battleship/trunks.png") 100% 0;
   background-size: 150%;

@@ -59,6 +59,16 @@ $buuPink: #ff94ce;
 	@include charSelc(cover, $ssYellow);
 }
 
+.buuSagaVegeta {
+	background: no-repeat url("./src/assets/dragon-ball-battleship/buu_saga_vegeta.png");
+	@include charSelc(cover, purple);
+}
+
+.saiyanVegeta {
+	background: no-repeat url("./src/assets/dragon-ball-battleship/saiyan_vegeta.png") 50% 0%;
+	@include charSelc(70%, #7d26cd);
+}
+
 .trunks {
 	background: no-repeat url("./src/assets/dragon-ball-battleship/trunks.png") 100% 0;
 	@include charSelc(150%, $ssBlue);

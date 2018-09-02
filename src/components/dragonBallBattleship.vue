@@ -294,12 +294,18 @@ export default {
 	@media only screen and (max-width: $mediumBrk) {
 
 		#imgPlayer1 {
+			left: 0px;
+			height: 340px;
 			position: relative;
+			width: auto;
 		}
 
 		#imgPlayer2 {
+			height: 340px;
 			position: absolute;
+			right: 0px;
 			top: 0;
+			width: 100%;
 		}
 
 		.game-board {
