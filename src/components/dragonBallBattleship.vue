@@ -78,6 +78,15 @@
 					</b-col>
 				</b-row>
 
+				<b-row>
+					<b-col>
+
+						<h4>Board Size</h4>
+						<input type="text" @keyup.enter="inputBoardSize">
+
+					</b-col>
+				</b-row>
+
 			</b-modal>
 		</div>
 
@@ -94,24 +103,52 @@
 			@selectVillian="selectVillian($event)">
 		</character-select-modals> -->
 
-		<div style="text-align: center">
-			<table style="background-color: #fff; display: inline-block">
-				<tr v-for="row in boardSize.rows">
-					<td v-for="column in boardSize.columns" :data="row + '-' + column"></td>
-				</tr>
-			</table>
+		<b-row class="m-0">
+			<b-col lg="2" class="p-0">
+				<div id="imgPlayer1" :class="heroCharacter"></div>
+			</b-col>
 
-			<table style="background-color: #fff; display: inline-block">
-				<tr v-for="row in boardSize.rows">
-					<td v-for="column in boardSize.columns" :data="row + '-' + column"></td>
-				</tr>
-			</table>
-		</div>
+			<b-col lg="4" class="p-0">
+				<div class="ass">
+					<div class="poo">
 
-		<div>
-			<div id="imgPlayer1" :class="heroCharacter"></div>
-			<div id="imgPlayer2" :class="villianCharacter"></div>
-		</div>
+						<table>
+							<tr v-for="row in boardSize.rows">
+								<td
+									v-for="column in boardSize.columns"
+									:class="heroCharacter"
+									:data="row + '-' + column"
+									@click="test"></td>
+							</tr>
+						</table>
+
+					</div>
+				</div>
+			</b-col>
+
+			<b-col lg="4" class="p-0">
+				<div class="ass">
+					<div class="poo">
+
+						<table>
+							<tr v-for="row in boardSize.rows">
+								<td
+									v-for="column in boardSize.columns"
+									:class="villianCharacter"
+									:data="row + '-' + column"
+									@click="test">
+								</td>
+							</tr>
+						</table>
+
+					</div>
+				</div>
+			</b-col>
+
+			<b-col lg="2" class="p-0">
+				<div id="imgPlayer2" :class="villianCharacter"></div>
+			</b-col>
+		</b-row>
 
 	</div>
 
@@ -177,19 +214,117 @@ export default {
 		selectHero(hero) {
 			this.heroCharacter = hero;
 			// this.heroSelectModalOpen = false;
+
 		},
 
 		selectVillian(villian) {
 			this.villianCharacter = villian;
 			// this.villianSelectModalOpen = false;
+		},
+
+		inputBoardSize(e) {
+			var number = parseInt(e.target.value)
+			if (isNaN(number) || number < 0 || number > 120) {
+  				return;
+			}
+			this.boardSize.rows = number;
+			this.boardSize.columns = number;
+		},
+
+		test(e) {
+			console.log(e);
 		}
 
 	}
 }
 </script>
 
-<style lang="scss" scoped src="../scss/dragon-ball-battleship.scss"></style>
+<!-- <style lang="scss" scoped src="../scss/dragon-ball-battleship.scss"></style> -->
 
 <style lang="scss" scoped>
+
+	table {
+		height: 100%;
+		width: 100%;
+	}
+
+	td {
+		border: 1px solid black;
+		background-image: none;
+		width: auto;
+	}
+
+	.ass {
+		padding-top: 100%; /* 1:1 Aspect Ratio */
+		position: relative; /* If you want text inside of it */
+		width: 100%;
+	}
+
+	.poo {
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+	}
+
+	// #bothSides {
+	// 	border-spacing: 0;
+	// 	display: inline-block;
+	// 	margin: 0;
+	// 	padding: 0;
+	// }
+	//
+	// #left {
+	// 	@extend #bothSides;
+	//
+	// 	td:hover {
+	// 		background-color: #00e5e5;
+	// 	}
+	// }
+	//
+	// #right {
+	// 	@extend #bothSides;
+	//
+	// 	td:hover {
+	// 		background-color: #590059;
+	// 	}
+	// }
+
+	#imgPlayer1,
+	#imgPlayer2 {
+		background-color: transparent;
+		bottom: 0;
+		height: 320px;
+		position: fixed;
+		width: 320px;
+		z-index: -1;
+	}
+
+	#imgPlayer1 {
+		left: -35px;
+	}
+
+	#imgPlayer2 {
+		right: -35px;
+	}
+
+	.hidden {
+		display: none;
+	}
+
+	.hit {
+		background: url("../assets/dragon-ball-battleship/hit.png") no-repeat center center;
+		background-size: contain;
+	}
+
+	.miss {
+		background: url("../assets/dragon-ball-battleship/miss.png") no-repeat center center;
+		background-size: contain;
+	}
+
+	.shade {
+		background-color: black;
+	}
 
 </style>

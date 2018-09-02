@@ -35,14 +35,6 @@ li {
 #right td:hover {
   background-color: #590059; }
 
-td {
-  width: 40px;
-  height: 40px;
-  border: 1px solid black;
-  color: transparent;
-  box-sizing: border-box;
-  cursor: default; }
-
 #img, #imgPlayer1, #imgPlayer2 {
   position: fixed;
   bottom: 0;
