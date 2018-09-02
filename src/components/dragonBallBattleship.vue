@@ -103,14 +103,14 @@
 			@selectVillian="selectVillian($event)">
 		</character-select-modals> -->
 
-		<b-row class="m-0">
-			<b-col lg="2" class="p-0">
+		<b-row class="game-board m-0">
+			<b-col md="2" class="p-0">
 				<div id="imgPlayer1" :class="heroCharacter"></div>
 			</b-col>
 
-			<b-col lg="4" class="p-0">
-				<div class="ass">
-					<div class="poo">
+			<b-col md="4" class="p-0">
+				<div class="table-container">
+					<div class="table-positioning">
 
 						<table>
 							<tr v-for="row in boardSize.rows">
@@ -126,9 +126,9 @@
 				</div>
 			</b-col>
 
-			<b-col lg="4" class="p-0">
-				<div class="ass">
-					<div class="poo">
+			<b-col md="4" class="p-0">
+				<div class="table-container">
+					<div class="table-positioning">
 
 						<table>
 							<tr v-for="row in boardSize.rows">
@@ -145,7 +145,7 @@
 				</div>
 			</b-col>
 
-			<b-col lg="2" class="p-0">
+			<b-col md="2" class="p-0">
 				<div id="imgPlayer2" :class="villianCharacter"></div>
 			</b-col>
 		</b-row>
@@ -179,7 +179,7 @@ export default {
 			heroSelect: false,
 			villianSelect: false,
 			heroCharacter: 'beerus',
-			villianCharacter: '',
+			villianCharacter: 'android17',
 			// heroSelectModalOpen: false,
 			// villianSelectModalOpen: false
 			boardSize: {
@@ -249,47 +249,24 @@ export default {
 	}
 
 	td {
-		border: 1px solid black;
 		background-image: none;
+		border: 1px solid black;
 		width: auto;
 	}
 
-	.ass {
+	.table-container {
 		padding-top: 100%; /* 1:1 Aspect Ratio */
 		position: relative; /* If you want text inside of it */
 		width: 100%;
 	}
 
-	.poo {
+	.table-positioning {
 		position: absolute;
 		top: 0;
 		left: 0;
 		bottom: 0;
 		right: 0;
 	}
-
-	// #bothSides {
-	// 	border-spacing: 0;
-	// 	display: inline-block;
-	// 	margin: 0;
-	// 	padding: 0;
-	// }
-	//
-	// #left {
-	// 	@extend #bothSides;
-	//
-	// 	td:hover {
-	// 		background-color: #00e5e5;
-	// 	}
-	// }
-	//
-	// #right {
-	// 	@extend #bothSides;
-	//
-	// 	td:hover {
-	// 		background-color: #590059;
-	// 	}
-	// }
 
 	#imgPlayer1,
 	#imgPlayer2 {
@@ -307,6 +284,27 @@ export default {
 
 	#imgPlayer2 {
 		right: -35px;
+	}
+
+	$smallBrk: 576px;
+	$mediumBrk: 768px;
+	$largeBrk: 992px;
+	$extraLargeBrk: 1200px;
+
+	@media only screen and (max-width: $mediumBrk) {
+
+		#imgPlayer1 {
+			position: relative;
+		}
+
+		#imgPlayer2 {
+			position: absolute;
+			top: 0;
+		}
+
+		.game-board {
+			padding: 0 20px;
+		}
 	}
 
 	.hidden {
