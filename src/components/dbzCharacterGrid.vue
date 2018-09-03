@@ -3,7 +3,7 @@
 	<div class="table-container">
 		<div class="table-positioning">
 
-			<table :class="[character, {'gameInProgress': gameInProgress}]">
+			<table :class="[character, {'gameFinished': gameFinished}]">
 				<tr v-for="row in boardSize.rows">
 					<td
 						v-for="column in boardSize.columns"
@@ -31,7 +31,7 @@ export default {
 			type: String
 		},
 
-		gameInProgress: {
+		gameFinished: {
 			type: Boolean
 		}
 
@@ -58,6 +58,19 @@ export default {
 	},
 
 	methods: {
+
+		emptyBoard() {
+
+			Util.clearBoard('miss', 'hit');
+
+			this.ships = [
+				{ locations: [0, 0, 0], hits: ["", "", ""], sunk: false },
+				{ locations: [0, 0, 0], hits: ["", "", ""], sunk: false },
+				{ locations: [0, 0, 0], hits: ["", "", ""], sunk: false }
+			];
+
+			this.generateShips();
+		},
 
 		generateShips() {
 			for (var ship in this.ships) {
@@ -109,7 +122,7 @@ export default {
 
 		fireAt(e) {
 
-			if (!this.gameInProgress) {
+			if (this.gameFinished) {
 				return false;
 			}
 
@@ -156,14 +169,6 @@ export default {
 
 		endGame() {
 			this.$emit('endGame');
-		},
-
-		emptyBoard() {
-			this.ships = [
-				{ locations: [0, 0, 0], hits: ["", "", ""], sunk: false },
-				{ locations: [0, 0, 0], hits: ["", "", ""], sunk: false },
-				{ locations: [0, 0, 0], hits: ["", "", ""], sunk: false }
-			]
 		}
 
 	}
@@ -179,8 +184,12 @@ export default {
 		max-width: 100%;
 		width: 100%;
 
-		&.gameInProgress:hover {
+		&:hover {
 			cursor: pointer;
+		}
+
+		&.gameFinished:hover {
+			cursor: default;
 		}
 
 		td {

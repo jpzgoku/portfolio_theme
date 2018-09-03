@@ -27,7 +27,7 @@
 					</b-btn>
 
 					<b-btn @click="mainButton">
-						{{ mainButtonText }}
+						Clear Game
 					</b-btn>
 					<b-btn class="settings-button" v-b-modal.settings>
 						Settings
@@ -121,15 +121,6 @@
 					</b-col>
 				</b-row>
 
-				<!-- <b-row>
-					<b-col>
-
-						<h4>Board Size</h4>
-						<input type="text" @keyup.enter="inputBoardSize">
-
-					</b-col>
-				</b-row> -->
-
 			</b-modal>
 		</div>
 
@@ -154,17 +145,19 @@
 
 			<b-col md="4" class="p-0">
 				<dbz-character-grid
+					ref="heroGrid"
 					:character="heroCharacter"
-					:gameInProgress="gameInProgress"
-					@endGame="endGame">
+					:gameFinished="gameFinished"
+					@endGame="gameFinished = true;">
 				</dbz-character-grid>
 			</b-col>
 
 			<b-col md="4" class="p-0">
 				<dbz-character-grid
+					ref="villianGrid"
 					:character="villianCharacter"
-					:gameInProgress="gameInProgress"
-					@endGame="endGame">
+					:gameFinished="gameFinished"
+					@endGame="gameFinished = true;">
 				</dbz-character-grid>
 			</b-col>
 
@@ -200,7 +193,7 @@ export default {
 
 	data() {
 		return {
-			gameInProgress: false,
+			gameFinished: false,
 			heroHumanPlayer: true,
 			villianHumanPlayer: false,
 			heroSelect: false,
@@ -210,18 +203,6 @@ export default {
 			heroSelectModalOpen: false,
 			villianSelectModalOpen: false
 		}
-	},
-
-	computed: {
-
-		mainButtonText() {
-			if (this.gameInProgress) {
-				return 'Clear Game';
-			} else {
-				return 'Start Game';
-			}
-		}
-
 	},
 
 	methods: {
@@ -237,7 +218,6 @@ export default {
 		selectHero(hero) {
 			this.heroCharacter = hero;
 			this.heroSelectModalOpen = false;
-
 		},
 
 		selectVillian(villian) {
@@ -245,25 +225,10 @@ export default {
 			this.villianSelectModalOpen = false;
 		},
 
-		// inputBoardSize(e) {
-		// 	var number = parseInt(e.target.value)
-		// 	if (isNaN(number) || number < 0 || number > 120) {
-  		// 		return;
-		// 	}
-		// 	// this.boardSize.rows = number;
-		// 	// this.boardSize.columns = number;
-		// },
-
 		mainButton() {
-			if (!this.gameInProgress) {
-				this.gameInProgress = true;
-			} else {
-				Util.clearBoard('miss', 'hit');
-			}
-		},
-
-		endGame() {
-			this.gameInProgress = false;
+			this.$refs.heroGrid.emptyBoard();
+			this.$refs.villianGrid.emptyBoard();
+			this.gameFinished = false;
 		}
 
 	}
