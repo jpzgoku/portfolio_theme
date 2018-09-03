@@ -1,4 +1,4 @@
-<body style="background-color: black;">
+<body style="background-color: #1f0c27;">
 
 <?php get_header(); ?>
 

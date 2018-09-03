@@ -2,7 +2,7 @@
 
 	<div>
 
-		<b-modal id="heroSelectModal" ref="heroSelectModal" size="lg" title="Select Your Hero" header-bg-variant="primary" header-text-variant="light" ok-only>
+		<b-modal id="heroSelectModal" ref="heroSelectModal" size="lg" title="Select Your Hero" header-bg-variant="primary" header-text-variant="light" ok-only ok-title="Close">
 			<b-container>
 
 				<b-row>
@@ -38,7 +38,7 @@
 			</b-container>
 		</b-modal>
 
-		<b-modal id="villianSelectModal" ref="villianSelectModal" size="lg" title="Select Your Villian" header-bg-variant="danger" header-text-variant="light" ok-only>
+		<b-modal id="villianSelectModal" ref="villianSelectModal" size="lg" title="Select Your Villian" header-bg-variant="danger" header-text-variant="light" ok-only ok-title="Close" ok-variant="danger">
 			<b-container>
 
 				<b-row>
@@ -100,18 +100,18 @@
 export default {
 	name: 'character-select-modals',
 
-	// props: {
-	//
-	// 	heroSelectModal: {
-	// 		type: Boolean,
-	// 		default: false
-	// 	},
-	//
-	// 	villianSelectModal: {
-	// 		type: Boolean,
-	// 		default: false
-	// 	}
-	// },
+	props: {
+
+		heroSelectModal: {
+			type: Boolean,
+			default: false
+		},
+
+		villianSelectModal: {
+			type: Boolean,
+			default: false
+		}
+	},
 
 	data() {
 		return {
@@ -119,35 +119,35 @@ export default {
 		}
 	},
 
-	// watch: {
-	//
-	// 	heroSelectModal(bool) {
-	// 		(bool) ? this.openHeroModal() : this.closeHeroModal();
-	// 	},
-	//
-	// 	villianSelectModal(bool) {
-	// 		(bool) ? this.openVillianModal() : this.closeVillianModal();
-	// 	}
-	//
-	// },
+	watch: {
+
+		heroSelectModal(bool) {
+			(bool) ? this.openHeroModal() : this.closeHeroModal();
+		},
+
+		villianSelectModal(bool) {
+			(bool) ? this.openVillianModal() : this.closeVillianModal();
+		}
+
+	},
 
 	methods: {
 
-		// openHeroModal() {
-		// 	this.$refs.heroSelectModal.show()
-		// },
-		//
-		// openVillianModal() {
-		// 	this.$refs.villianSelectModal.show()
-		// },
-		//
-		// closeHeroModal() {
-		// 	this.$refs.heroSelectModal.hide()
-		// },
-		//
-		// closeVillianModal() {
-		// 	this.$refs.villianSelectModal.hide()
-		// },
+		openHeroModal() {
+			this.$refs.heroSelectModal.show()
+		},
+
+		openVillianModal() {
+			this.$refs.villianSelectModal.show()
+		},
+
+		closeHeroModal() {
+			this.$refs.heroSelectModal.hide()
+		},
+
+		closeVillianModal() {
+			this.$refs.villianSelectModal.hide()
+		},
 
 		selectHero(e) {
 			this.$emit('selectHero', e.srcElement.className)

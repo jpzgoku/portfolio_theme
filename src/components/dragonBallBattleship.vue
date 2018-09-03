@@ -6,16 +6,16 @@
 			<b-row class="text-center m-4">
 
 				<b-col>
-					<!-- <b-btn v-b-modal.heroSelectModal variant="primary" @click="heroSelectModalOpen = true"> -->
-					<b-btn v-b-modal.heroSelectModal variant="primary">
+					<b-btn v-b-modal.heroSelectModal variant="primary" @click="heroSelectModalOpen = true">
+					<!-- <b-btn v-b-modal.heroSelectModal variant="primary"> -->
 						Heros
 					</b-btn>
 
 					<b-btn>{{ mainButtonText }}</b-btn>
 					<b-btn v-b-modal.settings>Settings</b-btn>
 
-					<!-- <b-btn v-b-modal.villianSelectModal variant="primary" @click="villianSelectModalOpen = true"> -->
-					<b-btn v-b-modal.villianSelectModal variant="primary">
+					<b-btn v-b-modal.villianSelectModal variant="primary" @click="villianSelectModalOpen = true">
+					<!-- <b-btn v-b-modal.villianSelectModal variant="primary"> -->
 						Villians
 					</b-btn>
 				</b-col>
@@ -90,64 +90,36 @@
 			</b-modal>
 		</div>
 
-		<character-select-modals
-			@selectHero="selectHero($event)"
-			@selectVillian="selectVillian($event)">
-		</character-select-modals>
-
-		<!-- Use this one if I decide to close the character select modal after choosing a character -->
 		<!-- <character-select-modals
-			:hero-select-modal="heroSelectModalOpen"
-			:villian-select-modal="villianSelectModalOpen"
 			@selectHero="selectHero($event)"
 			@selectVillian="selectVillian($event)">
 		</character-select-modals> -->
 
+		<!-- Use this one if I decide to close the character select modal after choosing a character -->
+		<character-select-modals
+			:hero-select-modal="heroSelectModalOpen"
+			:villian-select-modal="villianSelectModalOpen"
+			@selectHero="selectHero($event)"
+			@selectVillian="selectVillian($event)">
+		</character-select-modals>
+
 		<b-row class="game-board m-0">
+
 			<b-col md="2" class="p-0">
 				<div id="imgPlayer1" :class="heroCharacter"></div>
 			</b-col>
 
-			<b-col md="4" class="p-0">
-				<div class="table-container">
-					<div class="table-positioning">
-
-						<table>
-							<tr v-for="row in boardSize.rows">
-								<td
-									v-for="column in boardSize.columns"
-									:class="heroCharacter"
-									:data="row + '-' + column"
-									@click="test"></td>
-							</tr>
-						</table>
-
-					</div>
-				</div>
-			</b-col>
-
-			<b-col md="4" class="p-0">
-				<div class="table-container">
-					<div class="table-positioning">
-
-						<table>
-							<tr v-for="row in boardSize.rows">
-								<td
-									v-for="column in boardSize.columns"
-									:class="villianCharacter"
-									:data="row + '-' + column"
-									@click="test">
-								</td>
-							</tr>
-						</table>
-
-					</div>
-				</div>
+			<b-col md="8" class="p-0">
+				<dbz-game-board
+					:hero-character="heroCharacter"
+					:villian-character="villianCharacter">
+				</dbz-game-board>
 			</b-col>
 
 			<b-col md="2" class="p-0">
 				<div id="imgPlayer2" :class="villianCharacter"></div>
 			</b-col>
+
 		</b-row>
 
 	</div>
@@ -157,11 +129,13 @@
 <script>
 
 import CharacterSelectModals from './characterSelectModals.vue';
+import DbzGameBoard from './dbzGameBoard.vue';
 
 export default {
 	name: 'dragon-ball-battleship',
 	components: {
-		CharacterSelectModals
+		CharacterSelectModals,
+		DbzGameBoard
 	},
 
 	props: {
@@ -180,12 +154,8 @@ export default {
 			villianSelect: false,
 			heroCharacter: 'beerus',
 			villianCharacter: 'android17',
-			// heroSelectModalOpen: false,
-			// villianSelectModalOpen: false
-			boardSize: {
-				rows: 8,
-				columns: 8
-			}
+			heroSelectModalOpen: false,
+			villianSelectModalOpen: false
 		}
 	},
 
@@ -213,13 +183,13 @@ export default {
 
 		selectHero(hero) {
 			this.heroCharacter = hero;
-			// this.heroSelectModalOpen = false;
+			this.heroSelectModalOpen = false;
 
 		},
 
 		selectVillian(villian) {
 			this.villianCharacter = villian;
-			// this.villianSelectModalOpen = false;
+			this.villianSelectModalOpen = false;
 		},
 
 		inputBoardSize(e) {
@@ -227,46 +197,15 @@ export default {
 			if (isNaN(number) || number < 0 || number > 120) {
   				return;
 			}
-			this.boardSize.rows = number;
-			this.boardSize.columns = number;
-		},
-
-		test(e) {
-			console.log(e);
+			// this.boardSize.rows = number;
+			// this.boardSize.columns = number;
 		}
 
 	}
 }
 </script>
 
-<!-- <style lang="scss" scoped src="../scss/dragon-ball-battleship.scss"></style> -->
-
 <style lang="scss" scoped>
-
-	table {
-		height: 100%;
-		width: 100%;
-	}
-
-	td {
-		background-image: none;
-		border: 1px solid black;
-		width: auto;
-	}
-
-	.table-container {
-		padding-top: 100%; /* 1:1 Aspect Ratio */
-		position: relative; /* If you want text inside of it */
-		width: 100%;
-	}
-
-	.table-positioning {
-		position: absolute;
-		top: 0;
-		left: 0;
-		bottom: 0;
-		right: 0;
-	}
 
 	#imgPlayer1,
 	#imgPlayer2 {
@@ -311,24 +250,6 @@ export default {
 		.game-board {
 			padding: 0 20px;
 		}
-	}
-
-	.hidden {
-		display: none;
-	}
-
-	.hit {
-		background: url("../assets/dragon-ball-battleship/hit.png") no-repeat center center;
-		background-size: contain;
-	}
-
-	.miss {
-		background: url("../assets/dragon-ball-battleship/miss.png") no-repeat center center;
-		background-size: contain;
-	}
-
-	.shade {
-		background-color: black;
 	}
 
 </style>

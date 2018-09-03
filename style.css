@@ -220,3 +220,11 @@ body {
   background: no-repeat url("./src/assets/dragon-ball-battleship/frostFinalForm.png") 50% 0;
   background-size: 90%;
   background-color: #e9e9e9; }
+
+.hit {
+  background: url("./src/assets/dragon-ball-battleship/hit.png") no-repeat center center;
+  background-size: contain; }
+
+.miss {
+  background: url("./src/assets/dragon-ball-battleship/miss.png") no-repeat center center;
+  background-size: contain; }
