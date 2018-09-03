@@ -7,8 +7,7 @@
 		site-url="<?= site_url(); ?>">
 	</custom-nav-bar>
 
-	<dragon-ball-battleship
-		site-url="<?= site_url(); ?>">
+	<dragon-ball-battleship>
 	</dragon-ball-battleship>
 </div>
 

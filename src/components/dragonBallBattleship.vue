@@ -59,70 +59,68 @@
 
 		</b-container>
 
-		<div>
-			<b-modal id="settings" title="Settings" header-text-variant="light" header-bg-variant="primary" ok-only>
+		<b-modal id="settings" title="Settings" header-text-variant="light" header-bg-variant="primary" ok-only>
 
-				<b-row class="text-center">
-					<b-col>
+			<b-row class="text-center">
+				<b-col>
 
-						<h4 class="m-4">Heros</h4>
+					<h4 class="m-4">Heros</h4>
 
-						<div>
-							<b-btn v-b-modal.heroSelectModal variant="primary">
-								Character Select
-							</b-btn>
-						</div>
+					<div>
+						<b-btn v-b-modal.heroSelectModal variant="primary">
+							Character Select
+						</b-btn>
+					</div>
 
-						<b-btn-group class="m-2">
-							<b-button
-								variant="outline-primary"
-								:pressed="heroHumanPlayer"
-								@click="selectPlayerType('hero', true)">
-									Player
-							</b-button>
+					<b-btn-group class="m-2">
+						<b-button
+							variant="outline-primary"
+							:pressed="heroHumanPlayer"
+							@click="selectPlayerType('hero', true)">
+								Player
+						</b-button>
 
-							<b-button
-								variant="outline-primary"
-								:pressed="!heroHumanPlayer"
-								@click="selectPlayerType('hero', false)">
-									CPU
-							</b-button>
-						</b-btn-group>
+						<b-button
+							variant="outline-primary"
+							:pressed="!heroHumanPlayer"
+							@click="selectPlayerType('hero', false)">
+								CPU
+						</b-button>
+					</b-btn-group>
 
-					</b-col>
+				</b-col>
 
-					<b-col>
+				<b-col>
 
-						<h4 class="m-4">Villians</h4>
+					<h4 class="m-4">Villians</h4>
 
-						<div>
-							<b-btn v-b-modal.villianSelectModal variant="danger">
-								Character Select
-							</b-btn>
-						</div>
+					<div>
+						<b-btn v-b-modal.villianSelectModal variant="danger">
+							Character Select
+						</b-btn>
+					</div>
 
-						<b-btn-group class="m-2">
-							<b-button
-								variant="outline-danger"
-								:pressed="villianHumanPlayer"
-								@click="selectPlayerType('villian', true)">
-									Player
-							</b-button>
+					<b-btn-group class="m-2">
+						<b-button
+							variant="outline-danger"
+							:pressed="villianHumanPlayer"
+							@click="selectPlayerType('villian', true)">
+								Player
+						</b-button>
 
-							<b-button
-								variant="outline-danger"
-								:pressed="!villianHumanPlayer"
-								@click="selectPlayerType('villian', false)">
-									CPU
-							</b-button>
+						<b-button
+							variant="outline-danger"
+							:pressed="!villianHumanPlayer"
+							@click="selectPlayerType('villian', false)">
+								CPU
+						</b-button>
 
-						</b-btn-group>
+					</b-btn-group>
 
-					</b-col>
-				</b-row>
+				</b-col>
+			</b-row>
 
-			</b-modal>
-		</div>
+		</b-modal>
 
 		<character-select-modals
 			ref="characterSelectModals"
@@ -175,22 +173,13 @@ export default {
 	components: {
 		CharacterSelectModals,
 		DbzCharacterGrid
-	},
-
-	props: {
-
-		siteUrl: {
-			type: String
-		}
-	},
+	}
 
 	data() {
 		return {
 			gameFinished: false,
 			heroHumanPlayer: true,
 			villianHumanPlayer: false,
-			heroSelect: false,
-			villianSelect: false,
 			heroCharacter: 'beerus',
 			villianCharacter: 'android17'
 		}
