@@ -22,7 +22,7 @@
 						</b-button>
 					</b-btn-group>
 
-					<b-btn v-b-modal.heroSelectModal class="character-settings-buttons" variant="primary" @click="heroSelectModalOpen = true">
+					<b-btn v-b-modal.heroSelectModal class="character-settings-buttons" variant="primary">
 						Heros
 					</b-btn>
 
@@ -33,7 +33,7 @@
 						Settings
 					</b-btn>
 
-					<b-btn v-b-modal.villianSelectModal class="character-settings-buttons" variant="danger" @click="villianSelectModalOpen = true">
+					<b-btn v-b-modal.villianSelectModal class="character-settings-buttons" variant="danger">
 						Villians
 					</b-btn>
 
@@ -68,7 +68,7 @@
 						<h4 class="m-4">Heros</h4>
 
 						<div>
-							<b-btn v-b-modal.heroSelectModal variant="primary" @click="heroSelectModalOpen = true">
+							<b-btn v-b-modal.heroSelectModal variant="primary">
 								Character Select
 							</b-btn>
 						</div>
@@ -96,7 +96,7 @@
 						<h4 class="m-4">Villians</h4>
 
 						<div>
-							<b-btn v-b-modal.villianSelectModal variant="danger" @click="villianSelectModalOpen = true">
+							<b-btn v-b-modal.villianSelectModal variant="danger">
 								Character Select
 							</b-btn>
 						</div>
@@ -124,15 +124,8 @@
 			</b-modal>
 		</div>
 
-		<!-- <character-select-modals
-			@selectHero="selectHero($event)"
-			@selectVillian="selectVillian($event)">
-		</character-select-modals> -->
-
-		<!-- Use this one if I decide to close the character select modal after choosing a character -->
 		<character-select-modals
-			:hero-select-modal="heroSelectModalOpen"
-			:villian-select-modal="villianSelectModalOpen"
+			ref="characterSelectModals"
 			@selectHero="selectHero($event)"
 			@selectVillian="selectVillian($event)">
 		</character-select-modals>
@@ -199,9 +192,7 @@ export default {
 			heroSelect: false,
 			villianSelect: false,
 			heroCharacter: 'beerus',
-			villianCharacter: 'android17',
-			heroSelectModalOpen: false,
-			villianSelectModalOpen: false
+			villianCharacter: 'android17'
 		}
 	},
 
@@ -217,12 +208,12 @@ export default {
 
 		selectHero(hero) {
 			this.heroCharacter = hero;
-			this.heroSelectModalOpen = false;
+			this.$refs.characterSelectModals.closeHeroModal();
 		},
 
 		selectVillian(villian) {
 			this.villianCharacter = villian;
-			this.villianSelectModalOpen = false;
+			this.$refs.characterSelectModals.closeVillianModal();
 		},
 
 		mainButton() {

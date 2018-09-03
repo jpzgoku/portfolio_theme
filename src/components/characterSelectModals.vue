@@ -42,19 +42,6 @@
 export default {
 	name: 'character-select-modals',
 
-	props: {
-
-		heroSelectModal: {
-			type: Boolean,
-			default: false
-		},
-
-		villianSelectModal: {
-			type: Boolean,
-			default: false
-		}
-	},
-
 	data() {
 		return {
 			heros: [
@@ -101,27 +88,7 @@ export default {
 		}
 	},
 
-	watch: {
-
-		heroSelectModal(bool) {
-			(bool) ? this.openHeroModal() : this.closeHeroModal();
-		},
-
-		villianSelectModal(bool) {
-			(bool) ? this.openVillianModal() : this.closeVillianModal();
-		}
-
-	},
-
 	methods: {
-
-		openHeroModal() {
-			this.$refs.heroSelectModal.show();
-		},
-
-		openVillianModal() {
-			this.$refs.villianSelectModal.show();
-		},
 
 		closeHeroModal() {
 			this.$refs.heroSelectModal.hide();
