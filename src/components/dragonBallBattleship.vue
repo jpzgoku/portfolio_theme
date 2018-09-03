@@ -3,23 +3,56 @@
 	<div>
 		<b-container>
 
-			<b-row class="text-center m-4">
+			<b-row class="text-center mt-5 mb-5">
 
 				<b-col>
-					<b-btn v-b-modal.heroSelectModal variant="primary" @click="heroSelectModalOpen = true">
-					<!-- <b-btn v-b-modal.heroSelectModal variant="primary"> -->
+					<b-btn-group class="character-settings-buttons m-2">
+						<b-button
+							variant="outline-primary"
+							:pressed="heroHumanPlayer"
+							@click="selectPlayerType('hero', true)">
+								Player
+						</b-button>
+
+						<b-button
+							variant="outline-primary"
+							:pressed="!heroHumanPlayer"
+							@click="selectPlayerType('hero', false)">
+								CPU
+						</b-button>
+					</b-btn-group>
+
+					<b-btn v-b-modal.heroSelectModal class="character-settings-buttons" variant="primary" @click="heroSelectModalOpen = true">
 						Heros
 					</b-btn>
 
 					<b-btn @click="mainButton">
 						{{ mainButtonText }}
 					</b-btn>
-					<b-btn v-b-modal.settings>Settings</b-btn>
+					<b-btn class="settings-button" v-b-modal.settings>
+						Settings
+					</b-btn>
 
-					<b-btn v-b-modal.villianSelectModal variant="primary" @click="villianSelectModalOpen = true">
-					<!-- <b-btn v-b-modal.villianSelectModal variant="primary"> -->
+					<b-btn v-b-modal.villianSelectModal class="character-settings-buttons" variant="danger" @click="villianSelectModalOpen = true">
 						Villians
 					</b-btn>
+
+					<b-btn-group class="character-settings-buttons m-2">
+						<b-button
+							variant="outline-danger"
+							:pressed="villianHumanPlayer"
+							@click="selectPlayerType('villian', true)">
+								Player
+						</b-button>
+
+						<b-button
+							variant="outline-danger"
+							:pressed="!villianHumanPlayer"
+							@click="selectPlayerType('villian', false)">
+								CPU
+						</b-button>
+
+					</b-btn-group>
 				</b-col>
 
 			</b-row>
@@ -27,25 +60,29 @@
 		</b-container>
 
 		<div>
-			<b-modal id="settings" title="Settings" ok-only>
+			<b-modal id="settings" title="Settings" header-text-variant="light" header-bg-variant="primary" ok-only>
 
 				<b-row class="text-center">
 					<b-col>
 
 						<h4 class="m-4">Heros</h4>
 
+						<div>
+							<b-btn v-b-modal.heroSelectModal variant="primary" @click="heroSelectModalOpen = true">
+								Character Select
+							</b-btn>
+						</div>
+
 						<b-btn-group class="m-2">
 							<b-button
-								variant="outline-secondary"
+								variant="outline-primary"
 								:pressed="heroHumanPlayer"
 								@click="selectPlayerType('hero', true)">
 									Player
 							</b-button>
 
-							</br>
-
 							<b-button
-								variant="outline-secondary"
+								variant="outline-primary"
 								:pressed="!heroHumanPlayer"
 								@click="selectPlayerType('hero', false)">
 									CPU
@@ -58,18 +95,22 @@
 
 						<h4 class="m-4">Villians</h4>
 
+						<div>
+							<b-btn v-b-modal.villianSelectModal variant="danger" @click="villianSelectModalOpen = true">
+								Character Select
+							</b-btn>
+						</div>
+
 						<b-btn-group class="m-2">
 							<b-button
-								variant="outline-secondary"
+								variant="outline-danger"
 								:pressed="villianHumanPlayer"
 								@click="selectPlayerType('villian', true)">
 									Player
 							</b-button>
 
-							</br>
-
 							<b-button
-								variant="outline-secondary"
+								variant="outline-danger"
 								:pressed="!villianHumanPlayer"
 								@click="selectPlayerType('villian', false)">
 									CPU
@@ -80,14 +121,14 @@
 					</b-col>
 				</b-row>
 
-				<b-row>
+				<!-- <b-row>
 					<b-col>
 
 						<h4>Board Size</h4>
 						<input type="text" @keyup.enter="inputBoardSize">
 
 					</b-col>
-				</b-row>
+				</b-row> -->
 
 			</b-modal>
 		</div>
@@ -141,6 +182,7 @@
 
 import CharacterSelectModals from './characterSelectModals.vue';
 import DbzCharacterGrid from './dbzCharacterGrid.vue';
+import Util from '../js/util';
 
 export default {
 	name: 'dragon-ball-battleship',
@@ -174,7 +216,7 @@ export default {
 
 		mainButtonText() {
 			if (this.gameInProgress) {
-				return 'Reset Game';
+				return 'Clear Game';
 			} else {
 				return 'Start Game';
 			}
@@ -203,18 +245,20 @@ export default {
 			this.villianSelectModalOpen = false;
 		},
 
-		inputBoardSize(e) {
-			var number = parseInt(e.target.value)
-			if (isNaN(number) || number < 0 || number > 120) {
-  				return;
-			}
-			// this.boardSize.rows = number;
-			// this.boardSize.columns = number;
-		},
+		// inputBoardSize(e) {
+		// 	var number = parseInt(e.target.value)
+		// 	if (isNaN(number) || number < 0 || number > 120) {
+  		// 		return;
+		// 	}
+		// 	// this.boardSize.rows = number;
+		// 	// this.boardSize.columns = number;
+		// },
 
 		mainButton() {
 			if (!this.gameInProgress) {
 				this.gameInProgress = true;
+			} else {
+				Util.clearBoard('miss', 'hit');
 			}
 		},
 
@@ -227,6 +271,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+	.settings-button {
+		display: none;
+	}
 
 	#imgPlayer1,
 	#imgPlayer2 {
@@ -252,6 +300,14 @@ export default {
 	$extraLargeBrk: 1200px;
 
 	@media only screen and (max-width: $mediumBrk) {
+
+		.settings-button {
+			display: inline-block;
+		}
+
+		.character-settings-buttons {
+			display: none;
+		}
 
 		#imgPlayer1 {
 			left: 0px;

@@ -50,6 +50,7 @@ import TownCharacters from '../data/town.json';
 import VikingFeastCharacters from '../data/vikingFeast.json';
 import ColosseumCharacters from '../data/colosseum.json';
 import HighScoresData from '../data/db.json';
+import Util from '../js/util';
 
 export default {
 	name: 'wheres-waldo',
@@ -165,11 +166,7 @@ export default {
 		},
 
 		changeLevel() {
-			// Remove the 'found' class from all TDs
-			var tds = document.getElementsByTagName('TD');
-			for (let i = 0; i < tds.length; i++) {
-				tds[i].classList.remove('found');
-			}
+			Util.clearBoard('found', 'hit');
 			this.winModalOpen = false;
 			this.$store.dispatch('toggleOptionsModal', false);
 			this.$store.dispatch('displayInputScore', false);

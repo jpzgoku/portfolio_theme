@@ -19,6 +19,9 @@
 </template>
 
 <script>
+
+import Util from '../js/util';
+
 export default {
 	name: 'dbz-character-grid',
 
@@ -153,7 +156,6 @@ export default {
 
 		endGame() {
 			this.$emit('endGame');
-			this.clearBoard();
 		},
 
 		emptyBoard() {
@@ -162,13 +164,6 @@ export default {
 				{ locations: [0, 0, 0], hits: ["", "", ""], sunk: false },
 				{ locations: [0, 0, 0], hits: ["", "", ""], sunk: false }
 			]
-		},
-
-		clearBoard() {
-			var tds = document.getElementsByTagName('TD');
-			for (var td in tds) {
-				tds[td].classList.remove('miss', 'hit');
-			}
 		}
 
 	}

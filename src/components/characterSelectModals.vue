@@ -8,7 +8,9 @@
 				<b-row>
 					<b-col
 						v-for="hero in heros"
-						md="12" lg="4" :class="hero"
+						md="12" lg="4"
+						:class="hero"
+						:key="hero"
 						@click="selectHero($event)">
 					</b-col>
 				</b-row>
@@ -22,7 +24,9 @@
 				<b-row>
 					<b-col
 						v-for="villian in villians"
-						md="12" lg="4" :class="villian"
+						md="12" lg="4"
+						:class="villian"
+						:key="villian"
 						@click="selectVillian($event)">
 					</b-col>
 				</b-row>

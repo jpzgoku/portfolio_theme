@@ -1,9 +1,4 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
-
-Vue.use(Vuex);
-
-export const store = new Vuex.Store({
+export default {
 	state: {
 		char: '',
 		seconds: 0,
@@ -135,4 +130,4 @@ export const store = new Vuex.Store({
 
 	}
 
-});
+};
