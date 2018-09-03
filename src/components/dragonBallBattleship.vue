@@ -109,11 +109,16 @@
 				<div id="imgPlayer1" :class="heroCharacter"></div>
 			</b-col>
 
-			<b-col md="8" class="p-0">
-				<dbz-game-board
-					:hero-character="heroCharacter"
-					:villian-character="villianCharacter">
-				</dbz-game-board>
+			<b-col md="4" class="p-0">
+				<dbz-character-grid
+					:character="heroCharacter">
+				</dbz-character-grid>
+			</b-col>
+
+			<b-col md="4" class="p-0">
+				<dbz-character-grid
+					:character="villianCharacter">
+				</dbz-character-grid>
 			</b-col>
 
 			<b-col md="2" class="p-0">
@@ -129,13 +134,13 @@
 <script>
 
 import CharacterSelectModals from './characterSelectModals.vue';
-import DbzGameBoard from './dbzGameBoard.vue';
+import DbzCharacterGrid from './dbzCharacterGrid.vue';
 
 export default {
 	name: 'dragon-ball-battleship',
 	components: {
 		CharacterSelectModals,
-		DbzGameBoard
+		DbzCharacterGrid
 	},
 
 	props: {
