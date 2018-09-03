@@ -112,27 +112,27 @@ export default {
 	methods: {
 
 		openHeroModal() {
-			this.$refs.heroSelectModal.show()
+			this.$refs.heroSelectModal.show();
 		},
 
 		openVillianModal() {
-			this.$refs.villianSelectModal.show()
+			this.$refs.villianSelectModal.show();
 		},
 
 		closeHeroModal() {
-			this.$refs.heroSelectModal.hide()
+			this.$refs.heroSelectModal.hide();
 		},
 
 		closeVillianModal() {
-			this.$refs.villianSelectModal.hide()
+			this.$refs.villianSelectModal.hide();
 		},
 
 		selectHero(e) {
-			this.$emit('selectHero', e.srcElement.className)
+			this.$emit('selectHero', e.srcElement.className);
 		},
 
 		selectVillian(e) {
-			this.$emit('selectVillian', e.srcElement.className)
+			this.$emit('selectVillian', e.srcElement.className);
 		}
 
 	}

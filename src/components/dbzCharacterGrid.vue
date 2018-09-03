@@ -3,7 +3,7 @@
 	<div class="table-container">
 		<div class="table-positioning">
 
-			<table :class="character">
+			<table :class="[character, {'gameInProgress': gameInProgress}]">
 				<tr v-for="row in boardSize.rows">
 					<td
 						v-for="column in boardSize.columns"
@@ -26,6 +26,10 @@ export default {
 
 		character: {
 			type: String
+		},
+
+		gameInProgress: {
+			type: Boolean
 		}
 
 	},
@@ -102,6 +106,10 @@ export default {
 
 		fireAt(e) {
 
+			if (!this.gameInProgress) {
+				return false;
+			}
+
 			var cellPath = e.path[0];
 			var cellDataNum = e.srcElement.attributes.data.nodeValue;
 
@@ -140,7 +148,27 @@ export default {
 				}
 			}
 			console.log('You lose bitch!');
-			return true;
+			this.endGame();
+		},
+
+		endGame() {
+			this.$emit('endGame');
+			this.clearBoard();
+		},
+
+		emptyBoard() {
+			this.ships = [
+				{ locations: [0, 0, 0], hits: ["", "", ""], sunk: false },
+				{ locations: [0, 0, 0], hits: ["", "", ""], sunk: false },
+				{ locations: [0, 0, 0], hits: ["", "", ""], sunk: false }
+			]
+		},
+
+		clearBoard() {
+			var tds = document.getElementsByTagName('TD');
+			for (var td in tds) {
+				tds[td].classList.remove('miss', 'hit');
+			}
 		}
 
 	}
@@ -155,11 +183,15 @@ export default {
 		height: 100%;
 		max-width: 100%;
 		width: 100%;
-	}
 
-	td {
-		border: 1px solid black;
-		width: auto;
+		&.gameInProgress:hover {
+			cursor: pointer;
+		}
+
+		td {
+			border: 1px solid black;
+			width: auto;
+		}
 	}
 
 	.table-container {

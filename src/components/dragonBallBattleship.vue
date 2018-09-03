@@ -11,7 +11,9 @@
 						Heros
 					</b-btn>
 
-					<b-btn>{{ mainButtonText }}</b-btn>
+					<b-btn @click="mainButton">
+						{{ mainButtonText }}
+					</b-btn>
 					<b-btn v-b-modal.settings>Settings</b-btn>
 
 					<b-btn v-b-modal.villianSelectModal variant="primary" @click="villianSelectModalOpen = true">
@@ -111,13 +113,17 @@
 
 			<b-col md="4" class="p-0">
 				<dbz-character-grid
-					:character="heroCharacter">
+					:character="heroCharacter"
+					:gameInProgress="gameInProgress"
+					@endGame="endGame">
 				</dbz-character-grid>
 			</b-col>
 
 			<b-col md="4" class="p-0">
 				<dbz-character-grid
-					:character="villianCharacter">
+					:character="villianCharacter"
+					:gameInProgress="gameInProgress"
+					@endGame="endGame">
 				</dbz-character-grid>
 			</b-col>
 
@@ -204,6 +210,16 @@ export default {
 			}
 			// this.boardSize.rows = number;
 			// this.boardSize.columns = number;
+		},
+
+		mainButton() {
+			if (!this.gameInProgress) {
+				this.gameInProgress = true;
+			}
+		},
+
+		endGame() {
+			this.gameInProgress = false;
 		}
 
 	}
