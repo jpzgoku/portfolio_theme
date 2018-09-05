@@ -76,9 +76,11 @@ export default {
 			Util.clearBoard('miss', 'hit');
 
 			this.ships = [
+				{ locations: [0, 0], hits: ["", ""], sunk: false },
 				{ locations: [0, 0, 0], hits: ["", "", ""], sunk: false },
 				{ locations: [0, 0, 0], hits: ["", "", ""], sunk: false },
-				{ locations: [0, 0, 0], hits: ["", "", ""], sunk: false }
+				{ locations: [0, 0, 0, 0], hits: ["", "", "", ""], sunk: false },
+				{ locations: [0, 0, 0, 0, 0], hits: ["", "", "", "", ""], sunk: false }
 			];
 
 			this.generateShips();

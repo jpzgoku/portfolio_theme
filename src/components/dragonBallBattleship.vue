@@ -99,7 +99,7 @@
 		<b-row class="m-0">
 
 			<b-col md="2" class="p-0">
-				<div id="imgPlayer1" :class="heroCharacter"></div>
+				<div id="hero-image" :class="heroCharacter"></div>
 			</b-col>
 
 			<b-col md="4" class="game-board p-0">
@@ -129,7 +129,7 @@
 			</b-col>
 
 			<b-col md="2" class="p-0">
-				<div id="imgPlayer2" :class="villianCharacter"></div>
+				<div id="villian-image" :class="villianCharacter"></div>
 			</b-col>
 
 		</b-row>
@@ -256,8 +256,8 @@ export default {
 		padding: 0 20px;
 	}
 
-	#imgPlayer1,
-	#imgPlayer2 {
+	#hero-image,
+	#villian-image {
 		background-color: transparent;
 		bottom: 0;
 		height: 320px;
@@ -266,11 +266,11 @@ export default {
 		z-index: -1;
 	}
 
-	#imgPlayer1 {
+	#hero-image {
 		left: -35px;
 	}
 
-	#imgPlayer2 {
+	#villian-image {
 		right: -35px;
 	}
 
@@ -293,14 +293,14 @@ export default {
 			margin: 0 20px;
 		}
 
-		#imgPlayer1 {
+		#hero-image {
 			left: 0px;
 			height: 340px;
 			position: relative;
 			width: auto;
 		}
 
-		#imgPlayer2 {
+		#villian-image {
 			height: 340px;
 			position: absolute;
 			right: 0px;
