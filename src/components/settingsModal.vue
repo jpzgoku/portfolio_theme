@@ -15,14 +15,14 @@
 				<b-btn-group class="m-2">
 					<b-button
 						variant="outline-primary"
-						:pressed="heroHumanPlayer"
+						:pressed="isHeroHumanPlayer"
 						@click="selectPlayerType('hero', true)">
 							Player
 					</b-button>
 
 					<b-button
 						variant="outline-primary"
-						:pressed="!heroHumanPlayer"
+						:pressed="!isHeroHumanPlayer"
 						@click="selectPlayerType('hero', false)">
 							CPU
 					</b-button>
@@ -43,14 +43,14 @@
 				<b-btn-group class="m-2">
 					<b-button
 						variant="outline-danger"
-						:pressed="villianHumanPlayer"
+						:pressed="isVillianHumanPlayer"
 						@click="selectPlayerType('villian', true)">
 							Player
 					</b-button>
 
 					<b-button
 						variant="outline-danger"
-						:pressed="!villianHumanPlayer"
+						:pressed="!isVillianHumanPlayer"
 						@click="selectPlayerType('villian', false)">
 							CPU
 					</b-button>
@@ -69,11 +69,11 @@ export default {
 
 	props: {
 
-		heroHumanPlayer: {
+		isHeroHumanPlayer: {
 			type: Boolean
 		},
 
-		villianHumanPlayer: {
+		isVillianHumanPlayer: {
 			type: Boolean
 		}
 

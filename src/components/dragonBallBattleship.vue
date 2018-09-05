@@ -106,7 +106,6 @@
 				<dbz-character-grid
 					ref="heroGrid"
 					:characterColor="heroColor"
-					:isHumanOpponent="isVillianHumanPlayer"
 					:isOpponentTurn="isVillianTurn"
 					:gameInProgress="gameInProgress"
 					:gameFinished="gameFinished"
@@ -120,7 +119,6 @@
 				<dbz-character-grid
 					ref="villianGrid"
 					:characterColor="villianColor"
-					:isHumanOpponent="isHeroHumanPlayer"
 					:isOpponentTurn="isHeroTurn"
 					:gameInProgress="gameInProgress"
 					:gameFinished="gameFinished"
@@ -218,7 +216,7 @@ export default {
 			this.isVillianTurn = true;
 			this.heroGridFeedback = message;
 			if (!this.isVillianHumanPlayer) {
-				setTimeout(() => this.$refs.heroGrid.computerGuess(), 500);
+				this.$refs.heroGrid.computerGuess();
 			}
 		},
 
@@ -227,7 +225,7 @@ export default {
 			this.isVillianTurn = false;
 			this.villianGridFeedback = message;
 			if (!this.isHeroHumanPlayer) {
-				setTimeout(() => this.$refs.villianGrid.computerGuess(), 500);
+				this.$refs.villianGrid.computerGuess();
 			}
 		},
 

@@ -33,10 +33,6 @@ export default {
 			type: String
 		},
 
-		isHumanOpponent: {
-			type: Boolean
-		},
-
 		isOpponentTurn: {
 			type: Boolean
 		},
@@ -53,6 +49,7 @@ export default {
 
 	data() {
 		return {
+			boardDisabled: false,
 			boardSize: {
 				rows: 10,
 				columns: 10
@@ -90,7 +87,6 @@ export default {
 		generateShips() {
 			this.ships.map(ship => {
 				ship.locations = this.generateLocations(ship);
-				// console.log(ship.locations);
 			});
 		},
 
@@ -137,7 +133,7 @@ export default {
 
 		fireAt(e) {
 
-			if (this.gameFinished || !this.isOpponentTurn) {
+			if (this.gameFinished || !this.isOpponentTurn || this.boardDisabled) {
 				return false;
 			}
 
@@ -147,9 +143,6 @@ export default {
 
 			var cellPath = e.path[0];
 			var cellDataNum = e.srcElement.attributes.data.nodeValue;
-
-			console.log(cellPath);
-			console.log(cellDataNum);
 
 			this.previousComputerGuesses.push(cellDataNum);
 
@@ -196,6 +189,7 @@ export default {
 
 			// Look in the ships object. If any of the ships have been hit but are not sunk then pick adjacent squares and guess those one by one. If those squares are off the board or have already been guesses then ingore that 'guess' and move to the next adjacent square that is on the board and has yet to be attacked.
 
+			this.boardDisabled = true;
 			var afloatShips = this.ships.filter(ship => !ship.sunk);
 			var shipsThatHaveBeenHit = afloatShips.filter(ship => Boolean(ship.hits.length));
 			for (var ship in shipsThatHaveBeenHit) {
@@ -210,7 +204,10 @@ export default {
 					if (nextGuess.length) {
 						//Take the first guess and call the Fire function
 						var td = nextGuess[0];
-						this.$refs[td][0].click();
+						setTimeout(() => {
+							this.boardDisabled = false;
+							this.$refs[td][0].click();
+						}, 500);
 						return
 					}
 				}
@@ -224,7 +221,10 @@ export default {
 			var guess = `${rowNum}-${columnNum}`;
 
 			if (this.previousComputerGuesses.indexOf(guess) < 0) {
-				this.$refs[guess][0].click();
+				setTimeout(() => {
+					this.boardDisabled = false;
+					this.$refs[guess][0].click();
+				}, 500);
 				return
 			}
 			this.randomGuess();
@@ -302,14 +302,6 @@ export default {
 				opacity: 0.8;
 			}
 		}
-	}
-
-	.hidden {
-		display: none;
-	}
-
-	.shade {
-		background-color: black;
 	}
 
 </style>
