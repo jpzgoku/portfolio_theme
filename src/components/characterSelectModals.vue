@@ -9,8 +9,9 @@
 					<b-col
 						v-for="hero in heros"
 						md="12" lg="4"
-						:class="hero"
-						:key="hero"
+						:class="hero.name"
+						:key="hero.name"
+						:data="hero.color"
 						@click="selectHero($event)">
 					</b-col>
 				</b-row>
@@ -25,8 +26,9 @@
 					<b-col
 						v-for="villian in villians"
 						md="12" lg="4"
-						:class="villian"
-						:key="villian"
+						:class="villian.name"
+						:key="villian.name"
+						:data="villian.color"
 						@click="selectVillian($event)">
 					</b-col>
 				</b-row>
@@ -39,53 +41,17 @@
 </template>
 
 <script>
+
+import { mapGetters } from 'vuex';
+
 export default {
 	name: 'character-select-modals',
 
-	data() {
-		return {
-			heros: [
-				'goku',
-				'beerus',
-				'buuSagaVegeta',
-				'trunks',
-				'piccolo',
-				'gotenksSS3'
-				// 'gokuBlue',
-				// 'superVegeta',
-				// 'gotenksSS',
-				// 'gotenks',
-				// 'trunksSS',
-				// 'tien',
-				// 'vegeta',
-				// 'gohan'
-			],
-			villians: [
-				'android17',
-				'saiyanVegeta',
-				'android18',
-				'frieza',
-				'cell',
-				'fatBuu'
-				// 'black',
-				// 'babidi',
-				// 'superBuu',
-				// 'zamasu',
-				// 'imperfectCell',
-				// 'friezaFirstForm',
-				// 'blackRose',
-				// 'frost3rdForm',
-				// 'frostFinalForm',
-				// 'kidBuu',
-				// 'semiPerfectCell',
-				// 'goldenFrieza',
-				// 'frost',
-				// 'evilBuu',
-				// 'cellJr',
-				// 'android19',
-				// 'android20'
-			]
-		}
+	computed: {
+		...mapGetters([
+			'heros',
+			'villians',
+		])
 	},
 
 	methods: {
@@ -99,11 +65,11 @@ export default {
 		},
 
 		selectHero(e) {
-			this.$emit('selectHero', e.srcElement.className);
+			this.$emit('selectHero', e.srcElement.className, e.srcElement.attributes.data.nodeValue);
 		},
 
 		selectVillian(e) {
-			this.$emit('selectVillian', e.srcElement.className);
+			this.$emit('selectVillian', e.srcElement.className, e.srcElement.attributes.data.nodeValue);
 		}
 
 	}

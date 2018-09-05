@@ -9,45 +9,49 @@
 					<b-btn-group class="character-settings-buttons m-2">
 						<b-button
 							variant="outline-primary"
-							:pressed="heroHumanPlayer"
+							:pressed="isHeroHumanPlayer"
+							:disabled="gameInProgress"
 							@click="selectPlayerType('hero', true)">
 								Player
 						</b-button>
 
 						<b-button
 							variant="outline-primary"
-							:pressed="!heroHumanPlayer"
+							:pressed="!isHeroHumanPlayer"
+							:disabled="gameInProgress"
 							@click="selectPlayerType('hero', false)">
 								CPU
 						</b-button>
 					</b-btn-group>
 
-					<b-btn v-b-modal.heroSelectModal class="character-settings-buttons" variant="primary">
+					<b-btn v-b-modal.heroSelectModal class="character-settings-buttons" variant="primary" :disabled="gameInProgress">
 						Heros
 					</b-btn>
 
-					<b-btn @click="mainButton">
+					<b-btn @click="clearGameButton">
 						Clear Game
 					</b-btn>
-					<b-btn class="settings-button" v-b-modal.settings>
+					<b-btn class="settings-button" v-b-modal.settings :disabled="gameInProgress">
 						Settings
 					</b-btn>
 
-					<b-btn v-b-modal.villianSelectModal class="character-settings-buttons" variant="danger">
+					<b-btn v-b-modal.villianSelectModal class="character-settings-buttons" variant="danger" :disabled="gameInProgress">
 						Villians
 					</b-btn>
 
 					<b-btn-group class="character-settings-buttons m-2">
 						<b-button
 							variant="outline-danger"
-							:pressed="villianHumanPlayer"
+							:pressed="isVillianHumanPlayer"
+							:disabled="gameInProgress"
 							@click="selectPlayerType('villian', true)">
 								Player
 						</b-button>
 
 						<b-button
 							variant="outline-danger"
-							:pressed="!villianHumanPlayer"
+							:pressed="!isVillianHumanPlayer"
+							:disabled="gameInProgress"
 							@click="selectPlayerType('villian', false)">
 								CPU
 						</b-button>
@@ -56,42 +60,73 @@
 				</b-col>
 
 			</b-row>
-
 		</b-container>
 
+		<b-row class="message-area m-0">
+			<b-col md="2"></b-col>
+
+			<b-col md="8">
+				<b-row>
+					<b-col class="mt-1 mb-5">
+						<h4 :style="{color: heroColor}">
+							{{ heroGridFeedback }}
+						</h4>
+					</b-col>
+
+					<b-col class="text-right mt-1 mb-5">
+						<h4 :style="{color: villianColor}">
+							{{ villianGridFeedback }}
+						</h4>
+					</b-col>
+				</b-row>
+			</b-col>
+
+			<b-col md="2"></b-col>
+		</b-row>
+
 		<settings-modal
-			:heroHumanPlayer="heroHumanPlayer"
-			:villianHumanPlayer="villianHumanPlayer"
+			:isHeroHumanPlayer="isHeroHumanPlayer"
+			:isVillianHumanPlayer="isVillianHumanPlayer"
 			@selectPlayerType="selectPlayerType(...arguments)">
 		</settings-modal>
 
 		<character-select-modals
 			ref="characterSelectModals"
-			@selectHero="selectHero($event)"
-			@selectVillian="selectVillian($event)">
+			@selectHero="selectHero(...arguments)"
+			@selectVillian="selectVillian(...arguments)">
 		</character-select-modals>
 
-		<b-row class="game-board m-0">
+		<b-row class="m-0">
 
 			<b-col md="2" class="p-0">
 				<div id="imgPlayer1" :class="heroCharacter"></div>
 			</b-col>
 
-			<b-col md="4" class="p-0">
+			<b-col md="4" class="game-board p-0">
 				<dbz-character-grid
 					ref="heroGrid"
-					:character="heroCharacter"
+					:characterColor="heroColor"
+					:isHumanOpponent="isVillianHumanPlayer"
+					:isOpponentTurn="isVillianTurn"
+					:gameInProgress="gameInProgress"
 					:gameFinished="gameFinished"
-					@endGame="gameFinished = true;">
+					@startGame="startGame"
+					@endOpponentTurn="endVillianTurn($event)"
+					@endGame="villianWins">
 				</dbz-character-grid>
 			</b-col>
 
-			<b-col md="4" class="p-0">
+			<b-col md="4" class="game-board p-0">
 				<dbz-character-grid
 					ref="villianGrid"
-					:character="villianCharacter"
+					:characterColor="villianColor"
+					:isHumanOpponent="isHeroHumanPlayer"
+					:isOpponentTurn="isHeroTurn"
+					:gameInProgress="gameInProgress"
 					:gameFinished="gameFinished"
-					@endGame="gameFinished = true;">
+					@startGame="startGame"
+					@endOpponentTurn="endHeroTurn($event)"
+					@endGame="heroWins">
 				</dbz-character-grid>
 			</b-col>
 
@@ -122,11 +157,18 @@ export default {
 
 	data() {
 		return {
+			gameInProgress: false,
 			gameFinished: false,
-			heroHumanPlayer: true,
-			villianHumanPlayer: false,
+			isHeroTurn: true,
+			isVillianTurn: true,
+			isHeroHumanPlayer: true,
+			isVillianHumanPlayer: false,
 			heroCharacter: 'beerus',
-			villianCharacter: 'android17'
+			villianCharacter: 'android17',
+			heroColor: '#885ead',
+			villianColor: '#ff1919',
+			heroGridFeedback: 'Select your characters before starting.',
+			villianGridFeedback: 'Press a gameboard square to start the game.'
 		}
 	},
 
@@ -134,26 +176,71 @@ export default {
 
 		selectPlayerType(player, bool) {
 			if (player === 'hero') {
-				this.heroHumanPlayer = bool;
+				this.isHeroHumanPlayer = bool;
+				this.isHeroTurn = bool;
 			} else if (player === 'villian') {
-				this.villianHumanPlayer = bool;
+				this.isVillianHumanPlayer = bool;
+				this.isVillianTurn = bool;
 			}
 		},
 
-		selectHero(hero) {
+		selectHero(hero, color) {
 			this.heroCharacter = hero;
+			this.heroColor = color;
 			this.$refs.characterSelectModals.closeHeroModal();
 		},
 
-		selectVillian(villian) {
+		selectVillian(villian, color) {
 			this.villianCharacter = villian;
+			this.villianColor = color;
 			this.$refs.characterSelectModals.closeVillianModal();
 		},
 
-		mainButton() {
+		startGame() {
+			this.gameInProgress = true;
+			this.heroGridFeedback = '';
+			this.villianGridFeedback = '';
+		},
+
+		clearGameButton() {
 			this.$refs.heroGrid.emptyBoard();
 			this.$refs.villianGrid.emptyBoard();
+			this.gameInProgress = false;
 			this.gameFinished = false;
+			this.isHeroTurn = this.isHeroHumanPlayer;
+			this.isVillianTurn = this.isVillianHumanPlayer;
+			this.heroGridFeedback = 'Select your characters before starting.'
+			this.villianGridFeedback = 'Press a gameboard square to start the game.';
+		},
+
+		endHeroTurn(message) {
+			this.isHeroTurn = false;
+			this.isVillianTurn = true;
+			this.heroGridFeedback = message;
+			if (!this.isVillianHumanPlayer) {
+				setTimeout(() => this.$refs.heroGrid.computerGuess(), 500);
+			}
+		},
+
+		endVillianTurn(message) {
+			this.isHeroTurn = true;
+			this.isVillianTurn = false;
+			this.villianGridFeedback = message;
+			if (!this.isHeroHumanPlayer) {
+				setTimeout(() => this.$refs.villianGrid.computerGuess(), 500);
+			}
+		},
+
+		heroWins() {
+			this.heroGridFeedback = 'You win!';
+			this.villianGridFeedback = "You're finished!";
+			this.gameFinished = true;
+		},
+
+		villianWins() {
+			this.heroGridFeedback = "You're finished!";
+			this.villianGridFeedback = 'You win!';
+			this.gameFinished = true;
 		}
 
 	}
@@ -164,6 +251,11 @@ export default {
 
 	.settings-button {
 		display: none;
+	}
+
+	.message-area {
+		height: 100px;
+		padding: 0 20px;
 	}
 
 	#imgPlayer1,
@@ -199,6 +291,10 @@ export default {
 			display: none;
 		}
 
+		.game-board {
+			margin: 0 20px;
+		}
+
 		#imgPlayer1 {
 			left: 0px;
 			height: 340px;
@@ -214,9 +310,6 @@ export default {
 			width: 100%;
 		}
 
-		.game-board {
-			padding: 0 20px;
-		}
 	}
 
 </style>
