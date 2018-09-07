@@ -1,13 +1,25 @@
 <template lang="html">
-	<div>
-		<h3>Level Select:</h3>
-		<form>
+	<div class="m-4">
+		<h4 class="m-3">Level Select:</h4>
 
-			<input type="button" value="Town" @click="changeLevelTo('goToTown')">
-			<input type="button" value="Viking Feast" @click="changeLevelTo('goToVikingFeast')">
-			<input type="button" value="Colosseum" @click="changeLevelTo('goToColosseum')">
+		<b-button
+			class="m-1"
+			@click="changeLevelTo('goToTown')">
+				Town
+		</b-button>
 
-		</form>
+		<b-button
+			class="m-1"
+			@click="changeLevelTo('goToVikingFeast')">
+				Viking Feast
+		</b-button>
+
+		<b-button
+			class="m-1"
+			@click="changeLevelTo('goToColosseum')">
+				Colosseum
+		</b-button>
+
 	</div>
 </template>
 
@@ -24,4 +36,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped src="../../scss/modal.scss"></style>
+<!-- <style lang="scss" scoped src="../../scss/modal.scss"></style> -->

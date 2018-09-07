@@ -2,30 +2,41 @@
 	<div class="nav-bar-padding">
 		<div :class="{'town': town, 'vikingFeast': vikingFeast, 'colosseum': colosseum}" @contextmenu="openOptions">
 
-			<options-modal
-				v-show="optionsModalOpen"
-				@goToTown="goToTown"
-				@goToVikingFeast="goToVikingFeast"
-				@goToColosseum="goToColosseum">
-			</options-modal>
+			<b-modal id="optionsModal" ref="optionsModal" size="lg" title="Options Menu" hide-footer centered>
+				<options-modal
+					@goToTown="goToTown"
+					@goToVikingFeast="goToVikingFeast"
+					@goToColosseum="goToColosseum">
+				</options-modal>
+			</b-modal>
 
-			<guess-modal
-				v-show="guessModalOpen"
-				@checkGuess="checkGuess">
-			</guess-modal>
+			<b-modal id="guessModal" ref="guessModal" size="lg" title="What do you see?" hide-footer centered no-fade>
+				<b-row class="text-center">
+					<b-col>
+						<b-button v-for="character in this.characters"
+							class="m-1"
+							variant="secondary"
+							@click="makeGuess(character.name)"
+							:disabled="character.found">
+							{{ character.name }}
+						</b-button>
+					</b-col>
+				</b-row>
+			</b-modal>
 
-			<message-modal v-show="messageModalOpen">
-			</message-modal>
+			<b-modal id="messageModal" ref="messageModal" size="lg" hide-header hide-footer centered no-fade>
+				<h2 class="text-center">{{ this.message }}</h2>
+			</b-modal>
 
-			<win-modal
+			<!-- <win-modal
 				v-show="winModalOpen"
 				@inputName="inputName($event)"
 				@goToTown="goToTown"
 				@goToVikingFeast="goToVikingFeast"
 				@goToColosseum="goToColosseum">
-			</win-modal>
+			</win-modal> -->
 
-			<table id="table">
+			<table>
 				<tr v-for="row in rows">
 
 					<td v-for="column in columns"
@@ -42,9 +53,7 @@
 <script>
 import axios from 'axios';
 import OptionsModal from './wheresWaldo/optionsModal.vue';
-import GuessModal from './wheresWaldo/guessModal.vue';
-import MessageModal from './wheresWaldo/messageModal.vue';
-import WinModal from './wheresWaldo/winModal.vue';
+// import WinModal from './wheresWaldo/winModal.vue';
 import { mapGetters } from 'vuex';
 import TownCharacters from '../data/town.json';
 import VikingFeastCharacters from '../data/vikingFeast.json';
@@ -56,9 +65,7 @@ export default {
 	name: 'wheres-waldo',
 	components: {
 		OptionsModal,
-		GuessModal,
-		MessageModal,
-		WinModal
+		// WinModal
 	},
 
 	computed: {
@@ -90,17 +97,23 @@ export default {
 
 	mounted() {
 		if (this.town) {
-			return this.goToTown();
+			this.goToTown();
 		} else if (this.vikingFeast) {
-			return this.goToVikingFeast();
+			this.goToVikingFeast();
 		} else if (this.colosseum) {
-			return this.goToColosseum();
+			this.goToColosseum();
 		}
 
-		this.$store.dispatch('toggleOptionsModal', true);
+		this.$refs.optionsModal.show();
+		// this.$store.dispatch('toggleOptionsModal', true);
 	},
 
 	methods: {
+
+		capitalize(string) {
+			return string.charAt(0).toUpperCase() + string.slice(1);
+		},
+
 		startTimer() {
 			this.clock = setInterval(() => {
 				this.$store.dispatch('updateSeconds', this.seconds + 1);
@@ -109,15 +122,19 @@ export default {
 
 		openOptions(e) {
 			e.preventDefault();
-			this.$store.dispatch('toggleOptionsModal', true);
+			this.$refs.optionsModal.show();
+			// this.$store.dispatch('toggleOptionsModal', true);
 		},
 
 		openModal(e) {
 			this.id = e.srcElement.id;
-			this.$store.dispatch('toggleGuessModal', true);
+			this.$refs.guessModal.show();
+			// this.$store.dispatch('toggleGuessModal', true);
 		},
 
-		checkGuess() {
+		makeGuess(name) {
+			this.$store.dispatch('updateChar', name);
+			this.$refs.guessModal.hide();
 			if (!this.characters[this.char].found) {
 				for (let square in this.characters[this.char].locations) {
 					if (this.characters[this.char].locations[square] === this.id) {
@@ -127,9 +144,11 @@ export default {
 			}
 
 			this.$store.dispatch('updateMessage', 'Nope');
-			this.$store.dispatch('toggleMessageModal', true);
+			this.$refs.messageModal.show();
+			// this.$store.dispatch('toggleMessageModal', true);
 			return setTimeout(() => {
-				this.$store.dispatch('toggleMessageModal', false);
+				this.$refs.messageModal.hide();
+				// this.$store.dispatch('toggleMessageModal', false);
 			}, 1000);
 		},
 
@@ -146,9 +165,11 @@ export default {
 			for (let character in this.characters) {
 				if (!this.characters[character].found) {
 					this.$store.dispatch('updateMessage', 'Correct');
-					this.$store.dispatch('toggleMessageModal', true);
+					this.$refs.messageModal.show();
+					// this.$store.dispatch('toggleMessageModal', true);
 					return setTimeout(() => {
-						this.$store.dispatch('toggleMessageModal', false);
+						this.$refs.messageModal.hide();
+						// this.$store.dispatch('toggleMessageModal', false);
 					}, 1000);
 				}
 			}
@@ -168,7 +189,8 @@ export default {
 		changeLevel() {
 			Util.clearBoard('found', 'hit');
 			this.winModalOpen = false;
-			this.$store.dispatch('toggleOptionsModal', false);
+			// this.$store.dispatch('toggleOptionsModal', false);
+			this.$refs.optionsModal.hide();
 			this.$store.dispatch('displayInputScore', false);
 			if (this.clock) {
 				clearInterval(this.clock);

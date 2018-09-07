@@ -1,13 +1,7 @@
 <template lang="html">
-	<div class="custom-modal">
-
-		<div class="modal-content">
-			<button class="close" @click="close">
-				&times;
-			</button>
-
-			<h1>Where's Waldo?</h1>
-			<h3>Options Menu</h3>
+	<b-row class="text-center">
+		<b-col>
+			<h2 class="m-4">Where's Waldo?</h2>
 			<p><span>* Right click at any time to open the options menu!</span></p>
 
 			<level-select
@@ -17,10 +11,8 @@
 			</level-select>
 
 			<high-scores v-show="this.highScores.length > 0"></high-scores>
-
-		</div>
-
-	</div>
+		</b-col>
+	</b-row>
 </template>
 
 <script>
@@ -53,4 +45,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped src="../../scss/modal.scss"></style>
+<!-- <style lang="scss" scoped src="../../scss/modal.scss"></style> -->

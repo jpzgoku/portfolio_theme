@@ -1,7 +1,7 @@
 <template lang="html">
 	<div>
 
-		<h3>High Scores:</h3>
+		<h4 class="m-3">High Scores:</h4>
 		<ul>
 			<li v-for="highscore in this.highScores">
 				{{ highscore.name }} - {{ highscore.seconds }} seconds
@@ -25,4 +25,16 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped src="../../scss/modal.scss"></style>
+<!-- <style lang="scss" scoped src="../../scss/modal.scss"></style> -->
+
+<style lang="scss" scoped>
+
+	ul {
+		padding: 0;
+	}
+
+	li {
+		list-style: none;
+	}
+
+</style>
