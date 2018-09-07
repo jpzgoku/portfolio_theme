@@ -8,7 +8,9 @@
 		site-url="<?= site_url(); ?>">
 	</custom-nav-bar>
 
-	<wheres-waldo></wheres-waldo>
+	<wheres-waldo
+		site-url="<?= site_url(); ?>">
+	</wheres-waldo>
 </div>
 
 <?php get_footer(); ?>

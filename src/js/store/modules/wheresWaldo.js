@@ -1,11 +1,16 @@
 export default {
 	state: {
+		currentLevel: 'town',
 		seconds: 0,
 		inputScore: false,
-		highScores: []
+		highScores: {}
 	},
 
 	getters: {
+
+		currentLevel(state) {
+            return state.currentLevel;
+        },
 
 		seconds(state) {
             return state.seconds;
@@ -23,6 +28,10 @@ export default {
 
 	mutations: {
 
+		currentLevel(state, data) {
+			state.currentLevel = data;
+		},
+
 		seconds(state, data) {
 			state.seconds = data;
 		},
@@ -38,6 +47,10 @@ export default {
 
 	actions: {
 
+		setCurrentLevel(context, data) {
+			context.commit('currentLevel', data);
+		},
+
 		updateSeconds(context, data) {
 			context.commit('seconds', data);
 		},
@@ -46,7 +59,7 @@ export default {
 			context.commit('inputScore', bool);
 		},
 
-		setHighScores(context, data) {
+		getHighScoresData(context, data) {
 			context.commit('highScores', data);
 		}
 

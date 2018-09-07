@@ -11,7 +11,8 @@
 				@goToColosseum="changeLevelTo('goToColosseum')">
 			</level-select>
 
-			<div v-show="this.highScores.length > 0">
+			<!-- <div v-show="this.highScores.length > 0"> -->
+			<div>
 				<high-scores></high-scores>
 				<input type="button" value="Enter Your Score!" @click="inputHighScores">
 
@@ -37,8 +38,17 @@ export default {
 		HighScores
 	},
 
+	props: {
+
+		siteUrl: {
+			type: String
+		}
+
+	},
+
 	computed: {
 		...mapGetters([
+			'currentLevel',
 			'seconds',
 			'inputScore',
 			'highScores'
@@ -53,7 +63,16 @@ export default {
 
 		inputName(e) {
 			let name = e.srcElement.value;
-			this.$emit('inputName', name);
+			// '/wp-content/themes/my-project/src/data/db.json';
+			// '/wp-json/wp/v2/pages';
+			var url = this.siteUrl + '/wp-content/themes/my-project/src/data/db.json';
+			axios.post(url, {
+				name: name,
+				seconds: this.seconds
+			})
+			.catch(function(error) {
+				console.log(error);
+			});
 		},
 
 		changeLevelTo(level) {

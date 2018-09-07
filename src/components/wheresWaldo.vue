@@ -1,6 +1,6 @@
 <template lang="html">
 	<div class="nav-bar-padding">
-		<div :class="{'town': town, 'vikingFeast': vikingFeast, 'colosseum': colosseum}" @contextmenu="openOptions">
+		<div :class="currentLevel" @contextmenu="openOptions">
 
 			<b-modal id="optionsModal" ref="optionsModal" size="lg" title="Options Menu" hide-footer centered>
 				<options-modal
@@ -16,6 +16,7 @@
 						<b-button v-for="character in this.characters"
 							class="m-1"
 							variant="secondary"
+							:key="character.name"
 							@click="makeGuess(character.name)"
 							:disabled="character.found">
 							{{ character.name }}
@@ -30,7 +31,7 @@
 
 			<win-modal
 				v-show="winModalOpen"
-				@inputName="inputName($event)"
+				:siteUrl="siteUrl"
 				@goToTown="goToTown"
 				@goToVikingFeast="goToVikingFeast"
 				@goToColosseum="goToColosseum">
@@ -58,7 +59,6 @@ import { mapGetters } from 'vuex';
 import TownCharacters from '../data/town.json';
 import VikingFeastCharacters from '../data/vikingFeast.json';
 import ColosseumCharacters from '../data/colosseum.json';
-import HighScoresData from '../data/db.json';
 import Util from '../js/util';
 
 export default {
@@ -68,8 +68,17 @@ export default {
 		WinModal
 	},
 
+	props: {
+
+		siteUrl: {
+			type: String
+		}
+
+	},
+
 	computed: {
 		...mapGetters([
+			'currentLevel',
 			'seconds',
 			'inputScore',
 			'highScores'
@@ -79,9 +88,6 @@ export default {
 	data() {
 		return {
 			message: 'You Win!',
-			town: true,
-			vikingFeast: false,
-			colosseum: false,
 			rows: 50,
 			columns: 82,
 			winModalOpen: false,
@@ -93,11 +99,23 @@ export default {
 	},
 
 	mounted() {
-		if (this.town) {
+
+		// '/wp-content/themes/my-project/src/data/db.json';
+		// '/wp-json/wp/v2/pages';
+		var url = this.siteUrl + '/wp-content/themes/my-project/src/data/db.json';
+		axios.get(url)
+		.then(response => {
+			this.$store.dispatch('getHighScoresData', response.data);
+		})
+		.catch(function(error) {
+			console.log(error);
+		});
+
+		if (this.currentLevel === 'town') {
 			this.goToTown();
-		} else if (this.vikingFeast) {
+		} else if (this.currentLevel === 'vikingFeast') {
 			this.goToVikingFeast();
-		} else if (this.colosseum) {
+		} else if (this.currentLevel === 'colosseum') {
 			this.goToColosseum();
 		}
 
@@ -167,15 +185,6 @@ export default {
 			this.winModalOpen = true;
 		},
 
-		inputName(name) {
-			console.log(name);
-			// var url = './wp-content/themes/my-project/src/data/db.json';
-			// axios.post(url, {
-			// 	name: name,
-			// 	seconds: this.seconds
-			// });
-		},
-
 		changeLevel() {
 			Util.clearBoard('found', 'hit');
 			this.winModalOpen = false;
@@ -190,36 +199,29 @@ export default {
 
 		goToTown() {
 			this.changeLevel();
-			this.town = true;
-			this.vikingFeast = false;
-			this.colosseum = false;
+			this.$store.dispatch('setCurrentLevel', 'town');
 			this.rows = 50;
 			this.columns = 82;
 			this.characters = TownCharacters;
-			this.$store.dispatch('setHighScores', HighScoresData.town);
 		},
 
 		goToVikingFeast() {
 			this.changeLevel();
-			this.town = false;
-			this.vikingFeast = true;
-			this.colosseum = false;
+			this.$store.dispatch('setCurrentLevel', 'vikingFeast');
 			this.rows = 70;
 			this.columns = 112;
 			this.characters = VikingFeastCharacters;
-			this.$store.dispatch('setHighScores', HighScoresData.vikingFeast);
 		},
 
 		goToColosseum() {
 			this.changeLevel();
-			this.town = false;
-			this.vikingFeast = false;
-			this.colosseum = true;
+			this.$store.dispatch('setCurrentLevel', 'colosseum');
 			this.rows = 75;
 			this.columns = 122;
 			this.characters = ColosseumCharacters;
-			this.$store.dispatch('setHighScores', HighScoresData.colosseum);
-		}
+		},
+
+
 	}
 }
 </script>

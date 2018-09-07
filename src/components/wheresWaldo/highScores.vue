@@ -3,7 +3,7 @@
 
 		<h4 class="m-3">High Scores:</h4>
 		<ul>
-			<li v-for="highscore in this.highScores">
+			<li v-for="highscore in this.highScores[this.currentLevel]">
 				{{ highscore.name }} - {{ highscore.seconds }} seconds
 			</li>
 		</ul>
@@ -19,6 +19,7 @@ export default {
 
 	computed: {
 		...mapGetters([
+			'currentLevel',
 			'highScores'
 		])
 	}

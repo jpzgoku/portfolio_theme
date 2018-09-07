@@ -10,7 +10,8 @@
 				@goToColosseum="changeLevelTo('goToColosseum')">
 			</level-select>
 
-			<high-scores v-show="this.highScores.length > 0"></high-scores>
+			<!-- <high-scores v-show="this.highScores.length > 0"></high-scores> -->
+			<high-scores></high-scores>
 		</b-col>
 	</b-row>
 </template>
@@ -34,9 +35,6 @@ export default {
 	},
 
 	methods: {
-		close() {
-			this.$store.dispatch('toggleOptionsModal', false);
-		},
 
 		changeLevelTo(level) {
 			this.$emit(level);
