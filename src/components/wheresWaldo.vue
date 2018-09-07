@@ -105,6 +105,7 @@ export default {
 		var url = this.siteUrl + '/wp-content/themes/my-project/src/data/db.json';
 		axios.get(url)
 		.then(response => {
+			console.log(response.data);
 			this.$store.dispatch('getHighScoresData', response.data);
 		})
 		.catch(function(error) {
@@ -168,7 +169,7 @@ export default {
 				let cell = this.characters[this.characterName].locations[square];
 				document.getElementById(cell).classList.add('found');
 			}
-			return this.checkForWin();
+			this.checkForWin();
 		},
 
 		checkForWin() {
@@ -187,6 +188,9 @@ export default {
 
 		changeLevel() {
 			Util.clearBoard('found', 'hit');
+			for (var character in this.characters) {
+				this.characters[character].found = false;
+			}
 			this.winModalOpen = false;
 			this.$refs.optionsModal.hide();
 			this.$store.dispatch('displayInputScore', false);
@@ -194,7 +198,7 @@ export default {
 				clearInterval(this.clock);
 				this.$store.dispatch('updateSeconds', 0);
 			}
-			return this.startTimer();
+			this.startTimer();
 		},
 
 		goToTown() {

@@ -11,7 +11,7 @@
 				@goToColosseum="changeLevelTo('goToColosseum')">
 			</level-select>
 
-			<!-- <div v-show="this.highScores.length > 0"> -->
+			<!-- <div v-show="this.highScores[this.currentLevel].length"> -->
 			<div>
 				<high-scores></high-scores>
 				<input type="button" value="Enter Your Score!" @click="inputHighScores">
@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import LevelSelect from './levelSelect.vue';
 import HighScores from './highScores.vue';
 import { mapGetters } from 'vuex';
