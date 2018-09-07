@@ -41,10 +41,10 @@
 
 <script>
 import axios from 'axios';
-import OptionsModal from './optionsModal.vue';
-import GuessModal from './guessModal.vue';
-import MessageModal from './messageModal.vue';
-import WinModal from './winModal.vue';
+import OptionsModal from './wheresWaldo/optionsModal.vue';
+import GuessModal from './wheresWaldo/guessModal.vue';
+import MessageModal from './wheresWaldo/messageModal.vue';
+import WinModal from './wheresWaldo/winModal.vue';
 import { mapGetters } from 'vuex';
 import TownCharacters from '../data/town.json';
 import VikingFeastCharacters from '../data/vikingFeast.json';

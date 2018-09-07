@@ -140,9 +140,9 @@
 
 <script>
 
-import CharacterSelectModals from './characterSelectModals.vue';
-import DbzCharacterGrid from './dbzCharacterGrid.vue';
-import SettingsModal from './settingsModal.vue';
+import CharacterSelectModals from './dragonBallBattleship/characterSelectModals.vue';
+import DbzCharacterGrid from './dragonBallBattleship/dbzCharacterGrid.vue';
+import SettingsModal from './dragonBallBattleship/settingsModal.vue';
 import Util from '../js/util';
 
 export default {

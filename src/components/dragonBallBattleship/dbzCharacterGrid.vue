@@ -22,7 +22,7 @@
 
 <script>
 
-import Util from '../js/util';
+import Util from '../../js/util';
 
 export default {
 	name: 'dbz-character-grid',
