@@ -36,4 +36,4 @@ export default {
 }
 </script>
 
-<!-- <style lang="scss" scoped src="../../scss/modal.scss"></style> -->
+<style lang="scss" scoped></style>

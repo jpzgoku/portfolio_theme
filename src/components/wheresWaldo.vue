@@ -28,13 +28,13 @@
 				<h2 class="text-center">{{ this.message }}</h2>
 			</b-modal>
 
-			<!-- <win-modal
+			<win-modal
 				v-show="winModalOpen"
 				@inputName="inputName($event)"
 				@goToTown="goToTown"
 				@goToVikingFeast="goToVikingFeast"
 				@goToColosseum="goToColosseum">
-			</win-modal> -->
+			</win-modal>
 
 			<table>
 				<tr v-for="row in rows">
@@ -53,7 +53,7 @@
 <script>
 import axios from 'axios';
 import OptionsModal from './wheresWaldo/optionsModal.vue';
-// import WinModal from './wheresWaldo/winModal.vue';
+import WinModal from './wheresWaldo/winModal.vue';
 import { mapGetters } from 'vuex';
 import TownCharacters from '../data/town.json';
 import VikingFeastCharacters from '../data/vikingFeast.json';
@@ -65,25 +65,20 @@ export default {
 	name: 'wheres-waldo',
 	components: {
 		OptionsModal,
-		// WinModal
+		WinModal
 	},
 
 	computed: {
 		...mapGetters([
-			'char',
 			'seconds',
 			'inputScore',
-			'message',
-			'highScores',
-			'characters',
-			'optionsModalOpen',
-			'guessModalOpen',
-			'messageModalOpen'
+			'highScores'
 		])
 	},
 
 	data() {
 		return {
+			message: 'You Win!',
 			town: true,
 			vikingFeast: false,
 			colosseum: false,
@@ -91,7 +86,9 @@ export default {
 			columns: 82,
 			winModalOpen: false,
 			id: '',
-			clock: ''
+			clock: '',
+			characters: {},
+			characterName: ''
 		}
 	},
 
@@ -105,7 +102,6 @@ export default {
 		}
 
 		this.$refs.optionsModal.show();
-		// this.$store.dispatch('toggleOptionsModal', true);
 	},
 
 	methods: {
@@ -123,39 +119,35 @@ export default {
 		openOptions(e) {
 			e.preventDefault();
 			this.$refs.optionsModal.show();
-			// this.$store.dispatch('toggleOptionsModal', true);
 		},
 
 		openModal(e) {
 			this.id = e.srcElement.id;
 			this.$refs.guessModal.show();
-			// this.$store.dispatch('toggleGuessModal', true);
 		},
 
 		makeGuess(name) {
-			this.$store.dispatch('updateChar', name);
+			this.characterName = name;
 			this.$refs.guessModal.hide();
-			if (!this.characters[this.char].found) {
-				for (let square in this.characters[this.char].locations) {
-					if (this.characters[this.char].locations[square] === this.id) {
+			if (!this.characters[this.characterName].found) {
+				for (let square in this.characters[this.characterName].locations) {
+					if (this.characters[this.characterName].locations[square] === this.id) {
 						return this.highlightCharacter();
 					}
 				}
 			}
 
-			this.$store.dispatch('updateMessage', 'Nope');
+			this.message = 'Nope';
 			this.$refs.messageModal.show();
-			// this.$store.dispatch('toggleMessageModal', true);
 			return setTimeout(() => {
 				this.$refs.messageModal.hide();
-				// this.$store.dispatch('toggleMessageModal', false);
 			}, 1000);
 		},
 
 		highlightCharacter() {
-			this.characters[this.char].found = true;
-			for (let square in this.characters[this.char].locations) {
-				let cell = this.characters[this.char].locations[square];
+			this.characters[this.characterName].found = true;
+			for (let square in this.characters[this.characterName].locations) {
+				let cell = this.characters[this.characterName].locations[square];
 				document.getElementById(cell).classList.add('found');
 			}
 			return this.checkForWin();
@@ -164,12 +156,10 @@ export default {
 		checkForWin() {
 			for (let character in this.characters) {
 				if (!this.characters[character].found) {
-					this.$store.dispatch('updateMessage', 'Correct');
+					this.message = 'Correct';
 					this.$refs.messageModal.show();
-					// this.$store.dispatch('toggleMessageModal', true);
 					return setTimeout(() => {
 						this.$refs.messageModal.hide();
-						// this.$store.dispatch('toggleMessageModal', false);
 					}, 1000);
 				}
 			}
@@ -189,7 +179,6 @@ export default {
 		changeLevel() {
 			Util.clearBoard('found', 'hit');
 			this.winModalOpen = false;
-			// this.$store.dispatch('toggleOptionsModal', false);
 			this.$refs.optionsModal.hide();
 			this.$store.dispatch('displayInputScore', false);
 			if (this.clock) {
@@ -206,7 +195,7 @@ export default {
 			this.colosseum = false;
 			this.rows = 50;
 			this.columns = 82;
-			this.$store.dispatch('updateCharacters', TownCharacters);
+			this.characters = TownCharacters;
 			this.$store.dispatch('setHighScores', HighScoresData.town);
 		},
 
@@ -217,7 +206,7 @@ export default {
 			this.colosseum = false;
 			this.rows = 70;
 			this.columns = 112;
-			this.$store.dispatch('updateCharacters', VikingFeastCharacters);
+			this.characters = VikingFeastCharacters;
 			this.$store.dispatch('setHighScores', HighScoresData.vikingFeast);
 		},
 
@@ -228,7 +217,7 @@ export default {
 			this.colosseum = true;
 			this.rows = 75;
 			this.columns = 122;
-			this.$store.dispatch('updateCharacters', ColosseumCharacters);
+			this.characters = ColosseumCharacters;
 			this.$store.dispatch('setHighScores', HighScoresData.colosseum);
 		}
 	}
