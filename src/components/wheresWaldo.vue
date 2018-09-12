@@ -2,13 +2,12 @@
 	<div class="nav-bar-padding">
 		<div :class="currentLevel" @contextmenu="openOptions">
 
-			<b-modal id="optionsModal" ref="optionsModal" size="lg" title="Options Menu" hide-footer centered>
-				<options-modal
-					@goToTown="goToTown"
-					@goToVikingFeast="goToVikingFeast"
-					@goToColosseum="goToColosseum">
-				</options-modal>
-			</b-modal>
+			<options-modal
+				ref="optionsModal"
+				@goToTown="goToTown"
+				@goToVikingFeast="goToVikingFeast"
+				@goToColosseum="goToColosseum">
+			</options-modal>
 
 			<b-modal id="guessModal" ref="guessModal" size="lg" title="What do you see?" hide-footer centered no-fade>
 				<b-row class="text-center">
@@ -30,7 +29,7 @@
 			</b-modal>
 
 			<win-modal
-				v-show="winModalOpen"
+				ref="winModal"
 				:siteUrl="siteUrl"
 				@goToTown="goToTown"
 				@goToVikingFeast="goToVikingFeast"
@@ -42,7 +41,7 @@
 
 					<td v-for="column in columns"
 						:id="row + '-' + column"
-						@click="openModal">
+						@click="openGuessModal">
 					</td>
 
 				</tr>
@@ -72,6 +71,10 @@ export default {
 
 		siteUrl: {
 			type: String
+		},
+
+		nonce: {
+			type: String
 		}
 
 	},
@@ -80,7 +83,6 @@ export default {
 		...mapGetters([
 			'currentLevel',
 			'seconds',
-			'inputScore',
 			'highScores'
 		])
 	},
@@ -90,7 +92,6 @@ export default {
 			message: 'You Win!',
 			rows: 50,
 			columns: 82,
-			winModalOpen: false,
 			id: '',
 			clock: '',
 			characters: {},
@@ -99,14 +100,10 @@ export default {
 	},
 
 	mounted() {
-
-		// '/wp-content/themes/my-project/src/data/db.json';
-		// '/wp-json/wp/v2/pages';
-		var url = this.siteUrl + '/wp-content/themes/my-project/src/data/db.json';
+		var url = this.siteUrl + '/wp-json/wp/v2/high_score';
 		axios.get(url)
 		.then(response => {
-			console.log(response.data);
-			this.$store.dispatch('getHighScoresData', response.data);
+			this.$store.dispatch('setHighScoresData', response.data);
 		})
 		.catch(function(error) {
 			console.log(error);
@@ -120,7 +117,7 @@ export default {
 			this.goToColosseum();
 		}
 
-		this.$refs.optionsModal.show();
+		this.$refs.optionsModal.openModal();
 	},
 
 	methods: {
@@ -137,10 +134,10 @@ export default {
 
 		openOptions(e) {
 			e.preventDefault();
-			this.$refs.optionsModal.show();
+			this.$refs.optionsModal.openModal();
 		},
 
-		openModal(e) {
+		openGuessModal(e) {
 			this.id = e.srcElement.id;
 			this.$refs.guessModal.show();
 		},
@@ -183,7 +180,7 @@ export default {
 				}
 			}
 			clearInterval(this.clock);
-			this.winModalOpen = true;
+			this.$refs.winModal.openModal();
 		},
 
 		changeLevel() {
@@ -191,9 +188,8 @@ export default {
 			for (var character in this.characters) {
 				this.characters[character].found = false;
 			}
-			this.winModalOpen = false;
-			this.$refs.optionsModal.hide();
-			this.$store.dispatch('displayInputScore', false);
+			this.$refs.winModal.closeModal();
+			this.$refs.optionsModal.closeModal();
 			if (this.clock) {
 				clearInterval(this.clock);
 				this.$store.dispatch('updateSeconds', 0);
@@ -223,8 +219,7 @@ export default {
 			this.rows = 75;
 			this.columns = 122;
 			this.characters = ColosseumCharacters;
-		},
-
+		}
 
 	}
 }

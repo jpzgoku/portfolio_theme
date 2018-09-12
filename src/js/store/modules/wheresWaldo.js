@@ -2,7 +2,6 @@ export default {
 	state: {
 		currentLevel: 'town',
 		seconds: 0,
-		inputScore: false,
 		highScores: {}
 	},
 
@@ -14,10 +13,6 @@ export default {
 
 		seconds(state) {
             return state.seconds;
-        },
-
-		inputScore(state) {
-            return state.inputScore;
         },
 
 		highScores(state) {
@@ -36,10 +31,6 @@ export default {
 			state.seconds = data;
 		},
 
-		inputScore(state, data) {
-			state.inputScore = data;
-		},
-
 		highScores(state, data) {
 			state.highScores = data;
 		}
@@ -55,11 +46,7 @@ export default {
 			context.commit('seconds', data);
 		},
 
-		displayInputScore(context, bool) {
-			context.commit('inputScore', bool);
-		},
-
-		getHighScoresData(context, data) {
+		setHighScoresData(context, data) {
 			context.commit('highScores', data);
 		}
 

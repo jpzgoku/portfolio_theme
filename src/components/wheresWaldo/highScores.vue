@@ -3,8 +3,10 @@
 
 		<h4 class="m-3">High Scores:</h4>
 		<ul>
-			<li v-for="highscore in this.highScores[this.currentLevel]">
-				{{ highscore.name }} - {{ highscore.seconds }} seconds
+			<li v-for="highScore in this.highScores">
+				<span v-if="highScore.level === currentLevel">
+					{{ highScore.title.rendered }} - {{ highScore.seconds }} seconds
+				</span>
 			</li>
 		</ul>
 

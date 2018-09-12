@@ -1,19 +1,23 @@
 <template lang="html">
-	<b-row class="text-center">
-		<b-col>
-			<h2 class="m-4">Where's Waldo?</h2>
-			<p><span>* Right click at any time to open the options menu!</span></p>
 
-			<level-select
-				@goToTown="changeLevelTo('goToTown')"
-				@goToVikingFeast="changeLevelTo('goToVikingFeast')"
-				@goToColosseum="changeLevelTo('goToColosseum')">
-			</level-select>
+	<b-modal id="optionsModal" ref="optionsModal" size="lg" title="Options Menu" hide-footer centered>
+		<b-row class="text-center">
+			<b-col>
+				<h2 class="m-4">Where's Waldo?</h2>
+				<p><span>* Right click at any time to open the options menu!</span></p>
 
-			<!-- <high-scores v-show="this.highScores[this.currentLevel].length"></high-scores> -->
-			<high-scores></high-scores>
-		</b-col>
-	</b-row>
+				<level-select
+					@goToTown="changeLevelTo('goToTown')"
+					@goToVikingFeast="changeLevelTo('goToVikingFeast')"
+					@goToColosseum="changeLevelTo('goToColosseum')">
+				</level-select>
+
+				<!-- <high-scores v-show="this.highScores[this.currentLevel].length"></high-scores> -->
+				<high-scores></high-scores>
+			</b-col>
+		</b-row>
+	</b-modal>
+
 </template>
 
 <script>
@@ -36,6 +40,14 @@ export default {
 	},
 
 	methods: {
+
+		openModal() {
+			this.$refs.optionsModal.show();
+		},
+
+		closeModal() {
+			this.$refs.optionsModal.hide();
+		},
 
 		changeLevelTo(level) {
 			this.$emit(level);

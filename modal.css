@@ -38,24 +38,3 @@
         color: black;
         text-decoration: none;
         cursor: pointer; }
-  .custom-modal span {
-    color: #555; }
-  .custom-modal input {
-    border: 1px solid #aaa;
-    border-radius: 3px;
-    background-color: #fefefe;
-    margin: 5px;
-    outline: none; }
-  .custom-modal input:hover {
-    background-color: #e3e3e3; }
-  .custom-modal h1,
-  .custom-modal h3,
-  .custom-modal div,
-  .custom-modal p {
-    text-align: center; }
-  .custom-modal ul {
-    margin: 0;
-    margin-bottom: 20px;
-    padding: 0; }
-  .custom-modal li {
-    list-style: none; }

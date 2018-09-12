@@ -1,29 +1,32 @@
 <template lang="html">
-	<div class="custom-modal">
 
-		<div class="modal-content">
+	<b-modal id="winModal" ref="winModal" size="lg" hide-header hide-footer centered no-close-on-esc no-close-on-backdrop no-fade>
 
-			<h2>You Win!</h2>
-			<h3>{{ this.seconds }} seconds</h3>
-			<level-select
-				@goToTown="changeLevelTo('goToTown')"
-				@goToVikingFeast="changeLevelTo('goToVikingFeast')"
-				@goToColosseum="changeLevelTo('goToColosseum')">
-			</level-select>
+		<b-row class="text-center">
+			<b-col>
+				<h2 class="m-5">You Win!</h2>
+				<h4 class="m-4">Your score: {{ this.seconds }} seconds</h4>
 
-			<!-- <div v-show="this.highScores[this.currentLevel].length"> -->
-			<div>
+				<b-container>
+					<b-form v-show="!scoreSubmitted" inline>
+						<label class="sr-only" for="inlineFormInputName">Enter Your Name</label>
+							<b-input v-model="playerName" class="mb-2 mr-sm-2 mb-sm-0" id="inlineFormInputName" placeholder="Enter Your Name" />
+						<b-button variant="secondary" @click="inputName">Submit High Score</b-button>
+					</b-form>
+				</b-container>
+
 				<high-scores></high-scores>
-				<input type="button" value="Enter Your Score!" @click="inputHighScores">
 
-				<div v-show="this.inputScore">
-					<input type="text" placeholder="Name" @keyup.enter="inputName">
-				</div>
-			</div>
+				<level-select
+					@goToTown="changeLevelTo('goToTown')"
+					@goToVikingFeast="changeLevelTo('goToVikingFeast')"
+					@goToColosseum="changeLevelTo('goToColosseum')">
+				</level-select>
+			</b-col>
+		</b-row>
 
-		</div>
+	</b-modal>
 
-	</div>
 </template>
 
 <script>
@@ -51,25 +54,50 @@ export default {
 		...mapGetters([
 			'currentLevel',
 			'seconds',
-			'inputScore',
 			'highScores'
 		])
 	},
 
+	data() {
+		return {
+			playerName: '',
+			scoreSubmitted: false
+		}
+	},
+
 	methods: {
 
-		inputHighScores() {
-			this.$store.dispatch('displayInputScore', true);
+		openModal() {
+			this.$refs.winModal.show();
 		},
 
-		inputName(e) {
-			let name = e.srcElement.value;
-			// '/wp-content/themes/my-project/src/data/db.json';
-			// '/wp-json/wp/v2/pages';
-			var url = this.siteUrl + '/wp-content/themes/my-project/src/data/db.json';
-			axios.post(url, {
-				name: name,
+		closeModal() {
+			this.$refs.winModal.hide();
+		},
+
+		inputName() {
+			if (!this.playerName) return false;
+
+			this.scoreSubmitted = true;
+
+			var url = this.siteUrl + '/wp-json/wheres-waldo/v1/high-scores';
+			let data = {
+				name: this.playerName,
+				level: this.currentLevel,
 				seconds: this.seconds
+			};
+
+			axios.post(url, data)
+			.then(response => {
+				var oldHighScores = this.highScores;
+				oldHighScores.push({
+					title: {
+						rendered: this.playerName
+					},
+					level: this.currentLevel,
+					seconds: this.seconds
+				});
+				this.$store.dispatch('setHighScoresData', oldHighScores);
 			})
 			.catch(function(error) {
 				console.log(error);
@@ -77,10 +105,17 @@ export default {
 		},
 
 		changeLevelTo(level) {
+			this.scoreSubmitted = false;
 			this.$emit(level);
 		}
 	}
 }
 </script>
 
-<style lang="scss" scoped src="../../scss/modal.scss"></style>
+<style lang="scss" scoped>
+
+	form {
+		display: inline-block;
+	}
+
+</style>
