@@ -81,23 +81,17 @@ export default {
 
 			this.submittingScore = true;
 
-			var url = this.siteUrl + '/wp-json/wheres-waldo/v1/high-scores';
+			var url = this.siteUrl + '/wp-json/wheres-waldo/v1/high-score';
 			let data = {
-				name: this.playerName,
-				level: this.currentLevel,
-				seconds: this.seconds
+				title: this.playerName,
+				seconds: this.seconds,
+				level: this.currentLevel
 			};
 
 			axios.post(url, data)
 			.then(response => {
 				var oldHighScores = this.highScores;
-				oldHighScores.push({
-					title: {
-						rendered: this.playerName
-					},
-					level: this.currentLevel,
-					seconds: this.seconds
-				});
+				oldHighScores[this.currentLevel].push(data);
 				this.$store.dispatch('setHighScoresData', oldHighScores);
 				this.scoreSubmitted = true;
 				this.submittingScore = false;

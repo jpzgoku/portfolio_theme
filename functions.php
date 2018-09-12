@@ -25,8 +25,6 @@ add_action("after_setup_theme", "zarek_digital_marketing_features");
 function myproject_post_types() {
 
 	register_post_type("high_score", [
-		"map_meta_cap" => true,
-        "show_in_rest" => true,
         "supports" => ["title"],
         "public" => true,
 		"show_ui" => true,
@@ -42,20 +40,3 @@ function myproject_post_types() {
 }
 
 add_action("init", "myproject_post_types");
-
-function myproject_custom_rest() {
-
-	register_rest_field('high_score', 'level', [
-		'get_callback' => function() {
-			return get_field('level');
-		}
-	]);
-
-	register_rest_field('high_score', 'seconds', [
-		'get_callback' => function() {
-			return get_field('seconds');
-		}
-	]);
-}
-
-add_action('rest_api_init', 'myproject_custom_rest');

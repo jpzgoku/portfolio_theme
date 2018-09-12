@@ -100,7 +100,8 @@ export default {
 	},
 
 	mounted() {
-		var url = this.siteUrl + '/wp-json/wp/v2/high_score';
+
+		var url = this.siteUrl + '/wp-json/wheres-waldo/v1/high-score';
 		axios.get(url)
 		.then(response => {
 			this.$store.dispatch('setHighScoresData', response.data);

@@ -2,13 +2,12 @@
 	<div>
 
 		<h4 class="m-3">High Scores:</h4>
-		<ul>
-			<li v-for="highScore in this.highScores">
-				<span v-if="highScore.level === currentLevel">
-					{{ highScore.title.rendered }} - {{ highScore.seconds }} seconds
-				</span>
-			</li>
-		</ul>
+		<table>
+			<tr v-for="highScore in this.highScores[this.currentLevel]">
+				<td class="p-2 px-3">{{ highScore.title }}</td>
+				<td class="p-2 px-3">{{ highScore.seconds }} seconds</td>
+			</tr>
+		</table>
 
 	</div>
 </template>
@@ -30,12 +29,14 @@ export default {
 
 <style lang="scss" scoped>
 
-	ul {
-		padding: 0;
+	table {
+		max-width: 400px;
+		margin: 0 auto;
 	}
 
-	li {
-		list-style: none;
+	tr {
+		border-bottom: 1px solid #e3e3e3;
+		border-top: 1px solid #e3e3e3;
 	}
 
 </style>
