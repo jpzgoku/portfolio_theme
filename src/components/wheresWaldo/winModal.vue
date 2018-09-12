@@ -8,10 +8,10 @@
 				<h4 class="m-4">Your score: {{ this.seconds }} seconds</h4>
 
 				<b-container>
-					<b-form v-show="!scoreSubmitted" inline>
+					<b-form v-if="!scoreSubmitted" inline>
 						<label class="sr-only" for="inlineFormInputName">Enter Your Name</label>
 							<b-input v-model="playerName" class="mb-2 mr-sm-2 mb-sm-0" id="inlineFormInputName" placeholder="Enter Your Name" />
-						<b-button variant="secondary" @click="inputName">Submit High Score</b-button>
+						<b-button :disabled="submittingScore" variant="secondary" @click="inputName">Submit High Score</b-button>
 					</b-form>
 				</b-container>
 
@@ -61,6 +61,7 @@ export default {
 	data() {
 		return {
 			playerName: '',
+			submittingScore: false,
 			scoreSubmitted: false
 		}
 	},
@@ -78,7 +79,7 @@ export default {
 		inputName() {
 			if (!this.playerName) return false;
 
-			this.scoreSubmitted = true;
+			this.submittingScore = true;
 
 			var url = this.siteUrl + '/wp-json/wheres-waldo/v1/high-scores';
 			let data = {
@@ -98,6 +99,8 @@ export default {
 					seconds: this.seconds
 				});
 				this.$store.dispatch('setHighScoresData', oldHighScores);
+				this.scoreSubmitted = true;
+				this.submittingScore = false;
 			})
 			.catch(function(error) {
 				console.log(error);
