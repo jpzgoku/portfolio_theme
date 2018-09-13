@@ -11,8 +11,7 @@
 					@goToVikingFeast="changeLevelTo('goToVikingFeast')"
 					@goToColosseum="changeLevelTo('goToColosseum')">
 				</level-select>
-
-				<!-- <high-scores v-show="this.highScores[this.currentLevel].length"></high-scores> -->
+				
 				<high-scores></high-scores>
 			</b-col>
 		</b-row>

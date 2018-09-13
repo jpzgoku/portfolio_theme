@@ -2,12 +2,14 @@
 	<div>
 
 		<h4 class="m-3">High Scores:</h4>
-		<table>
+		<table v-show="this.highScoresDataAvailiable">
 			<tr v-for="highScore in this.highScores[this.currentLevel]">
 				<td class="p-2 px-3">{{ highScore.title }}</td>
 				<td class="p-2 px-3">{{ highScore.seconds }} seconds</td>
 			</tr>
 		</table>
+
+		<p v-show="!this.highScoresDataAvailiable">* Data not available</p>
 
 	</div>
 </template>
@@ -18,12 +20,15 @@ import { mapGetters } from 'vuex';
 export default {
 	name: 'highScores',
 
-	computed: {
-		...mapGetters([
-			'currentLevel',
-			'highScores'
-		])
-	}
+	computed: Object.assign(mapGetters(['currentLevel','highScores']), {
+
+		highScoresDataAvailiable() {
+			if (!this.highScores) return false;
+			if (!this.highScores[this.currentLevel]) return false;
+			return true;
+		}
+
+	})
 }
 </script>
 

@@ -91,7 +91,7 @@ export default {
 			axios.post(url, data)
 			.then(response => {
 				var oldHighScores = this.highScores;
-				oldHighScores[this.currentLevel].push(data);
+				oldHighScores[this.currentLevel].splice(this.scoreIndex(), 0, data);
 				this.$store.dispatch('setHighScoresData', oldHighScores);
 				this.scoreSubmitted = true;
 				this.submittingScore = false;
@@ -104,12 +104,22 @@ export default {
 		changeLevelTo(level) {
 			this.scoreSubmitted = false;
 			this.$emit(level);
+		},
+
+		scoreIndex() {
+			for (var level in this.highScores[this.currentLevel]) {
+				if (this.seconds <= this.highScores[this.currentLevel][level].seconds) {
+					return level;
+				}
+			}
+			return this.highScores[this.currentLevel].length;
 		}
+
 	}
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="css" scoped>
 
 	form {
 		display: inline-block;

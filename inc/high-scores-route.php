@@ -36,6 +36,16 @@ function highScoresData() {
 		]);
 	}
 
+	function orderBy($data, $field) {
+		$code = "return strnatcmp(\$a['$field'], \$b['$field']);";
+		usort($data, create_function('$a, $b', $code));
+		return $data;
+	}
+
+	foreach($results as $key => $value) {
+		$results[$key] = orderBy($results[$key], 'seconds');
+	}
+
 	return $results;
 }
 

@@ -71,10 +71,6 @@ export default {
 
 		siteUrl: {
 			type: String
-		},
-
-		nonce: {
-			type: String
 		}
 
 	},
@@ -101,7 +97,7 @@ export default {
 
 	mounted() {
 
-		var url = this.siteUrl + '/wp-json/wheres-waldo/v1/high-score';
+		var url = this.siteUrl + '/wp-json/wheres-waldo/v1/high-scoreasas';
 		axios.get(url)
 		.then(response => {
 			this.$store.dispatch('setHighScoresData', response.data);

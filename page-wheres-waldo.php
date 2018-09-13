@@ -9,8 +9,7 @@
 	</custom-nav-bar>
 
 	<wheres-waldo
-		site-url="<?= site_url(); ?>"
-		nonce="<?= wp_create_nonce('wp_rest'); ?>">
+		site-url="<?= site_url(); ?>">
 	</wheres-waldo>
 </div>
 
