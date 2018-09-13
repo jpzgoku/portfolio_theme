@@ -9,11 +9,14 @@
 		<b-collapse is-nav id="nav_collapse">
 
 			<b-navbar-nav>
+				<b-nav-item :href="this.siteUrl + '/dragon-ball-battleship'">
+					Dragon Ball Battleship
+				</b-nav-item>
 				<b-nav-item :href="this.siteUrl + '/wheres-waldo'">
 					Where's Waldo
 				</b-nav-item>
-				<b-nav-item :href="this.siteUrl + '/dragon-ball-battleship'">
-					Dragon Ball Battleship
+				<b-nav-item :href="this.siteUrl + '/minesweeper'">
+					Minesweeper
 				</b-nav-item>
 			</b-navbar-nav>
 
