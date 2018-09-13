@@ -13,6 +13,8 @@
 							<b-input v-model="playerName" class="mb-2 mr-sm-2 mb-sm-0" id="inlineFormInputName" placeholder="Enter Your Name" />
 						<b-button :disabled="submittingScore" variant="secondary" @click="inputName">Submit High Score</b-button>
 					</b-form>
+
+					<p class="text-danger" v-if="postFailMessage">{{ this.postFailMessage }}</p>
 				</b-container>
 
 				<high-scores></high-scores>
@@ -62,7 +64,8 @@ export default {
 		return {
 			playerName: '',
 			submittingScore: false,
-			scoreSubmitted: false
+			scoreSubmitted: false,
+			postFailMessage: ''
 		}
 	},
 
@@ -95,13 +98,16 @@ export default {
 				this.$store.dispatch('setHighScoresData', oldHighScores);
 				this.scoreSubmitted = true;
 				this.submittingScore = false;
+				this.postFailMessage = '';
 			})
-			.catch(function(error) {
-				console.log(error);
+			.catch(error => {
+				this.postFailMessage = '* Unsuccessful submission';
+				this.submittingScore = false;
 			});
 		},
 
 		changeLevelTo(level) {
+			this.postFailMessage = '';
 			this.scoreSubmitted = false;
 			this.$emit(level);
 		},

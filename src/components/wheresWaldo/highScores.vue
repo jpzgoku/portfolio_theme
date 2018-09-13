@@ -9,7 +9,7 @@
 			</tr>
 		</table>
 
-		<p v-show="!this.highScoresDataAvailiable">* Data not available</p>
+		<p class="mb-5" v-show="!this.highScoresDataAvailiable">* Data not available</p>
 
 	</div>
 </template>

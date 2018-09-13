@@ -97,13 +97,10 @@ export default {
 
 	mounted() {
 
-		var url = this.siteUrl + '/wp-json/wheres-waldo/v1/high-scoreasas';
+		var url = this.siteUrl + '/wp-json/wheres-waldo/v1/high-score';
 		axios.get(url)
 		.then(response => {
 			this.$store.dispatch('setHighScoresData', response.data);
-		})
-		.catch(function(error) {
-			console.log(error);
 		});
 
 		if (this.currentLevel === 'town') {
