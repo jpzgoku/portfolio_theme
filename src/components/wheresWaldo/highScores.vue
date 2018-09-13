@@ -25,6 +25,7 @@ export default {
 		highScoresDataAvailiable() {
 			if (!this.highScores) return false;
 			if (!this.highScores[this.currentLevel]) return false;
+			if (!this.highScores[this.currentLevel].length) return false;
 			return true;
 		}
 
