@@ -11,7 +11,7 @@
 		<div class="text-center">
 			<div id="gameBoard" class="m-4">
 				<div id="flagCounter" class="float-left">{{ flagCounter }}</div>
-				<button class="smileyFace" @click="clearGame"></button>
+				<button :class="clearGameButtonImg" @click="clearGame"></button>
 				<div id="timer" class="float-right">{{ seconds }}</div>
 
 				<table>
@@ -56,26 +56,12 @@ export default {
 			isFirstGuess: true,
 			gameInProgress: false,
 			gameHasEnded: false,
-			checkingFlags: false,
-			allClasses: [
-				'mine',
-				'flag',
-				'questionMark',
-				'x',
-				'red',
-				'clicked',
-				'one',
-				'two',
-				'three',
-				'four',
-				'five',
-				'six',
-				'seven',
-				'eight'
-			],
+			disableGuessing: false,
 			mines: [],
+			safeCells: [],
 			flaggedCells: [],
 			guessedCells: [],
+			clearGameButtonImg: 'smiley-face'
 		}
 	},
 
@@ -112,21 +98,21 @@ export default {
 			this.isFirstGuess = true;
 			this.gameInProgress = false;
 			this.gameHasEnded = false;
-			this.checkingFlags = false;
+			this.disableGuessing = false;
 			this.mines = [];
+			this.safeCells = [];
 			this.flaggedCells = [];
 			this.guessedCells = [];
+			this.clearGameButtonImg = 'smiley-face';
 			this.stopTimer();
-			Util.clearBoard(...this.allClasses);
+			var allClasses = ['mine', 'flag', 'question-mark', 'x', 'red', 'clicked', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight'];
+			Util.clearBoard(...allClasses);
 			this.placeMines();
-			this.innerHTMLData();
+			this.getCellData();
 		},
 
 		placeMines() {
-			if (this.mines.length === this.numMines) {
-				console.log(this.mines);
-				return false;
-			}
+			if (this.mines.length === this.numMines) return false;
 
 			var row = Math.floor(Math.random() * (this.rows)) + 1;
 			var column = Math.floor(Math.random() * (this.columns)) + 1;
@@ -138,10 +124,14 @@ export default {
 			this.placeMines();
 		},
 
-		innerHTMLData() {
+		getCellData() {
 			for (var row = 1; row <= this.rows; row++) {
 				for (var column = 1; column <= this.columns; column++) {
 					this.findSurroundingCellData(row, column);
+					var td = `${row}-${column}`;
+					if (!this.mines.includes(td)) {
+						this.safeCells.push(td);
+					}
 				}
 			}
 		},
@@ -162,6 +152,10 @@ export default {
 		},
 
 		guess(e) {
+			if (this.disableGuessing) {
+				return false;
+			}
+
 			if (!this.gameInProgress) {
 				this.gameInProgress = true;
 				this.startTimer();
@@ -170,17 +164,11 @@ export default {
 			var cell = e.path[0];
 			var cellDataNum = e.srcElement.attributes.data.nodeValue;
 
-			if (this.guessedCells.includes(cellDataNum) && !this.checkingFlags || cell.classList.contains('flag') && !this.checkingFlags) {
+			if (this.guessedCells.includes(cellDataNum) || cell.classList.contains('flag')) {
 				return false;
 			}
 
-			if (cell.classList.contains('flag') && this.checkingFlags) {
-				cell.classList.remove('flag');
-				cell.classList.add('x');
-				return;
-			}
-
-			cell.classList.remove('questionMark');
+			cell.classList.remove('question-mark');
 
 			if (!this.gameHasEnded && this.mines.includes(cellDataNum)) {
 				cell.classList.add('red');
@@ -213,8 +201,9 @@ export default {
 				cell.classList.add('eight');
 			} else if (cell.innerHTML == 0) {
 				cell.classList.add('clicked');
-				return this.zeroCell(cell, cellDataNum);
+				this.zeroCell(cell, cellDataNum);
 			}
+			this.checkForWin();
 		},
 
 		zeroCell(cell, cellDataNum) {
@@ -258,17 +247,21 @@ export default {
 		mark(e) {
 			e.preventDefault();
 
+			if (this.disableGuessing) {
+				return false;
+			}
+
 			var cell = e.path[0];
 			var cellDataNum = e.srcElement.attributes.data.nodeValue;
 
 			if (this.guessedCells.includes(cellDataNum)) {
 				return false;
-			} else if (cell.classList.contains('questionMark')) {
-				cell.classList.remove('questionMark');
+			} else if (cell.classList.contains('question-mark')) {
+				cell.classList.remove('question-mark');
 			} else if (cell.classList.contains('flag')) {
 				cell.classList.remove('flag');
 				this.numFlags--;
-				cell.classList.add('questionMark');
+				cell.classList.add('question-mark');
 				var index = this.flaggedCells.indexOf(cellDataNum);
 				this.flaggedCells.splice(index, 1);
 			} else {
@@ -280,19 +273,42 @@ export default {
 
 		youLose() {
 			this.gameHasEnded = true;
+			this.clearGameButtonImg = 'dead-face';
 			this.stopTimer();
-			for (var mine in this.mines) {
-				var td = this.mines[mine]
-				this.$refs[td][0].click();
-			}
-
-			this.checkingFlags = true;
-			for (var flag in this.flaggedCells) {
-				if (!this.mines.includes(this.flaggedCells[flag])) {
-					var td = this.flaggedCells[flag];
-					this.$refs[td][0].click();
+			this.mines.map(mine => this.$refs[mine][0].click());
+			this.flaggedCells.map(flag => {
+				if (!this.mines.includes(flag)) {
+					this.$refs[flag][0].classList.remove('flag');
+					this.$refs[flag][0].classList.add('x');
 				}
+			});
+			this.disableGuessing = true;
+		},
+
+		checkForWin() {
+			// If every square that dosen't have a bomb has been clicked, then add a flag to each square that has yet to be flagged and end the game.
+			var safeCellsLeft = this.safeCells.filter(cell => !this.guessedCells.includes(cell));
+
+			console.log(safeCellsLeft);
+
+			if (!safeCellsLeft.length) {
+				this.youWin();
 			}
+		},
+
+		youWin() {
+			this.mines.map(mine => {
+				if (!this.flaggedCells.includes(mine)) {
+					this.$refs[mine][0].classList.remove('question-mark');
+					this.$refs[mine][0].classList.add('flag');
+					this.numFlags--;
+				}
+			});
+
+			this.gameHasEnded = true;
+			this.clearGameButtonImg = 'win-face';
+			this.stopTimer();
+			this.disableGuessing = true;
 		},
 
 		startTimer() {

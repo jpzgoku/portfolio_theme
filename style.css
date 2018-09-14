@@ -237,7 +237,7 @@ body {
   background: no-repeat url("./src/assets/minesweeper/flag.png") 50% 50%;
   background-size: 80%; }
 
-.questionMark {
+.question-Mark {
   background: no-repeat url("./src/assets/minesweeper/questionMark.png") 50% 50%;
   background-size: 70%; }
 
@@ -283,14 +283,14 @@ body {
   background: no-repeat url("./src/assets/minesweeper/8.png");
   background-size: cover; }
 
-.smileyFace {
+.smiley-face {
   background: no-repeat url("./src/assets/minesweeper/smileyFace.png");
   background-size: cover; }
 
-.deadFace {
+.dead-face {
   background: no-repeat url("./src/assets/minesweeper/deadFace.gif");
   background-size: cover; }
 
-.winFace {
+.win-face {
   background: no-repeat url("./src/assets/minesweeper/winFace.jpg");
   background-size: cover; }
