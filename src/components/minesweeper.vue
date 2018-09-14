@@ -125,7 +125,7 @@ export default {
 		getCellData() {
 			for (var row = 1; row <= this.rows; row++) {
 				for (var column = 1; column <= this.columns; column++) {
-					this.findSurroundingCellData(row, column);
+					this.setSurroundingCellData(row, column);
 					var td = `${row}-${column}`;
 					if (!this.mines.includes(td)) {
 						this.safeCells.push(td);
@@ -134,7 +134,7 @@ export default {
 			}
 		},
 
-		findSurroundingCellData(row, column) {
+		setSurroundingCellData(row, column) {
 			var surrounding = 0;
 
 			this.validSurroundingCells(row, column).map(cell => {
@@ -213,14 +213,14 @@ export default {
 					break;
 				case 0:
 					cell.classList.add('clicked');
-					this.zeroCell(cell, cellDataNum);
+					this.clickAdjacentCells(cell, cellDataNum);
 					break;
 			}
 
 			this.checkForWin();
 		},
 
-		zeroCell(cell, cellDataNum) {
+		clickAdjacentCells(cell, cellDataNum) {
 			let guessArray = cellDataNum.split('-');
 			let row = parseInt(guessArray[0]);
 			let column = parseInt(guessArray[1]);
