@@ -159,9 +159,7 @@ export default {
 				this.isFirstGuess = false;
 			}
 
-			if (this.disableGuessing) {
-				return false;
-			}
+			if (this.disableGuessing) return false;
 
 			if (!this.gameInProgress) {
 				this.gameInProgress = true;
@@ -187,26 +185,38 @@ export default {
 
 		nonFatalGuess(cell, cellDataNum) {
 			this.guessedCells.push(cellDataNum);
-			if (cell.innerHTML == 1) {
-				cell.classList.add('one');
-			} else if (cell.innerHTML == 2) {
-				cell.classList.add('two');
-			} else if (cell.innerHTML == 3) {
-				cell.classList.add('three');
-			} else if (cell.innerHTML == 4) {
-				cell.classList.add('four');
-			} else if (cell.innerHTML == 5) {
-				cell.classList.add('five');
-			} else if (cell.innerHTML == 6) {
-				cell.classList.add('six');
-			} else if (cell.innerHTML == 7) {
-				cell.classList.add('seven');
-			} else if (cell.innerHTML == 8) {
-				cell.classList.add('eight');
-			} else if (cell.innerHTML == 0) {
-				cell.classList.add('clicked');
-				this.zeroCell(cell, cellDataNum);
+
+			switch (parseInt(cell.innerHTML)) {
+				case 1:
+					cell.classList.add('one');
+					break;
+				case 2:
+					cell.classList.add('two');
+					break;
+				case 3:
+					cell.classList.add('three');
+					break;
+				case 4:
+					cell.classList.add('four');
+					break;
+				case 5:
+					cell.classList.add('five');
+					break;
+				case 6:
+					cell.classList.add('six');
+					break;
+				case 7:
+					cell.classList.add('seven');
+					break;
+				case 8:
+					cell.classList.add('eight');
+					break;
+				case 0:
+					cell.classList.add('clicked');
+					this.zeroCell(cell, cellDataNum);
+					break;
 			}
+
 			this.checkForWin();
 		},
 
