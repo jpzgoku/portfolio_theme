@@ -107,21 +107,19 @@ export default {
 			this.stopTimer();
 			var allClasses = ['mine', 'flag', 'question-mark', 'x', 'red', 'clicked', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight'];
 			Util.clearBoard(...allClasses);
-			this.placeMines();
-			this.getCellData();
 		},
 
-		placeMines() {
+		placeMines(firstGuess) {
 			if (this.mines.length === this.numMines) return false;
 
 			var row = Math.floor(Math.random() * (this.rows)) + 1;
 			var column = Math.floor(Math.random() * (this.columns)) + 1;
 			var newMine = `${row}-${column}`;
 
-			if (!this.mines.includes(newMine)) {
+			if (!this.mines.includes(newMine) && newMine !== firstGuess) {
 				this.mines.push(newMine);
 			}
-			this.placeMines();
+			this.placeMines(firstGuess);
 		},
 
 		getCellData() {
@@ -152,6 +150,15 @@ export default {
 		},
 
 		guess(e) {
+			var cell = e.path[0];
+			var cellDataNum = e.srcElement.attributes.data.nodeValue;
+
+			if (this.isFirstGuess) {
+				this.placeMines(cellDataNum);
+				this.getCellData();
+				this.isFirstGuess = false;
+			}
+
 			if (this.disableGuessing) {
 				return false;
 			}
@@ -160,9 +167,6 @@ export default {
 				this.gameInProgress = true;
 				this.startTimer();
 			}
-
-			var cell = e.path[0];
-			var cellDataNum = e.srcElement.attributes.data.nodeValue;
 
 			if (this.guessedCells.includes(cellDataNum) || cell.classList.contains('flag')) {
 				return false;
@@ -288,9 +292,6 @@ export default {
 		checkForWin() {
 			// If every square that dosen't have a bomb has been clicked, then add a flag to each square that has yet to be flagged and end the game.
 			var safeCellsLeft = this.safeCells.filter(cell => !this.guessedCells.includes(cell));
-
-			console.log(safeCellsLeft);
-
 			if (!safeCellsLeft.length) {
 				this.youWin();
 			}
