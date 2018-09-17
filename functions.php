@@ -21,22 +21,3 @@ function zarek_digital_marketing_features() {
 }
 
 add_action("after_setup_theme", "zarek_digital_marketing_features");
-
-function myproject_post_types() {
-
-	register_post_type("high_score", [
-        "supports" => ["title"],
-        "public" => true,
-		"show_ui" => true,
-        "labels" => [
-            "name" => "High Scores",
-            "add_new_item" => "Add New High Score",
-            "edit_item" => "Edit High Score",
-            "all_items" => "All High Scores",
-            "singular_name" => "High Score"
-        ],
-        "menu_icon" => "dashicons-clipboard"
-    ]);
-}
-
-add_action("init", "myproject_post_types");
