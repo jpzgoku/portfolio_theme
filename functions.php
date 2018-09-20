@@ -16,8 +16,10 @@ function load_js_scripts() {
 
 add_action("wp_enqueue_scripts", "load_js_scripts");
 
-function zarek_digital_marketing_features() {
+function portfolio_features() {
 	add_theme_support("title-tag");
+	add_theme_support("post-thumbnails");
+	add_image_size("homepageBackground", 1366, 900, true);
 }
 
-add_action("after_setup_theme", "zarek_digital_marketing_features");
+add_action("after_setup_theme", "portfolio_features");
