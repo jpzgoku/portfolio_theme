@@ -4,7 +4,7 @@ require get_theme_file_path('inc/high-scores-route.php');
 
 function load_js_scripts() {
     // wp_enqueue_media("logo", get_theme_file_uri('/dist/logo.png'), NULL, "1.0", true);
-	// wp_enqueue_media(['wp-content/themes/my-project/dist/waldo1.png']);
+	wp_enqueue_media(['wp-content/themes/portfolio/src/waldo1.jpg']);
 	// wp_enqueue_media(['wp-content/themes/my-project/dist/waldo2.png']);
 	// wp_enqueue_media(['wp-content/themes/my-project/dist/waldo3.png']);
 
