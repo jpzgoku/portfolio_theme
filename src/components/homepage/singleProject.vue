@@ -39,7 +39,7 @@ div.project {
 	}
 
 	.overlay {
-		background: rgba(0, 0, 0, 0.5);
+		background: rgba(0, 0, 0, 0.8);
 		bottom: 0;
 		color: #fff;
 		height: 0;

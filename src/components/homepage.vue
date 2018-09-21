@@ -3,10 +3,12 @@
 
 		<div class="text-center header" :style="mainBackgroundImage">
 
-			<h1 class="p-5">
-				I'm John Zarek
+			<b-img class="professional" src="/wp-content/themes/portfolio/src/assets/homepage/professionaljpz.jpg" fluid/>
+
+			<h1 class="pt-5 pb-4">
+				John Zarek
 			</h1>
-			<b-btn variant="outline-primary" href="#">Let's Build</b-btn>
+			<h4>Front End / Wordpress Developer</h4>
 
 		</div>
 
@@ -33,6 +35,8 @@
 				</b-col>
 			</b-row>
 		</b-container>
+
+		<hr>
 
 		<b-container>
 			<h2 class="mt-5 pt-5 text-center">My Work</h2>
@@ -65,6 +69,8 @@
 
 		</b-container>
 
+		<hr>
+
 		<b-container>
 			<h2 class="mt-5 pt-5 text-center">My Projects</h2>
 
@@ -73,26 +79,78 @@
 				<single-project
 					projectImage="/wp-content/themes/portfolio/src/assets/homepage/williamzarek.png">
 
-					<h4><a href="#" target="_blank"></a>Dragon Ball Battleship</h4>
+					<h4><a :href="`${this.siteUrl}/dragon-ball-battleship`" target="_blank">Dragon Ball Battleship</a></h4>
+
+					<p>
+						A classic Dragon Ball themed Battleship game that I made for fun.
+					</p>
+
+					<p>
+						Technologies used: Vue.js, Vuex, Bootstrap Vue
+					</p>
 
 				</single-project>
 
 				<single-project
 					projectImage="/wp-content/themes/portfolio/src/assets/homepage/zarekprivateteaching.png">
 
-					<h4><a href="#" target="_blank"></a>Where's Waldo</h4>
+					<h4><a :href="`${this.siteUrl}/wheres-waldo`" target="_blank">Where's Waldo</a></h4>
+
+					<p>
+						A desktop version of Where's Waldo that I made as part of <a href="https://www.theodinproject.com" target="_blank">theOdinProject</a> cirriculum.
+					</p>
+
+					<p>
+						Technologies used: Vue.js, Vuex, Bootstrap Vue, Wordpress REST API
+					</p>
 
 				</single-project>
 
 				<single-project
 					projectImage="/wp-content/themes/portfolio/src/assets/homepage/williamzarek.png">
 
-					<h4><a href="#" target="_blank"></a>Minesweeper</h4>
+					<h4><a :href="`${this.siteUrl}/minesweeper`" target="_blank">Minesweeper</a></h4>
+
+					<p>
+						Classic Minesweeper game that I made as part of <a href="https://www.theodinproject.com" target="_blank">theOdinProject</a> cirriculum.
+					</p>
+
+					<p>
+						Technologies used: Vue.js, Vuex, Bootstrap Vue
+					</p>
 
 				</single-project>
 
 			</b-row>
 
+		</b-container>
+
+		<hr>
+
+		<b-container class="text-center my-5">
+
+			<h2 class="p-4">Contact Me!</h2>
+
+			<b-row>
+				<b-col sm="4" class="py-3">
+					GitHub
+					<div class="mt-2">
+						<a href="https://github.com/jpzgoku" target="_blank">/jpzgoku</a>
+					</div>
+				</b-col>
+				<b-col sm="4" class="py-3">
+					E-mail
+					<div class="mt-2">
+						<a href="mailto:johnzarek04@gmail.com">johnzarek04@gmail.com</a>
+					</div>
+				</b-col>
+				<b-col sm="4" class="py-3">
+					LinkedIn
+					<div class="mt-2">
+						<a href="https://www.linkedin.com/in/john-zarek-022a48155/" target="_blank">John Zarek</a>
+					</div>
+				</b-col>
+			</b-row>
 		</b-container>
 
 	</div>
@@ -111,6 +169,10 @@ export default {
 
 	props: {
 
+		siteUrl: {
+			type: String
+		},
+
 		featuredImage: {
 			type: String
 		}
@@ -122,6 +184,7 @@ export default {
 		mainBackgroundImage() {
 			return `background-image: url(${this.featuredImage})`;
 		}
+
 	}
 
 }
@@ -130,8 +193,15 @@ export default {
 <style lang="scss" scoped>
 
 div.header {
-	height:100vh;
-	padding: 200px 0;
+	background-repeat: no-repeat;
+	min-height: 100vh;
+	padding: 80px 0;
+}
+
+img.professional {
+	border: 2px solid #23313A;
+	border-radius: 50%;
+	max-height: 350px;
 }
 
 .about-me-img {
