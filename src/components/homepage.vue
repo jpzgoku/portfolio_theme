@@ -34,28 +34,62 @@
 			</b-row>
 		</b-container>
 
-		<b-container class="my-work">
+		<b-container>
 			<h2 class="mt-5 pt-5 text-center">My Work</h2>
 
 			<b-row>
 
-				<b-col lg="6" class="p-5">
-					<div class="single-work">
-						<b-img src="/wp-content/themes/portfolio/src/assets/homepage/williamzarek.png" fluid/>
-						<div class="overlay">
-							<div class="text">Hello World</div>
-						</div>
-					</div>
-				</b-col>
+				<single-project
+					projectImage="/wp-content/themes/portfolio/src/assets/homepage/williamzarek.png">
 
-				<b-col lg="6" class="p-5">
-					<div class="single-work">
-						<b-img src="/wp-content/themes/portfolio/src/assets/homepage/zarekprivateteaching.png" fluid/>
-						<div class="overlay">
-							<div class="text">Hello World</div>
-						</div>
-					</div>
-				</b-col>
+					<h4><a href="http://www.williamzarek.com/" target="_blank">williamzarek.com</a></h4>
+
+					<p>
+						A custom Wordpress portfolio website for a 3D animator.
+					</p>
+
+				</single-project>
+
+				<single-project
+					projectImage="/wp-content/themes/portfolio/src/assets/homepage/zarekprivateteaching.png">
+
+					<h4><a href="http://zarekprivateteaching.com/en/" target="_blank">zarekprivateteaching.com</a></h4>
+
+					<p>
+						The website that I previously used to find students for private English lessons in Vietnam.
+					</p>
+
+				</single-project>
+
+			</b-row>
+
+		</b-container>
+
+		<b-container>
+			<h2 class="mt-5 pt-5 text-center">My Projects</h2>
+
+			<b-row>
+
+				<single-project
+					projectImage="/wp-content/themes/portfolio/src/assets/homepage/williamzarek.png">
+
+					<h4><a href="#" target="_blank"></a>Dragon Ball Battleship</h4>
+
+				</single-project>
+
+				<single-project
+					projectImage="/wp-content/themes/portfolio/src/assets/homepage/zarekprivateteaching.png">
+
+					<h4><a href="#" target="_blank"></a>Where's Waldo</h4>
+
+				</single-project>
+
+				<single-project
+					projectImage="/wp-content/themes/portfolio/src/assets/homepage/williamzarek.png">
+
+					<h4><a href="#" target="_blank"></a>Minesweeper</h4>
+
+				</single-project>
 
 			</b-row>
 
@@ -65,8 +99,15 @@
 </template>
 
 <script>
+
+import SingleProject from './homepage/singleProject.vue';
+
 export default {
 	name: 'homepage',
+
+	components: {
+		SingleProject
+	},
 
 	props: {
 
@@ -81,16 +122,12 @@ export default {
 		mainBackgroundImage() {
 			return `background-image: url(${this.featuredImage})`;
 		}
-	},
-
-	mounted() {
-		console.log(this.aboutMeImage);
 	}
 
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 div.header {
 	height:100vh;
@@ -104,51 +141,5 @@ div.header {
 		height: 450px;
 	}
 }
-
-.my-work {
-
-	div.row {
-
-		div.single-work {
-			position: relative;
-
-			&:hover .overlay {
-				height: 100%;
-			}
-
-			img.img-fluid {
-
-			}
-
-			.overlay {
-				background: rgba(0, 0, 0, 0.5);
-				bottom: 0;
-				height: 0;
-				left: 0;
-				overflow: hidden;
-				position: absolute;
-				right: 0;
-				transition: .5s ease;
-				width: 100%;
-			}
-
-			.text {
-				color: white;
-				font-size: 20px;
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				-webkit-transform: translate(-50%, -50%);
-				-ms-transform: translate(-50%, -50%);
-				transform: translate(-50%, -50%);
-				text-align: center;
-			}
-
-		}
-
-	}
-
-}
-
 
 </style>
