@@ -2,7 +2,7 @@
 	<b-container>
 		<b-row>
 			<b-col class="my-3 text-center-medium">
-				<h3>{{ company }}</h3>
+				<h3>{{ company }} <a class="pl-2" :href="websiteURL" target="_blank">( {{ websiteName }} )</a></h3>
 			</b-col>
 		</b-row>
 		<b-row>
@@ -35,6 +35,14 @@ export default {
 			type: String
 		},
 
+		websiteURL: {
+			type: String
+		},
+
+		websiteName: {
+			type: String
+		},
+
 		jobTitle: {
 			type: String
 		},
@@ -55,6 +63,10 @@ export default {
 <style lang="scss" scoped>
 
 $mediumBrk: 768px;
+
+a {
+	font-size: 1.25rem;
+}
 
 .text-right-not-medium {
 	text-align: right;

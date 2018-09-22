@@ -9,6 +9,8 @@
 
 		<previous-job
 			company="OpticsPlanet"
+			websiteURL="https://www.opticsplanet.com/"
+			websiteName="OpticsPlanet.com"
 			jobTitle="Junior Marketing Specialist"
 			dates="March 2018 – July 2018"
 			workPlaceImg="/wp-content/themes/portfolio/src/assets/resume/opticsplanet.png">
@@ -31,6 +33,8 @@
 
 		<previous-job
 			company="Vicare Corp."
+			websiteURL="https://vicare.vn/"
+			websiteName="Vicare.vn"
 			jobTitle="Front-end Web Developer"
 			dates="April 2017 - Nov 2017"
 			workPlaceImg="/wp-content/themes/portfolio/src/assets/resume/vicare.png">
@@ -58,7 +62,7 @@
 		<b-container>
 			<a :href="downloadLink" download target="_blank">Download Resume</a>
 		</b-container>
-		
+
 	</div>
 
 </template>
