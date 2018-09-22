@@ -373,4 +373,88 @@ export default {
     height: 31px;
     width: 39px;
 }
+
+.mine {
+	background: no-repeat url("/wp-content/themes/portfolio/src/assets/minesweeper/mine.png");
+	background-size: cover;
+}
+
+.flag {
+	background: no-repeat url("/wp-content/themes/portfolio/src/assets/minesweeper/flag.png") 50% 50%;
+	background-size: 80%;
+}
+
+.question-Mark {
+	background: no-repeat url("/wp-content/themes/portfolio/src/assets/minesweeper/questionMark.png") 50% 50%;
+	background-size: 70%;
+}
+
+.x {
+	background: no-repeat url("/wp-content/themes/portfolio/src/assets/minesweeper/x.svg") 50% 50%;
+	background-size: 70%;
+}
+
+.red {
+	background-color: red;
+}
+
+.clicked {
+	background-color: #a8a8a8;
+}
+
+.one {
+	background: no-repeat url("/wp-content/themes/portfolio/src/assets/minesweeper/1.png");
+	background-size: cover;
+}
+
+.two {
+	background: no-repeat url("/wp-content/themes/portfolio/src/assets/minesweeper/2.png");
+	background-size: cover;
+}
+
+.three {
+	background: no-repeat url("/wp-content/themes/portfolio/src/assets/minesweeper/3.png");
+	background-size: cover;
+}
+
+.four {
+	background: no-repeat url("/wp-content/themes/portfolio/src/assets/minesweeper/4.png");
+	background-size: cover;
+}
+
+.five {
+	background: no-repeat url("/wp-content/themes/portfolio/src/assets/minesweeper/5.png");
+	background-size: cover;
+}
+
+.six {
+	background: no-repeat url("/wp-content/themes/portfolio/src/assets/minesweeper/6.png");
+	background-size: cover;
+}
+
+.seven {
+	background: no-repeat url("/wp-content/themes/portfolio/src/assets/minesweeper/7.png");
+	background-size: cover;
+}
+
+.eight {
+	background: no-repeat url("/wp-content/themes/portfolio/src/assets/minesweeper/8.png");
+	background-size: cover;
+}
+
+.smiley-face {
+	background: no-repeat url("/wp-content/themes/portfolio/src/assets/minesweeper/smileyFace.png");
+	background-size: cover;
+}
+
+.dead-face {
+	background: no-repeat url("/wp-content/themes/portfolio/src/assets/minesweeper/deadFace.gif");
+	background-size: cover;
+}
+
+.win-face {
+	background: no-repeat url("/wp-content/themes/portfolio/src/assets/minesweeper/winFace.jpg");
+	background-size: cover;
+}
+
 </style>

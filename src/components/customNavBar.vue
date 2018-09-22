@@ -18,6 +18,9 @@
 				<b-nav-item :href="this.siteUrl + '/minesweeper'">
 					Minesweeper
 				</b-nav-item>
+				<b-nav-item :href="this.siteUrl + '/resume'">
+					Resume
+				</b-nav-item>
 			</b-navbar-nav>
 
 			<!-- Right aligned nav items -->
@@ -51,6 +54,7 @@ export default {
 			type: String
 		}
 	}
+	
 }
 </script>
 

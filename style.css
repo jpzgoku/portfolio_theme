@@ -1,25 +1,10 @@
 /*
-Theme name: johnzarek.com
+Theme name: Simple init Vue project
 Author: John Zarek
 Version: 1.0
 */
 body {
   margin: 0px; }
-
-.town {
-  width: 2040px;
-  height: 1260px;
-  background: url("./src/assets/waldo1.jpg"); }
-
-.vikingFeast {
-  width: 2800px;
-  height: 1760px;
-  background: url("./src/assets/waldo2.jpg"); }
-
-.colosseum {
-  width: 3000px;
-  height: 1880px;
-  background: url("./src/assets/waldo3.jpg"); }
 
 .goku {
   background: no-repeat url("./src/assets/dragon-ball-battleship/gokuEnergy.png");
@@ -228,69 +213,3 @@ body {
 .miss {
   background: url("./src/assets/dragon-ball-battleship/miss.png") no-repeat center center;
   background-size: contain; }
-
-.mine {
-  background: no-repeat url("./src/assets/minesweeper/mine.png");
-  background-size: cover; }
-
-.flag {
-  background: no-repeat url("./src/assets/minesweeper/flag.png") 50% 50%;
-  background-size: 80%; }
-
-.question-Mark {
-  background: no-repeat url("./src/assets/minesweeper/questionMark.png") 50% 50%;
-  background-size: 70%; }
-
-.x {
-  background: no-repeat url("./src/assets/minesweeper/x.svg") 50% 50%;
-  background-size: 70%; }
-
-.red {
-  background-color: red; }
-
-.clicked {
-  background-color: #a8a8a8; }
-
-.one {
-  background: no-repeat url("./src/assets/minesweeper/1.png");
-  background-size: cover; }
-
-.two {
-  background: no-repeat url("./src/assets/minesweeper/2.png");
-  background-size: cover; }
-
-.three {
-  background: no-repeat url("./src/assets/minesweeper/3.png");
-  background-size: cover; }
-
-.four {
-  background: no-repeat url("./src/assets/minesweeper/4.png");
-  background-size: cover; }
-
-.five {
-  background: no-repeat url("./src/assets/minesweeper/5.png");
-  background-size: cover; }
-
-.six {
-  background: no-repeat url("./src/assets/minesweeper/6.png");
-  background-size: cover; }
-
-.seven {
-  background: no-repeat url("./src/assets/minesweeper/7.png");
-  background-size: cover; }
-
-.eight {
-  background: no-repeat url("./src/assets/minesweeper/8.png");
-  background-size: cover; }
-
-.smiley-face {
-  background: no-repeat url("./src/assets/minesweeper/smileyFace.png");
-  background-size: cover; }
-
-.dead-face {
-  background: no-repeat url("./src/assets/minesweeper/deadFace.gif");
-  background-size: cover; }
-
-.win-face {
-  background: no-repeat url("./src/assets/minesweeper/winFace.jpg");
-  background-size: cover; }

@@ -221,22 +221,40 @@ export default {
 
 <style lang="css" scoped>
 
-	.nav-bar-padding {
-		padding: 56px 0 0 0;
-	}
+.town {
+	width: 2040px;
+	height: 1260px;
+	background: url('/wp-content/themes/portfolio/src/assets/wheres-waldo/waldo1.jpg');
+}
 
-	table {
-		border-collapse: collapse;
-	}
+.vikingFeast {
+	width: 2800px;
+	height: 1760px;
+	background: url('/wp-content/themes/portfolio/src/assets/wheres-waldo/waldo2.jpg');
+}
 
-	td {
-		box-sizing: border-box;
-		height: 25px;
-		width: 25px;
-	}
+.colosseum {
+	width: 3000px;
+	height: 1880px;
+	background: url('/wp-content/themes/portfolio/src/assets/wheres-waldo/waldo3.jpg');
+}
 
-	.found {
-		border: 2px solid blue;
-	}
+.nav-bar-padding {
+	padding: 56px 0 0 0;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+td {
+	box-sizing: border-box;
+	height: 25px;
+	width: 25px;
+}
+
+.found {
+	border: 2px solid blue;
+}
 
 </style>

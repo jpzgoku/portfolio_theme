@@ -9,6 +9,7 @@ import Homepage from './components/homepage.vue';
 import WheresWaldo from './components/wheresWaldo.vue';
 import DragonBallBattleship from './components/dragonBallBattleship.vue';
 import Minesweeper from './components/minesweeper.vue';
+import Resume from './components/resume.vue';
 import { store } from './js/store/store';
 
 Vue.use(BootstrapVue);
@@ -21,6 +22,7 @@ new Vue({
 		Homepage,
 		WheresWaldo,
 		DragonBallBattleship,
-		Minesweeper
+		Minesweeper,
+		Resume
 	}
 })

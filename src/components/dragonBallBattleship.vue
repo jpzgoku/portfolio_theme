@@ -247,67 +247,67 @@ export default {
 
 <style lang="scss" scoped>
 
+.settings-button {
+	display: none;
+}
+
+.message-area {
+	height: 100px;
+	padding: 0 20px;
+}
+
+#hero-image,
+#villian-image {
+	background-color: transparent;
+	bottom: 0;
+	height: 320px;
+	position: fixed;
+	width: 320px;
+	z-index: -1;
+}
+
+#hero-image {
+	left: -35px;
+}
+
+#villian-image {
+	right: -35px;
+}
+
+$smallBrk: 576px;
+$mediumBrk: 768px;
+$largeBrk: 992px;
+$extraLargeBrk: 1200px;
+
+@media only screen and (max-width: $mediumBrk) {
+
 	.settings-button {
+		display: inline-block;
+	}
+
+	.character-settings-buttons {
 		display: none;
 	}
 
-	.message-area {
-		height: 100px;
-		padding: 0 20px;
-	}
-
-	#hero-image,
-	#villian-image {
-		background-color: transparent;
-		bottom: 0;
-		height: 320px;
-		position: fixed;
-		width: 320px;
-		z-index: -1;
+	.game-board {
+		margin: 0 20px;
 	}
 
 	#hero-image {
-		left: -35px;
+		left: 0px;
+		height: 340px;
+		position: relative;
+		width: auto;
 	}
 
 	#villian-image {
-		right: -35px;
+		height: 340px;
+		position: absolute;
+		right: 0px;
+		top: 0;
+		width: 100%;
 	}
 
-	$smallBrk: 576px;
-	$mediumBrk: 768px;
-	$largeBrk: 992px;
-	$extraLargeBrk: 1200px;
-
-	@media only screen and (max-width: $mediumBrk) {
-
-		.settings-button {
-			display: inline-block;
-		}
-
-		.character-settings-buttons {
-			display: none;
-		}
-
-		.game-board {
-			margin: 0 20px;
-		}
-
-		#hero-image {
-			left: 0px;
-			height: 340px;
-			position: relative;
-			width: auto;
-		}
-
-		#villian-image {
-			height: 340px;
-			position: absolute;
-			right: 0px;
-			top: 0;
-			width: 100%;
-		}
-
-	}
+}
 
 </style>
