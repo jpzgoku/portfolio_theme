@@ -147,6 +147,7 @@ import Util from '../js/util';
 
 export default {
 	name: 'dragon-ball-battleship',
+	
 	components: {
 		CharacterSelectModals,
 		DbzCharacterGrid,
