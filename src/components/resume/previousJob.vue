@@ -1,5 +1,5 @@
 <template lang="html">
-	<div>
+	<b-container>
 		<b-row>
 			<b-col class="my-3 text-center-medium">
 				<h3>{{ company }}</h3>
@@ -21,7 +21,7 @@
 				<slot></slot>
 			</b-col>
 		</b-row>
-  	</div>
+  	</b-container>
 </template>
 
 <script>

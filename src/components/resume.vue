@@ -1,7 +1,11 @@
 <template lang="html">
-	<b-container class="my-5">
+	<div class="my-5">
 
-		<h1 class="text-center pt-5 pb-4">Work Experience</h1>
+		<h1 class="text-center pt-5 pb-1">Work Experience</h1>
+
+		<div class="text-center pb-3">
+			<font-awesome-icon icon="ellipsis-h" size="2x" :style="{ color: '#343a40' }" />
+		</div>
 
 		<previous-job
 			company="OpticsPlanet"
@@ -51,8 +55,11 @@
 
 		</previous-job>
 
-		<a :href="downloadLink" download target="_blank">Download Resume</a>
-	</b-container>
+		<b-container>
+			<a :href="downloadLink" download target="_blank">Download Resume</a>
+		</b-container>
+		
+	</div>
 
 </template>
 
