@@ -335,6 +335,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 #gameBoard {
     background-color: #e3e3e3;
     border: 1px solid #a8a8a8;

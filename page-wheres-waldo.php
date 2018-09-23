@@ -3,10 +3,10 @@
 <?php get_header(); ?>
 
 <div id="app">
-	<custom-nav-bar
+	<portfolio-nav-bar
 		:fixed-nav-bar="true"
 		site-url="<?= site_url(); ?>">
-	</custom-nav-bar>
+	</portfolio-nav-bar>
 
 	<wheres-waldo
 		site-url="<?= site_url(); ?>">

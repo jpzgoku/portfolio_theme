@@ -5,7 +5,7 @@ while (have_posts()) {
 ?>
 
 <div id="app">
-	<custom-nav-bar site-url="<?= site_url(); ?>"></custom-nav-bar>
+	<portfolio-nav-bar site-url="<?= site_url(); ?>"></portfolio-nav-bar>
 
 </div>
 
