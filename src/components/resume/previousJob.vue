@@ -74,13 +74,11 @@ $mediumBrk: 768px;
 
 .show-small-medium {
 	display: none;
+	font-size: 1.25rem;
 }
 
 .hide-small-medium {
 	display: initial;
-}
-
-a {
 	font-size: 1.25rem;
 }
 

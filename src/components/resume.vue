@@ -12,7 +12,7 @@
 			websiteURL="http://zarekprivateteaching.com/en/"
 			websiteName="ZarekPrivateTeaching.com"
 			jobTitle="Internet Marketer"
-			dates="July 2018 – September 2018"
+			dates="July 2018 – Sept 2018"
 			workPlaceImg="/wp-content/themes/portfolio/src/assets/homepage/zarekprivateteaching.png">
 
 			<ul>
@@ -59,36 +59,6 @@
 		<hr>
 
 		<previous-job
-			company="Vicare Corp."
-			websiteURL="https://vicare.vn/"
-			websiteName="Vicare.vn"
-			jobTitle="Front-end Web Developer"
-			dates="April 2017 - Nov 2017"
-			workPlaceImg="/wp-content/themes/portfolio/src/assets/resume/vicare.png">
-
-			<ul>
-				<li class="p-0">
-					 One of the lead developers on the vicare.vn website. Developed and maintained both vanilla Javascript and Vue.js components, including the corresponding HTML5 and SASS files. Implemented the Vuex State Management System. Implemented Google Analytics tracking into the various components including the tawkto.io widget. Received bug reports and implemented fixes.
-				</li>
-				<li>
-					Technologies used: Django, Vue.js, jQuery, SASS and Bootstrap.
-				</li>
-				<li class="p-0">
-					Lead developer on xetnghiemtainha.vn. Implemented Google Analytics. Made new forms with vanilla Javascript. Maintained the CSS files and made styling updates. Received bug reports and implemented fixes.
-				</li>
-				<li>
-					Technologies Used: Joomla CMS, vanilla Javascript, jQuery.
-				</li>
-				<li>
-					Collaborated with other developers, designers, QA Testers, Marketers, and Sales people using the Agile development methodology. Collaborated and communicated with each other using GIT, Gitlab, Trello, and Slack.
-				</li>
-			</ul>
-
-		</previous-job>
-
-		<hr>
-
-		<previous-job
 			company="Zarek Digital Marketing"
 			jobTitle="Digital Strategist"
 			dates="Nov 2017 – March 2018"
@@ -103,6 +73,36 @@
 				</li>
 				<li>
 					Used Google Analytics to access visitor behavior and make adjustments to paid campaigns and organic search strategies.
+				</li>
+			</ul>
+
+		</previous-job>
+
+		<hr>
+
+		<previous-job
+			company="Vicare Corp."
+			websiteURL="https://vicare.vn/"
+			websiteName="Vicare.vn"
+			jobTitle="Front-end Web Developer"
+			dates="April 2017 - Nov 2017"
+			workPlaceImg="/wp-content/themes/portfolio/src/assets/resume/vicare.png">
+
+			<ul>
+				<li>
+					 One of the lead developers for <a href="https://vicare.vn/" target="_blank">Vicare.vn</a>. Developed and maintained both vanilla Javascript and Vue.js components, including the corresponding HTML5 and SASS files. Implemented the Vuex State Management System. Implemented Google Analytics tracking into the various components including the tawkto.io widget. Received bug reports and implemented fixes.
+					 <div class="m-0">
+					 	Technologies used: Django, Vue.js, jQuery, SASS and Bootstrap.
+					 </div>
+				</li>
+				<li>
+					Lead developer on xetnghiemtainha.vn. Implemented Google Analytics. Made new forms with vanilla Javascript. Maintained the CSS files and made styling updates. Received bug reports and implemented fixes.
+					<div class="m-0">
+					   Technologies Used: Joomla CMS, vanilla Javascript, jQuery.
+					</div>
+				</li>
+				<li>
+					Collaborated with other developers, designers, QA testers, marketers, and sales people using the Agile development methodology. Collaborated and communicated with each other using Git, Gitlab, Trello, and Slack.
 				</li>
 			</ul>
 
@@ -139,7 +139,7 @@ export default {
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 li {
 	padding: 0 0 16px 0;

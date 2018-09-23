@@ -4,7 +4,7 @@
 
 		<b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
-		<b-navbar-brand :href="this.siteUrl">John Zarek</b-navbar-brand>
+		<b-navbar-brand :href="this.siteUrl">John Zarek.com</b-navbar-brand>
 
 		<b-collapse is-nav id="nav_collapse">
 
@@ -26,11 +26,16 @@
 			<!-- Right aligned nav items -->
 			<b-navbar-nav class="ml-auto">
 
-				<b-nav-item-dropdown text="Lang" right>
-					<b-dropdown-item href="#">EN</b-dropdown-item>
-					<b-dropdown-item href="#">ES</b-dropdown-item>
-					<b-dropdown-item href="#">RU</b-dropdown-item>
-					<b-dropdown-item href="#">FA</b-dropdown-item>
+				<b-nav-item-dropdown text="Games" right>
+					<b-dropdown-item :href="this.siteUrl + '/dragon-ball-battleship'">
+						Dragon Ball Battleship
+					</b-dropdown-item>
+					<b-dropdown-item :href="this.siteUrl + '/wheres-waldo'">
+						Where's Waldo
+					</b-dropdown-item>
+					<b-dropdown-item :href="this.siteUrl + '/minesweeper'">
+						Minesweeper
+					</b-dropdown-item>
 				</b-nav-item-dropdown>
 
 			</b-navbar-nav>
@@ -54,7 +59,7 @@ export default {
 			type: String
 		}
 	}
-	
+
 }
 </script>
 
