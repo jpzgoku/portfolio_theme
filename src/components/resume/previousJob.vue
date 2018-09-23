@@ -1,8 +1,16 @@
 <template lang="html">
 	<b-container>
-		<b-row>
-			<b-col class="my-3 text-center-medium">
-				<h3>{{ company }} <a class="pl-2" :href="websiteURL" target="_blank">( {{ websiteName }} )</a></h3>
+		<b-row class="mt-5 mb-3 text-center-medium">
+			<b-col>
+				<h3>
+					{{ company }}
+					<span v-if="websiteName && websiteURL" class="hide-small-medium pl-2">
+						<a :href="websiteURL" target="_blank">( {{ websiteName }} )</a>
+					</span>
+				</h3>
+				<span v-if="websiteName && websiteURL" class="show-small-medium">
+					<a :href="websiteURL" target="_blank">( {{ websiteName }} )</a>
+				</span>
 			</b-col>
 		</b-row>
 		<b-row>
@@ -64,6 +72,14 @@ export default {
 
 $mediumBrk: 768px;
 
+.show-small-medium {
+	display: none;
+}
+
+.hide-small-medium {
+	display: initial;
+}
+
 a {
 	font-size: 1.25rem;
 }
@@ -73,6 +89,14 @@ a {
 }
 
 @media only screen and (max-width: $mediumBrk) {
+
+	.show-small-medium {
+		display: initial;
+	}
+
+	.hide-small-medium {
+		display: none;
+	}
 
 	.text-center-medium {
 		text-align: center;
