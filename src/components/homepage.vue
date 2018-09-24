@@ -46,10 +46,10 @@
 				<single-project
 					projectImage="/wp-content/themes/portfolio/src/assets/homepage/williamzarek.png">
 
-					<h4><a href="http://www.williamzarek.com/" target="_blank">williamzarek.com</a></h4>
+					<h4><a href="http://www.williamzarek.com/" target="_blank">WilliamZarek.com</a></h4>
 
 					<p>
-						A custom Wordpress portfolio website for a 3D animator.
+						This is the personal website of 3D animator William Zarek. It showcases his bio, portfolio, and contact information. There's also a contact form where clients can send their contact information.
 					</p>
 
 				</single-project>
@@ -57,10 +57,10 @@
 				<single-project
 					projectImage="/wp-content/themes/portfolio/src/assets/homepage/zarekprivateteaching.png">
 
-					<h4><a href="http://zarekprivateteaching.com/en/" target="_blank">zarekprivateteaching.com</a></h4>
+					<h4><a href="http://zarekprivateteaching.com/en/" target="_blank">ZarekPrivateTeaching.com</a></h4>
 
 					<p>
-						The website that I previously used to find students for private English lessons in Vietnam.
+						A Digital Marketing project. I taught private English lessons to students in Vietnam. This is the Wordpress website that I used to acquired students, along with a Google Ads campaign and a Convert Kit email marketing campaign. I also used Google Analytics to study visitor behavior to make adjustments to my website's design and to optimize my Google Ad campaign's ROI.
 					</p>
 
 				</single-project>
@@ -77,7 +77,7 @@
 			<b-row>
 
 				<single-project
-					projectImage="/wp-content/themes/portfolio/src/assets/homepage/williamzarek.png">
+					projectImage="/wp-content/themes/portfolio/src/assets/homepage/dragon-ball-battleship.png">
 
 					<h4><a :href="`${this.siteUrl}/dragon-ball-battleship`" target="_blank">Dragon Ball Battleship</a></h4>
 
@@ -92,7 +92,7 @@
 				</single-project>
 
 				<single-project
-					projectImage="/wp-content/themes/portfolio/src/assets/homepage/zarekprivateteaching.png">
+					projectImage="/wp-content/themes/portfolio/src/assets/homepage/wheres-waldo.png">
 
 					<h4><a :href="`${this.siteUrl}/wheres-waldo`" target="_blank">Where's Waldo</a></h4>
 
@@ -107,7 +107,7 @@
 				</single-project>
 
 				<single-project
-					projectImage="/wp-content/themes/portfolio/src/assets/homepage/williamzarek.png">
+					projectImage="/wp-content/themes/portfolio/src/assets/homepage/minesweeper.png">
 
 					<h4><a :href="`${this.siteUrl}/minesweeper`" target="_blank">Minesweeper</a></h4>
 

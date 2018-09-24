@@ -4,7 +4,7 @@
 		<h1 class="text-center pt-5 pb-1">Work Experience</h1>
 
 		<div class="text-center pb-3">
-			<font-awesome-icon icon="ellipsis-h" size="2x" :style="{ color: '#343a40' }" />
+			<font-awesome-icon icon="ellipsis-h" size="lg" :style="{ color: '#343a40' }" />
 		</div>
 
 		<previous-job
@@ -17,10 +17,10 @@
 
 			<ul>
 				<li>
-					A Digital Marketing project. I Taught private English lessons to students in Vietnam.
+					A Digital Marketing project. I taught private English lessons to students in Vietnam.
 				</li>
 				<li>
-					Acquired stuents through my Wordpress site, Google Ads camaign, and Convert Kit email marketing campaign.
+					Acquired students through my Wordpress site, Google Ads campaign, and Convert Kit email marketing campaign.
 				</li>
 				<li>
 					Used Google Analytics to study visitor behavior to make adjustments to my website's design and to optimize my Google Ad campaign's ROI.
@@ -50,7 +50,7 @@
 					Wrote ad copy for both daily emails and on-site promotions.
 				</li>
 				<li>
-					Used Google Analytics and PPC data to write detailed reports about our customer acquistion efforts.
+					Used Google Analytics and PPC data to write detailed reports about our customer acquisition efforts.
 				</li>
 			</ul>
 

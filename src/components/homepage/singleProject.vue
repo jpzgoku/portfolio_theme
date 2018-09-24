@@ -52,6 +52,7 @@ div.project {
 	}
 
 	.text {
+		color: #cccdcf;
 		left: 50%;
 		position: absolute;
 		top: 50%;
@@ -61,6 +62,15 @@ div.project {
 
 		a {
 			color: inherit;
+
+			&:hover {
+				color: #fff;
+			}
+		}
+
+		p {
+			font-size: 12px;
+			line-height: 20px;
 		}
 	}
 

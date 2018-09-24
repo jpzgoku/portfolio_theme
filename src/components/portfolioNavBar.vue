@@ -18,26 +18,19 @@
 				<b-nav-item :href="this.siteUrl + '/minesweeper'">
 					Minesweeper
 				</b-nav-item>
-				<b-nav-item :href="this.siteUrl + '/resume'">
-					Resume
-				</b-nav-item>
 			</b-navbar-nav>
 
 			<!-- Right aligned nav items -->
 			<b-navbar-nav class="ml-auto">
-
-				<b-nav-item-dropdown text="Games" right>
-					<b-dropdown-item :href="this.siteUrl + '/dragon-ball-battleship'">
-						Dragon Ball Battleship
-					</b-dropdown-item>
-					<b-dropdown-item :href="this.siteUrl + '/wheres-waldo'">
-						Where's Waldo
-					</b-dropdown-item>
-					<b-dropdown-item :href="this.siteUrl + '/minesweeper'">
-						Minesweeper
-					</b-dropdown-item>
-				</b-nav-item-dropdown>
-
+				<b-nav-item :href="this.siteUrl + '/resume'">
+					Resume
+				</b-nav-item>
+				<b-nav-item href="https://github.com/jpzgoku/portfolio_theme" target="_blank">
+					<font-awesome-icon :icon="['fab', 'github']" size="lg" />
+				</b-nav-item>
+				<b-nav-item href="https://www.linkedin.com/in/john-zarek-022a48155/" target="_blank">
+					<font-awesome-icon :icon="['fab', 'linkedin']" size="lg" />
+				</b-nav-item>
 			</b-navbar-nav>
 
 		</b-collapse>

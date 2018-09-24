@@ -2,7 +2,7 @@
 	<div class="py-4">
 		<ul class="text-center list-inline">
 			<li class="p-1">
-				<font-awesome-icon icon="copyright" size="md"/> 2018 John Zarek
+				<font-awesome-icon icon="copyright" size="sm"/> 2018 John Zarek
 			</li>
 			<li class="icons px-2">
 				<a href="https://github.com/jpzgoku/portfolio_theme" target="_blank">
@@ -36,7 +36,7 @@ export default {
 
 div {
 	background: #343a40;
-	color: #fff;
+	color: #999c9f;
 }
 
 ul {
@@ -49,10 +49,10 @@ ul {
 }
 
 a {
-	color: #fff;
+	color: #999c9f;
 
 	&:hover {
-		color: #007bff;
+		color: #cccdcf;
 	}
 }
 
