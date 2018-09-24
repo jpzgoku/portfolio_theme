@@ -8,7 +8,7 @@
 			<h1 class="pt-5 pb-4">
 				John Zarek
 			</h1>
-			<h4>Front End / Wordpress Developer</h4>
+			<h4>Front End &amp; Wordpress Developer / Digital Marketer</h4>
 
 		</div>
 
