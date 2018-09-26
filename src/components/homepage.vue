@@ -5,15 +5,52 @@
 
 			<b-img class="professional" src="/wp-content/themes/portfolio/src/assets/homepage/professionaljpz.jpg" fluid/>
 
-			<h1 class="pt-5 pb-4">
-				John Zarek
+			<h1 class="pt-4">
+				Front End &amp; Wordpress Developer / Digital Marketer
 			</h1>
-			<h4>Front End &amp; Wordpress Developer / Digital Marketer</h4>
+
+			<ul class="text-center list-inline pt-4">
+				<li>
+					<b-button size="sm" variant="secondary">
+                		Vue.js
+					</b-button>
+				</li>
+				<li>
+					<b-button size="sm" variant="secondary">
+                		JavaScript
+					</b-button>
+				</li>
+				<li>
+					<b-button size="sm" variant="secondary">
+                		PHP / Wordpress
+					</b-button>
+				</li>
+				<li>
+					<b-button size="sm" variant="secondary">
+                		CSS
+					</b-button>
+				</li>
+				<li>
+					<b-button size="sm" variant="secondary">
+                		HTML
+					</b-button>
+				</li>
+				<li>
+					<b-button size="sm" variant="secondary">
+                		Google Analytics
+					</b-button>
+				</li>
+				<li>
+					<b-button size="sm" variant="secondary">
+                		Google Ads
+					</b-button>
+				</li>
+			</ul>
 
 		</div>
 
-		<b-container>
-			<h2 class="mt-5 pt-5 text-center">About Me</h2>
+		<b-container class="p-5">
+			<h2 class="mt-5 text-center">About Me</h2>
 			<b-row>
 
 				<b-col md="6" lg="5" class="mt-5 about-me-img">
@@ -26,7 +63,7 @@
 					</div>
 
 					<div class="mb-3">
-						Some of my projects include:
+						Some of my online business projects include:
 					</div>
 
 					<div class="mb-3">
@@ -81,7 +118,7 @@
 		<hr>
 
 		<b-container>
-			<h2 class="mt-5 pt-5 text-center">My Projects</h2>
+			<h2 class="mt-5 pt-5 text-center">Web Development Projects</h2>
 
 			<b-row>
 
@@ -204,20 +241,43 @@ export default {
 div.header {
 	background-repeat: no-repeat;
 	min-height: 100vh;
-	padding: 80px 0;
+	padding: 55px 0;
+
+	h1 {
+		font-size: 1.5rem;
+	}
+
+	ul {
+		margin: 0 auto;
+		max-width: 500px;
+	}
+
+	li {
+		display: inline-block;
+		padding: 6px 2px;
+
+		button {
+			cursor: default;
+
+			&:hover {
+				background-color: #6c757d;
+				cursor: default;
+			}
+		}
+	}
 }
 
 img.professional {
 	border: 2px solid #23313A;
 	border-radius: 50%;
-	max-height: 350px;
+	max-height: 325px;
 }
 
 .about-me-img {
 	text-align: center;
 
 	img {
-		height: 450px;
+		max-height: 450px;
 	}
 }
 
