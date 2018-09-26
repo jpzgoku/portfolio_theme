@@ -3,6 +3,10 @@
 
 		<h1 class="text-center pt-5 pb-1">Work Experience</h1>
 
+		<div class="text-center pt-3">
+			<a :href="downloadLink" download target="_blank">Download Resume</a>
+		</div>
+
 		<div class="text-center pb-3">
 			<font-awesome-icon icon="ellipsis-h" size="lg" :style="{ color: '#343a40' }" />
 		</div>

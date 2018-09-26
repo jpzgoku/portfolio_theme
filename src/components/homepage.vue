@@ -16,22 +16,31 @@
 			<h2 class="mt-5 pt-5 text-center">About Me</h2>
 			<b-row>
 
-				<b-col md="6" class="mt-5 about-me-img">
+				<b-col md="6" lg="5" class="mt-5 about-me-img">
 					<b-img src="/wp-content/themes/portfolio/src/assets/homepage/about-me.jpg" fluid/>
 				</b-col>
 
-				<b-col md="6">
+				<b-col md="6" lg="7">
 					<div class="mt-5 mb-4">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+						I'm a web developer and online business enthusiast. I've been running my own online businesses ever since getting my first development position at an online based startup - where I first learned all about things like Google Analytics, SEO, content writing and more.
 					</div>
 
-					<div class="mt-5 mb-4">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+					<div class="mb-3">
+						Some of my projects include:
 					</div>
 
-					<div class="mt-5 mb-4">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+					<div class="mb-3">
+						<a href="http://firstwebdevelopmentjob.com/" target="_blank">Your First Web Development Job</a> - A blog that I created to try out Wordpress, content writing, SEO optimization, Google Ads, Bing Ads, and affilliate marketing.
 					</div>
+
+					<div class="mb-3">
+						Zarek Digital Marketing (website now defunct) - A one-man digital markeing business where I ran paid search campaigns for other small businesses and helped them SEO optimize their websites.
+					</div>
+
+					<div class="mb-4">
+						<a href="http://zarekprivateteaching.com/en/" target="_blank">Zarek Private Teaching</a> - A short term private teaching business. The purpose of this project was to further practice and learn about customer acquisition, Google Ads, Wordpress development, Google Analytics, and Convert Kit email marketing campaigns.
+					</div>
+
 				</b-col>
 			</b-row>
 		</b-container>
