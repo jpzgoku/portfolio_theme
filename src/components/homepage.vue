@@ -11,39 +11,25 @@
 
 			<ul class="text-center list-inline pt-4">
 				<li>
-					<b-button size="sm" variant="secondary">
-                		Vue.js
-					</b-button>
+					<b-button size="sm" variant="secondary">Vue.js</b-button>
 				</li>
 				<li>
-					<b-button size="sm" variant="secondary">
-                		JavaScript
-					</b-button>
+					<b-button size="sm" variant="secondary">JavaScript</b-button>
 				</li>
 				<li>
-					<b-button size="sm" variant="secondary">
-                		PHP / Wordpress
-					</b-button>
+					<b-button size="sm" variant="secondary">PHP / Wordpress</b-button>
 				</li>
 				<li>
-					<b-button size="sm" variant="secondary">
-                		CSS
-					</b-button>
+					<b-button size="sm" variant="secondary">CSS</b-button>
 				</li>
 				<li>
-					<b-button size="sm" variant="secondary">
-                		HTML
-					</b-button>
+					<b-button size="sm" variant="secondary">HTML</b-button>
 				</li>
 				<li>
-					<b-button size="sm" variant="secondary">
-                		Google Analytics
-					</b-button>
+					<b-button size="sm" variant="secondary">Google Analytics</b-button>
 				</li>
 				<li>
-					<b-button size="sm" variant="secondary">
-                		Google Ads
-					</b-button>
+					<b-button size="sm" variant="secondary">Google Ads</b-button>
 				</li>
 			</ul>
 
@@ -58,7 +44,7 @@
 				</b-col>
 
 				<b-col md="6" lg="7">
-					<div class="mt-5 mb-4">
+					<div class="mt-5 mb-4 ">
 						I'm a web developer and online business enthusiast. I've been running my own online businesses ever since getting my first development position at an online based startup - where I first learned all about things like Google Analytics, SEO, content writing and more.
 					</div>
 
@@ -66,16 +52,20 @@
 						Some of my online business projects include:
 					</div>
 
-					<div class="mb-3">
-						<a href="http://firstwebdevelopmentjob.com/" target="_blank">Your First Web Development Job</a> - A blog that I created to try out Wordpress, content writing, SEO optimization, Google Ads, Bing Ads, and affilliate marketing.
+					<div class="mb-3 pl-4">
+						<a href="http://firstwebdevelopmentjob.com/" target="_blank">Your First Web Development Job</a> - A blog that I created to try out Wordpress, content writing, SEO optimization, Google Ads, Bing Ads, and affiliate marketing.
 					</div>
 
-					<div class="mb-3">
-						Zarek Digital Marketing (website now defunct) - A one-man digital markeing business where I ran paid search campaigns for other small businesses and helped them SEO optimize their websites.
+					<div class="mb-3 pl-4">
+						Zarek Digital Marketing (website now defunct) - A one-man digital marketing business where I ran paid search campaigns for other small businesses and helped them SEO optimize their websites.
 					</div>
 
-					<div class="mb-4">
+					<div class="mb-4 pl-4">
 						<a href="http://zarekprivateteaching.com/en/" target="_blank">Zarek Private Teaching</a> - A short term private teaching business. The purpose of this project was to further practice and learn about customer acquisition, Google Ads, Wordpress development, Google Analytics, and Convert Kit email marketing campaigns.
+					</div>
+
+					<div>
+						My goal is to continue to grow and master online business either by working with other small businesses who need help with their websites and marketing, or with a company that works with small businesses, or utilizes technologies that are perfect for small to medium sized businesses - mainly Wordpress.
 					</div>
 
 				</b-col>
