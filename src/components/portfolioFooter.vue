@@ -5,7 +5,7 @@
 				<font-awesome-icon icon="copyright" size="sm"/> 2018 John Zarek
 			</li>
 			<li class="icons px-2">
-				<a href="https://github.com/jpzgoku/portfolio_theme" target="_blank">
+				<a href="https://github.com/jpzgoku" target="_blank">
 					<font-awesome-icon :icon="['fab', 'github']" size="2x"/>
 				</a>
 			</li>

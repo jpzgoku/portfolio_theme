@@ -1,3 +1,3 @@
 # johnzarek.com Custom Portfolio Theme
 
-> A Vue.js project
+Custom Wordpress theme for http://johnzarek.com/

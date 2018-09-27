@@ -60,8 +60,12 @@
 						Zarek Digital Marketing (website now defunct) - A one-man digital marketing business where I ran paid search campaigns for other small businesses and helped them SEO optimize their websites.
 					</div>
 
-					<div class="mb-4 pl-4">
+					<div class="mb-3 pl-4">
 						<a href="http://zarekprivateteaching.com/en/" target="_blank">Zarek Private Teaching</a> - A short term private teaching business. The purpose of this project was to further practice and learn about customer acquisition, Google Ads, Wordpress development, Google Analytics, and Convert Kit email marketing campaigns.
+					</div>
+
+					<div class="mb-4 pl-4">
+						This website! You can see the files for this custom theme on GitHub <a href="https://github.com/jpzgoku/portfolio_theme" target="_blank">here</a>.
 					</div>
 
 					<div>

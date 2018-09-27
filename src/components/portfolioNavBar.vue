@@ -25,7 +25,7 @@
 				<b-nav-item :href="this.siteUrl + '/resume'">
 					Resume
 				</b-nav-item>
-				<b-nav-item href="https://github.com/jpzgoku/portfolio_theme" target="_blank">
+				<b-nav-item href="https://github.com/jpzgoku" target="_blank">
 					<font-awesome-icon :icon="['fab', 'github']" size="lg" />
 				</b-nav-item>
 				<b-nav-item href="https://www.linkedin.com/in/john-zarek-022a48155/" target="_blank">
