@@ -1,3 +1,3 @@
-# johnzarek.com Custom Portfolio Theme
+# johnzarek.com Portfolio Theme
 
 Custom Wordpress theme for http://johnzarek.com/
